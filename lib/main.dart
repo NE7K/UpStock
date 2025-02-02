@@ -5,6 +5,7 @@ import 'dart:convert'; // json 자료 변환
 import 'package:fl_chart/fl_chart.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart';
+import 'package:upstock/test.dart';
 
 // 내부 파일 Import
 import 'home.dart'; // fl_chart
@@ -43,14 +44,17 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    // 앱 실행 시 로그인 if 문 처리, firebase에서도 rule처리 해줘야 함.
+    // 앱 실행 시 로그인 if 문 처리 (로그인되어 있지 않으면 바로 다시 navigator 적용), firebase에서도 rule처리 해줘야 함.
+
+    // 앱 실행 시 로그인 체크 -> 계정 관련된 것 저장
+
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
 
-      body: [Home(), Text('2번째 페이지'), Profile()][tab],
+      body: [Home(), Test(), Profile()][tab],
 
       bottomNavigationBar: BottomNavigationBar(
           showSelectedLabels: false, // 선택된 라벨 표시 false

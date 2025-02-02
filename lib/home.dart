@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget {
+// 외부 패키지
+import 'package:fl_chart/fl_chart.dart';
+
+class Home extends StatefulWidget {
   const Home({super.key});
 
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +26,7 @@ class Home extends StatelessWidget {
         ],
       ),
 
-      body: Text('test')
+      body: Text('df')
     );
   }
 }

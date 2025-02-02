@@ -5,9 +5,20 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // 차트, 리스트, 스크롤 ...
-      child: Text('1번째 페이지'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Row(
+          children: [
+            Text('UpStock'),
+            IconButton(onPressed: () {}, icon: Icon(Icons.expand_more))
+          ],
+        ),
+        actions: [
+          IconButton(onPressed: () {}, icon: Icon(Icons.menu))
+        ],
+      ),
+
+      body: Text('test')
     );
   }
 }

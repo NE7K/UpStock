@@ -5,8 +5,14 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('3번째 페이지'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Profile'),
+        actions: [
+          IconButton(onPressed: () {}, icon: Icon(Icons.settings_outlined))
+        ],
+      ),
+      body: Text('3번째 페이지'),
     );
   }
 }

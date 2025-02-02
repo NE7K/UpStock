@@ -5,10 +5,8 @@ import 'dart:convert'; // json 자료 변환
 // 외부 package import
 import 'package:http/http.dart' as http;
 
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:upstock/register.dart';
 
-final auth = FirebaseAuth.instance;
 
 class Profile extends StatefulWidget {
   const Profile({super.key});

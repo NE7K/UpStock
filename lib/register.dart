@@ -16,7 +16,7 @@ class Register extends StatelessWidget {
          Text('비밀번호'),
          TextField(),
 
-         TextButton(onPressed: () {}, child: Text('회원가입'))
+         TextButton(onPressed: () {}, child: Text('회원가입')) // 이거 slide animation 넣는걸로
        ],
       )
 

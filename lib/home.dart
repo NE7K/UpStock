@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-// 외부 패키지
-import 'package:fl_chart/fl_chart.dart';
-
 class Home extends StatefulWidget {
   const Home({super.key});
 

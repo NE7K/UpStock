@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'dart:convert'; // json 자료 변환
 
 // 외부 package import
-import 'package:fl_chart/fl_chart.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart';
 import 'package:upstock/test.dart';

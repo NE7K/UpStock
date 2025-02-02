@@ -5,6 +5,11 @@ import 'dart:convert'; // json 자료 변환
 // 외부 package import
 import 'package:http/http.dart' as http;
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:upstock/register.dart';
+
+final auth = FirebaseAuth.instance;
+
 class Profile extends StatefulWidget {
   const Profile({super.key});
 
@@ -61,12 +66,9 @@ class _ProfileState extends State<Profile> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
 
-                TextButton(onPressed: () {}, child: Text('테스트 로그인 버튼')),
-                TextButton(onPressed: () {}, child: Text('테스트 로그아웃 버튼')),
-
                 Divider(color: Colors.grey[200],),
 
-                Text('설정', style: TextStyle( fontSize: 10, color: Colors.grey)),
+                Text('설정', style: TextStyle( fontSize: 11, color: Colors.grey)),
 
                 ListTile(
                   contentPadding: EdgeInsets.symmetric(vertical: 12),
@@ -78,7 +80,7 @@ class _ProfileState extends State<Profile> {
 
                 Divider(color: Colors.grey[200],),
 
-                Text('앱', style: TextStyle( fontSize: 10, color: Colors.grey)),
+                Text('앱', style: TextStyle( fontSize: 11, color: Colors.grey)),
 
                 ListTile(
                   contentPadding: EdgeInsets.symmetric(vertical: 12),
@@ -99,10 +101,18 @@ class _ProfileState extends State<Profile> {
                 Text('개인정보보호방침 및 이용약관',
                     style: TextStyle(
                         decoration: TextDecoration.underline,
-                        fontSize: 8,
+                        fontSize: 9,
                         color: Colors.grey[600]
                     )
-                )
+                ),
+
+                TextButton(onPressed: () {}, child: Text('테스트 로그인 버튼')),
+                TextButton(onPressed: () {}, child: Text('테스트 로그아웃 버튼')),
+                TextButton(onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (c) => Register()));
+                  }, child: Text('테스트 회원가입 페이지 버튼')),
+
               ],
             ),
 

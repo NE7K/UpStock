@@ -12,7 +12,15 @@ class Profile extends StatelessWidget {
           IconButton(onPressed: () {}, icon: Icon(Icons.settings_outlined))
         ],
       ),
-      body: Text('3번째 페이지'),
+      body: Column(
+        children: [
+          CircleAvatar(
+            radius: 30,
+            // 서버에서 이미지 get
+          )
+        ],
+
+      )
     );
   }
 }

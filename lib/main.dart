@@ -47,7 +47,9 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: [Home(), Text('2번째 페이지'), Profile()][tab],
+
       bottomNavigationBar: BottomNavigationBar(
           showSelectedLabels: false, // 선택된 라벨 표시 false
           showUnselectedLabels: false,

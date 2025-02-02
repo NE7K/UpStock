@@ -6,7 +6,7 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('2번째 페이지'),
+      child: Text('3번째 페이지'),
     );
   }
 }

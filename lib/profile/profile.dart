@@ -4,6 +4,7 @@ import 'dart:convert'; // json 자료 변환
 
 // 외부 package import
 import 'package:http/http.dart' as http;
+import 'package:upstock/profile/screen.dart';
 
 import 'package:upstock/register.dart';
 
@@ -73,7 +74,10 @@ class _ProfileState extends State<Profile> {
                   leading: Icon(Icons.wb_sunny_outlined),
                   title: Text('화면 테마'),
                   trailing: Icon(Icons.arrow_forward_ios, size: 15),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context,
+                    MaterialPageRoute(builder: (c) => Screen()));
+                  },
                 ),
 
                 Divider(color: Colors.grey[200],),

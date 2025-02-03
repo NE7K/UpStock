@@ -4,6 +4,8 @@ import 'dart:convert'; // json 자료 변환
 
 // 외부 package import
 import 'package:http/http.dart' as http;
+import 'package:upstock/profile/announcement.dart';
+import 'package:upstock/profile/peedback.dart';
 import 'package:upstock/profile/screen.dart';
 
 import 'package:upstock/register.dart';
@@ -89,7 +91,10 @@ class _ProfileState extends State<Profile> {
                   leading: Icon(Icons.mail_outline),
                   title: Text('피드백'),
                   trailing: Icon(Icons.arrow_forward_ios, size: 15),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context,
+                    MaterialPageRoute(builder: (c) => Peedback()));
+                  },
                 ),
 
                 ListTile(
@@ -97,7 +102,9 @@ class _ProfileState extends State<Profile> {
                   leading: Icon(Icons.campaign_outlined),
                   title: Text('공지사항'),
                   trailing: Icon(Icons.arrow_forward_ios, size: 15),
-                  onTap: () {},
+                  onTap: () {Navigator.push(context,
+                  MaterialPageRoute(builder: (c) => Announcement()));
+                    },
                 ),
 
                 Text('개인정보보호방침 및 이용약관',

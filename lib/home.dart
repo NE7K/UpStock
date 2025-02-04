@@ -12,6 +12,11 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF0F0F6),
+
+      appBar: AppBar(
+        backgroundColor: Color(0xFFF0F0F6),
+      ),
+
       // appBar: AppBar(
       //   title: Row(
       //     children: [

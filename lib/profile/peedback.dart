@@ -6,6 +6,9 @@ class Peedback extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('피드백'),
+      ),
       body: Text('피드백 페이지'),
     );
   }

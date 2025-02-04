@@ -4,10 +4,11 @@ import 'dart:convert'; // json 자료 변환
 
 // 외부 package import
 import 'package:http/http.dart' as http;
+
+// 내부 파일 연동
 import 'package:upstock/profile/announcement.dart';
 import 'package:upstock/profile/peedback.dart';
 import 'package:upstock/profile/screen.dart';
-
 import 'package:upstock/register.dart';
 
 
@@ -62,6 +63,7 @@ class _ProfileState extends State<Profile> {
               ]
             ),
 
+
             // if 문 로그인 되어있는 경우에는 로그인 버튼, 로그인이 되어 있으면 로그아웃 버튼
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,8 +80,8 @@ class _ProfileState extends State<Profile> {
                   trailing: Icon(Icons.arrow_forward_ios, size: 15),
                   onTap: () {
                     Navigator.push(context,
-                    MaterialPageRoute(builder: (c) => Screen()));
-                  },
+                        MaterialPageRoute(builder: (c) => Screen()));
+                    },
                 ),
 
                 Divider(color: Colors.grey[200],),

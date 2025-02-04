@@ -45,13 +45,13 @@ class _ProfileState extends State<Profile> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CircleAvatar(
-                    radius: 30,
+                    radius: 40,
                     backgroundImage: NetworkImage('https://ne7k.github.io/app/profile.jpg')
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 0, 0, 30),
+                  padding: const EdgeInsets.fromLTRB(20, 15, 0, 30),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center, // 세로 center
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                      Text('NE7K', style: TextStyle(fontSize: 20)),
@@ -67,9 +67,9 @@ class _ProfileState extends State<Profile> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
 
-                Divider(color: Colors.grey[200],),
+                Divider(color: Colors.grey[200]),
 
-                Text('설정', style: TextStyle( fontSize: 11, color: Colors.grey)),
+                Text('설정', style: TextStyle( fontSize: 12, color: Colors.grey)),
 
                 ListTile(
                   contentPadding: EdgeInsets.symmetric(vertical: 12),
@@ -84,7 +84,7 @@ class _ProfileState extends State<Profile> {
 
                 Divider(color: Colors.grey[200],),
 
-                Text('앱', style: TextStyle( fontSize: 11, color: Colors.grey)),
+                Text('앱', style: TextStyle( fontSize: 12, color: Colors.grey)),
 
                 ListTile(
                   contentPadding: EdgeInsets.symmetric(vertical: 12),

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "574293726105",
+    "project_id": "upstock-b54e4",
+    "storage_bucket": "upstock-b54e4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:574293726105:android:3ebb26d0c4b04864a47908",
+        "android_client_info": {
+          "package_name": "com.neighborsoft.upstock.upstock"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmD3MhiooeY0fSWjErlNTmUyRxIXOXL2I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

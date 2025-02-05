@@ -12,7 +12,16 @@ import 'profile/profile.dart';
 import 'package:upstock/profile/profile.dart';
 import 'package:upstock/style/style.dart' as style; // style.dart
 
-void main() {
+
+// firebase set import
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
       MultiProvider(
           providers: [

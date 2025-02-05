@@ -9,7 +9,7 @@ class Peedback extends StatelessWidget {
       appBar: AppBar(
         title: Text('피드백'),
       ),
-      body: Text('피드백 페이지'),
+      body: Text('피드백 페이지 : 구글 설문 폼으로 대체 예정'),
     );
   }
 }

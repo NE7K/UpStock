@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'dart:convert'; // json 자료 변환
-
 // 외부 package import
-import 'package:http/http.dart' as http;
 
 // 내부 파일 연동
 import 'package:upstock/profile/announcement.dart';

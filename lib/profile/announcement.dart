@@ -43,6 +43,7 @@ class _AnnouncementState extends State<Announcement> {
         title: Text('공지사항'),
       ),
       body: Container(
+        width: double.infinity,
         padding: EdgeInsets.all(10),
         margin: EdgeInsets.all(20),
         child:
@@ -54,6 +55,7 @@ class _AnnouncementState extends State<Announcement> {
                     color: Colors.white,
                     elevation: 4,
                     shadowColor: Colors.grey[300],
+                    margin: EdgeInsets.symmetric(vertical: 15),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8)
                     ),
@@ -63,6 +65,7 @@ class _AnnouncementState extends State<Announcement> {
                       child: Column (
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+
                           Text(
                             mastercontext[index]['title'],
                             style: TextStyle(
@@ -88,14 +91,16 @@ class _AnnouncementState extends State<Announcement> {
 
                           SizedBox(height: 50),
 
-                          Text(
-                            (mastercontext[index]['date'] as Timestamp).toDate().toString(),
-                            textAlign: TextAlign.right,
-                            style: TextStyle(
-                              fontSize: 10,
-                              color: Colors.grey[800],
+                          Align(
+                            alignment: Alignment.bottomRight,
+                           child: Text(
+                             (mastercontext[index]['date'] as Timestamp).toDate().toString(),
+                             style: TextStyle(
+                               fontSize: 10,
+                               color: Colors.grey[800],
 
-                            ),
+                             ),
+                           ),
                           )
                         ],
                       ),

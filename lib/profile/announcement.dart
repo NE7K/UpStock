@@ -19,7 +19,7 @@ class _AnnouncementState extends State<Announcement> {
   getData() async {
     var  result = await firestore
         .collection('announcement')
-        .orderBy('date', descending: true)
+        .orderBy('date', descending: true) // date 순으로 정렬
         .get(); // all get
 
     List<Map<String, dynamic>> result2 = []; // result2 역할 type 지정

@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+// firebase function
+final firestore = FirebaseFirestore.instance;
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -13,39 +18,113 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: Color(0xFFF0F0F6),
 
-      appBar: AppBar(
-        backgroundColor: Color(0xFFF0F0F6),
-      ),
 
       // appBar: AppBar(
-      //   title: Row(
-      //     children: [
-      //       Text('UpStock'),
-      //       IconButton(onPressed: () {}, icon: Icon(Icons.expand_more), iconSize: 15)
-      //     ],
-      //   ),
-      //   actions: [
-      //     IconButton(onPressed: () {}, icon: Icon(Icons.search_rounded)),
-      //     IconButton(onPressed: () {}, icon: Icon(Icons.menu))
-      //   ],
+      //   backgroundColor: Color(0xFFF0F0F6),
       // ),
 
       body: Container(
-        margin: EdgeInsets.all(20),
         padding: EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('홈', style: TextStyle( fontSize: 25, fontWeight: FontWeight.w700 )),
 
-            Container(
-              color: Colors.white,
-              child: Column(
-                children: [
-                  Text('테스트 카드뷰')
-                ],
-              ),
+            SizedBox( height: 90),
+
+            Align(
+              alignment: Alignment.topLeft,
+              child:  Text('홈', style: TextStyle( fontSize: 25, fontWeight: FontWeight.w700 )),
+            ),
+
+            SizedBox( height: 40),
+
+            Text('주식 리스트'),
+
+            SizedBox( height: 40),
+
+            Align(
+              alignment: Alignment.topLeft,
+              child:  Text('커뮤니티', style: TextStyle( fontSize: 25, fontWeight: FontWeight.w700 )),
+            ),
+
+            Expanded(
+              child: ListView.builder(
+                    itemCount: 2,
+                    itemBuilder: (c, i) {
+                      return Card(
+                        margin: EdgeInsets.symmetric(vertical: 10),
+                          elevation: 4,
+                          color: Colors.white,
+                          child: Container(
+                            margin: EdgeInsets.all(10),
+                            child: Column(
+                              children: [
+
+                                Row(
+                                  children: [
+                                    CircleAvatar(
+                                      backgroundColor: Colors.grey,
+                                      backgroundImage: NetworkImage('https://ne7k.github.io/app/profile.jpg'),
+                                      radius: 20,
+                                    ),
+
+                                    SizedBox(width: 10),
+
+                                    Text('NE7K', style: TextStyle( fontSize: 15))
+                                  ],
+                                ),
+                                
+                                SizedBox( height: 10 ),
+                            
+                                Image.asset('assets/images/test.jpg'),
+                            
+                                SizedBox( height: 10 ),
+                            
+                                Container(
+                                  width: double.infinity,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Icon(Icons.favorite_outline),
+
+                                      SizedBox( width: 5),
+
+                                      Text('1098'),
+
+                                      SizedBox( width: 10),
+
+                                      Icon(Icons.chat_outlined),
+
+                                      SizedBox( width: 5),
+
+                                      Text('37'),
+
+                                      SizedBox( width: 10),
+
+                                      Icon(Icons.send_outlined),
+
+                                      SizedBox( width: 5),
+
+                                      Text('3,333'),
+
+                                    ],
+                                  ),
+                                ),
+                            
+                                SizedBox( height: 10 ),
+                            
+                                Align(
+                                  alignment: Alignment.bottomLeft,
+                                  child: Text('사용자 이름 : 게시글 내용'), //${사용자 이름} ${글 내용}
+                                ),
+                            
+                              ],
+                            ),
+                          )
+                      );
+                    }
+                ),
             )
+
           ],
         ),
       )

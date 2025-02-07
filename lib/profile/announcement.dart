@@ -30,13 +30,6 @@ class _AnnouncementState extends State<Announcement> {
     }
   }
 
-  countFunction() {
-    var i = 0;
-    var x = 0;
-
-
-  }
-
   @override
   void initState() {
     super.initState();
@@ -51,13 +44,65 @@ class _AnnouncementState extends State<Announcement> {
       ),
       body: Container(
         padding: EdgeInsets.all(10),
-        margin: EdgeInsets.all(10),
-        child: Column(
-          children: [
-            Text('공지사항 1 : ${mastercontext[0]['1']}')
-          ],
+        margin: EdgeInsets.all(20),
+        child:
+            ListView.builder(
+                itemCount: mastercontext.length,
+                itemBuilder: (context, index)
+                {
+                  return Card( // 그림자 방향 바꾸려면 다른거
+                    color: Colors.white,
+                    elevation: 4,
+                    shadowColor: Colors.grey[300],
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)
+                    ),
+
+                    child: Container(
+                      padding: EdgeInsets.all(25),
+                      child: Column (
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            mastercontext[index]['title'],
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 30,
+                              fontWeight: FontWeight.w300,
+                              letterSpacing: 1.5,
+
+                            ),
+                          ),
+                          SizedBox(height: 20),
+
+                          Divider( height: 1, color: Colors.grey[200]),
+
+                          SizedBox(height: 20),
+
+                          Text(
+                            mastercontext[index]['context'],
+                            style: TextStyle(
+                              fontSize: 15,
+                            ),
+                          ),
+
+                          SizedBox(height: 50),
+
+                          Text(
+                            (mastercontext[index]['date'] as Timestamp).toDate().toString(),
+                            textAlign: TextAlign.right,
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: Colors.grey[800],
+
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                })
         ),
-      )
     );
   }
 }

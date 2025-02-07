@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -19,15 +17,19 @@ class _AnnouncementState extends State<Announcement> {
   List<Map<String, dynamic>> mastercontext = []; // 공지사항 저장 공간
 
   getData() async {
-    var  result = await firestore.collection('announcement').get(); // all get
+    var  result = await firestore
+        .collection('announcement')
+        .orderBy('date', descending: true)
+        .get(); // all get
+
     List<Map<String, dynamic>> result2 = []; // result2 역할 type 지정
 
     for (var doc in result.docs) { // for문으로 result 데이터 저장
-      result2.add(doc.data()); // result2에 담아온 데이터 insert
+      result2.add(doc.data()); // result2에 담아온 데이터 inser
+    }
       setState(() {
         mastercontext = result2;
       });
-    }
   }
 
   @override
@@ -53,7 +55,7 @@ class _AnnouncementState extends State<Announcement> {
                 {
                   return Card( // 그림자 방향 바꾸려면 다른거
                     color: Colors.white,
-                    elevation: 4,
+                    elevation: 8,
                     shadowColor: Colors.grey[300],
                     margin: EdgeInsets.symmetric(vertical: 15),
                     shape: RoundedRectangleBorder(
@@ -94,7 +96,7 @@ class _AnnouncementState extends State<Announcement> {
                           Align(
                             alignment: Alignment.bottomRight,
                            child: Text(
-                             (mastercontext[index]['date'] as Timestamp).toDate().toString(),
+                             (mastercontext[index]['date'] as Timestamp).toDate().toString().substring(0, 16),
                              style: TextStyle(
                                fontSize: 10,
                                color: Colors.grey[800],

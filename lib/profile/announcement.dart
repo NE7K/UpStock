@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,13 +16,25 @@ class Announcement extends StatefulWidget {
 
 class _AnnouncementState extends State<Announcement> {
 
-  var mastercontext ; // 공지사항 저장 공간
+  List<Map<String, dynamic>> mastercontext = []; // 공지사항 저장 공간
 
   getData() async {
-      var result = await firestore.collection('product').doc('eUukvg8k8tzeEkqwd1vG').get();
-        setState(() {
-          mastercontext = result['announcement'];
-        });
+    var  result = await firestore.collection('announcement').get(); // all get
+    List<Map<String, dynamic>> result2 = []; // result2 역할 type 지정
+
+    for (var doc in result.docs) { // for문으로 result 데이터 저장
+      result2.add(doc.data()); // result2에 담아온 데이터 insert
+      setState(() {
+        mastercontext = result2;
+      });
+    }
+  }
+
+  countFunction() {
+    var i = 0;
+    var x = 0;
+
+
   }
 
   @override
@@ -35,7 +49,15 @@ class _AnnouncementState extends State<Announcement> {
       appBar: AppBar(
         title: Text('공지사항'),
       ),
-      body: Text(mastercontext),
+      body: Container(
+        padding: EdgeInsets.all(10),
+        margin: EdgeInsets.all(10),
+        child: Column(
+          children: [
+            Text('공지사항 1 : ${mastercontext[0]['1']}')
+          ],
+        ),
+      )
     );
   }
 }

@@ -61,6 +61,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return Scaffold(
 
+      backgroundColor: Colors.white,
+
       body: [Home(), Test(), Profile()][tab],
 
       bottomNavigationBar: BottomNavigationBar(

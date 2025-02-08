@@ -6,6 +6,8 @@ class Test extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('새 게시물'),
       ),

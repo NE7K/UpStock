@@ -41,6 +41,7 @@ class _AnnouncementState extends State<Announcement> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('공지사항'),
       ),

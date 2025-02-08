@@ -4,8 +4,6 @@ var theme = ThemeData(
     splashColor: Colors.transparent,  // 전역 스플래시 색상
     highlightColor: Colors.transparent,  // 전역 하이라이트 색상
 
-    scaffoldBackgroundColor: Colors.white, // all scaffold background color
-
     appBarTheme: AppBarTheme(
         color: Colors.white
     ),

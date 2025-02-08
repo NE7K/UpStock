@@ -26,6 +26,7 @@ class _PeedbackState extends State<Peedback> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('피드백'),
       ),

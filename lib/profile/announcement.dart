@@ -57,6 +57,7 @@ class _AnnouncementState extends State<Announcement> {
                     color: Colors.white,
                     elevation: 8,
                     shadowColor: Colors.grey[300],
+
                     margin: EdgeInsets.symmetric(vertical: 15),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8)

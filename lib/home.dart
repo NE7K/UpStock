@@ -41,6 +41,8 @@ class _HomeState extends State<Home> {
 
             SizedBox( height: 40),
 
+            // scroll하면 홈이랑 주식 리스트 사라져야함
+
             Align(
               alignment: Alignment.topLeft,
               child:  Text('커뮤니티', style: TextStyle( fontSize: 25, fontWeight: FontWeight.w700 )),

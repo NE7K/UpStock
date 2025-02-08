@@ -11,13 +11,10 @@ class Register extends StatelessWidget {
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                colors: [
-                  Color(0xFFE67E22),
-                  Colors.orange[300]!
-                ]
-            )
+          image: DecorationImage(
+              image: AssetImage('assets/images/test.jpg'),
+              fit: BoxFit.cover
+          )
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,11 +24,11 @@ class Register extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox( height: 80 ),
+                    SizedBox( height: 100 ),
                     Text('Stock Comunicatity', style: TextStyle( fontSize: 40, color: Colors.white, fontWeight: FontWeight.w600)),
                     Text('Register Now', style: TextStyle( fontSize: 20, color: Colors.white)),
 
-                    SizedBox( height: 40 )
+                    SizedBox( height: 100 )
                   ],
                 )
             ),

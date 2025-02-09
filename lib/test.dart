@@ -22,6 +22,7 @@ class Test extends StatelessWidget {
             TextField(),
             Text('게시글 내용'),
             TextField(),
+            Image.asset('assets/images/icon.png')
           ],
         ),
       ),

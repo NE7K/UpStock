@@ -12,83 +12,127 @@ class Register extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        margin: EdgeInsets.all(20),
-        width: double.infinity,
-        child: Column(
-          children: [
-            SizedBox( height: 100 ),
-
-            Image.asset('assets/images/icon.png',
-                width: 300,
-                height: 300,
-            ),
-
-            SizedBox( height: 50 ),
-
-            Text('Welcome to app "UpStock"',
-                style: TextStyle(
-                  fontSize: 20
-                )
-            ),
-
-            SizedBox( height: 20 ),
-
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Email',
-                hintText: 'Insert your e-mail',
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400
-                ),
-
-                prefixIcon: Icon(Icons.person_outline), // icon images
-
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey.shade200, width: 1.5),
-                  borderRadius: BorderRadius.circular(10)
-                ),
-                floatingLabelStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 18
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black, width: 1.5),
-                  borderRadius: BorderRadius.circular(10)
-                )
+      body: SingleChildScrollView(
+        // 스크롤 안되서 추가함 ㅅㄱ
+        child: Container(
+          margin: EdgeInsets.all(20),
+          width: double.infinity,
+          child: Column(
+            children: [
+              SizedBox( height: 100 ),
+        
+              Image.asset('assets/images/icon.png',
+                  width: 300,
+                  height: 300,
               ),
-            ),
-
-            SizedBox(height: 20),
-
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Password',
-                hintText: 'Insert your Password',
-                labelStyle: TextStyle(
-                  color: Colors.black,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400
+        
+              SizedBox( height: 50 ),
+        
+              SizedBox(
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Stock Comunication',
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.w600
+                        )
+                    ),
+                  ],
                 ),
-                
-                prefixIcon: Icon(Icons.vpn_key_outlined),
-
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey.shade200, width: 1.5),
-                  borderRadius: BorderRadius.circular(10)
-                ),
-
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey.shade200, width: 1.5),
-                  borderRadius: BorderRadius.circular(10)
-                )
-
               ),
-            )
+        
+              SizedBox( height: 20 ),
 
-          ],
+              TextField(
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                  hintText: 'Insert your e-mail',
+                  labelStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400
+                  ),
+
+                  prefixIcon: Icon(Icons.person_outline), // icon images
+
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey.shade200, width: 1.5),
+                    borderRadius: BorderRadius.circular(10)
+                  ),
+                  floatingLabelStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black, width: 1.5),
+                    borderRadius: BorderRadius.circular(10)
+                  )
+                ),
+              ),
+
+              SizedBox(height: 20),
+
+              TextField(
+                obscureText: true, // 비번인거 감춤 ㅅㄱ
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  hintText: 'Insert your Password',
+                  labelStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400
+                  ),
+
+                  prefixIcon: Icon(Icons.vpn_key_outlined),
+
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey.shade200, width: 1.5),
+                    borderRadius: BorderRadius.circular(10)
+                  ),
+                  floatingLabelStyle: TextStyle(
+                    color: Colors.black,
+                    fontSize: 18
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey.shade200, width: 1.5),
+                    borderRadius: BorderRadius.circular(10)
+                  )
+                ),
+              ),
+
+              SizedBox( height: 7 ),
+
+              SizedBox(
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text('Do you need any help?', style: TextStyle( fontWeight: FontWeight.w600, fontSize: 14))
+                  ],
+                ),
+              ),
+
+              SizedBox( height: 30 ),
+
+              Container(
+                margin: EdgeInsets.symmetric( horizontal: 50 ),
+                child: TextButton(onPressed: () {}, child: Text('Register')),
+              ),
+
+              SizedBox( height: 10 ),
+
+              Container(
+                margin: EdgeInsets.symmetric( horizontal: 50 ),
+                child: TextButton(onPressed: () {}, child: Text('Done')),
+              ),
+
+
+              // Todo : 추가할거 추가하자
+              
+            ],
+          ),
         ),
       )
     );

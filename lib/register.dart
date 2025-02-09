@@ -24,11 +24,12 @@ class Register extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox( height: 100 ),
+                    SizedBox( height: 90 ),
+
                     Text('Stock Comunicatity', style: TextStyle( fontSize: 40, color: Colors.white, fontWeight: FontWeight.w600)),
                     Text('Register Now', style: TextStyle( fontSize: 20, color: Colors.white)),
 
-                    SizedBox( height: 100 )
+                    SizedBox( height: 50 )
                   ],
                 )
             ),
@@ -44,7 +45,7 @@ class Register extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox( height: 60 ),
+                      SizedBox( height: 30 ),
 
                       Text('Create ID', style: TextStyle( fontSize: 15, color: Colors.grey[600]),),
 
@@ -52,14 +53,18 @@ class Register extends StatelessWidget {
 
                       // Card
                       Container(
+                        margin: EdgeInsets.symmetric( horizontal: 20),
                         padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                            border: Border.all(
+                              color: Colors.grey[200]!
+                            ),
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.grey,
-                                  blurRadius: 20,
+                                  blurRadius: 5,
                                   offset: Offset(0, 5)
                               )
                             ]
@@ -74,7 +79,7 @@ class Register extends StatelessWidget {
                       ),
 
                       // password
-                      SizedBox( height: 40 ),
+                      SizedBox( height: 30 ),
 
                       Text('Create Password', style: TextStyle( fontSize: 15, color: Colors.grey[600]),),
 
@@ -82,14 +87,18 @@ class Register extends StatelessWidget {
 
                       // Card
                       Container(
+                        margin: EdgeInsets.symmetric( horizontal: 20 ),
                         padding: EdgeInsets.all(10),
                         decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: BorderRadius.all(Radius.circular(5)),
+                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                            border: Border.all(
+                                color: Colors.grey[200]!
+                            ),
                             boxShadow: [
                               BoxShadow(
                                   color: Colors.grey,
-                                  blurRadius: 20,
+                                  blurRadius: 5,
                                   offset: Offset(0, 5)
                               )
                             ]
@@ -103,7 +112,7 @@ class Register extends StatelessWidget {
                         ),
                       ),
 
-                      SizedBox( height: 50 ),
+                      SizedBox( height: 20 ),
 
 
                       Column(
@@ -124,7 +133,7 @@ class Register extends StatelessWidget {
                               )
                           ),
 
-                          SizedBox( height: 30 ),
+                          SizedBox( height: 15 ),
 
                           Container(
                               height: 60,

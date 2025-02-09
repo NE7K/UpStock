@@ -12,6 +12,7 @@ class Register extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         // 스크롤 안되서 추가함 ㅅㄱ
         child: Container(
@@ -22,8 +23,8 @@ class Register extends StatelessWidget {
               SizedBox( height: 100 ),
         
               Image.asset('assets/images/icon.png',
-                  width: 300,
-                  height: 300,
+                  width: 200,
+                  height: 200,
               ),
         
               SizedBox( height: 30 ),
@@ -103,8 +104,6 @@ class Register extends StatelessWidget {
                 ),
               ),
 
-              SizedBox( height: 7 ),
-
               SizedBox(
                 width: double.infinity,
                 child: Column(
@@ -117,14 +116,14 @@ class Register extends StatelessWidget {
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 14,
-                                color: Colors.black
+                                color: Colors.grey
                             )
                         ))
                   ],
                 ),
               ),
 
-              SizedBox( height: 30 ),
+              SizedBox( height: 50 ),
 
               Container(
                 height: 50,
@@ -133,33 +132,35 @@ class Register extends StatelessWidget {
                   color: Colors.green[500],
                   borderRadius: BorderRadius.circular(50)
                 ),
-                child: Center( child: TextButton(onPressed: () {
-                  // todo : 회원가입 firebase 연동하셈
-                }, child: Text('Register', style: TextStyle( color: Colors.white, fontSize: 18)))),
+                child: SizedBox.expand(
+                  // .expend 쓰면 container 크기만큼 클릭 ㅆㄱㄴ
+                  child: TextButton(onPressed: () {
+                    // todo : 회원가입 firebase 연동하셈
+                  }, child: Text('Register', style: TextStyle( color: Colors.white, fontSize: 18))),
+                ),
               ),
 
               SizedBox( height: 20 ),
 
+
               Container(
-                margin: EdgeInsets.symmetric( horizontal: 80 ),
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.green[500]!,
-                    width: 1
+                  height: 50,
+                  margin: EdgeInsets.symmetric( horizontal: 80 ),
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                          color: Colors.green[500]!,
+                          width: 1
+                      ),
+                      borderRadius: BorderRadius.circular(50)
                   ),
-                  borderRadius: BorderRadius.circular(50)
-                ),
-                child: Center(
-                  child: TextButton(onPressed: () {
-                    // 사용자가 안할거래
-                    Navigator.pop(context);
-                  }, child: Text('Done', style: TextStyle( color: Colors.black, fontSize: 18))),
-                )
+                  child: SizedBox.expand(
+                    child: TextButton(onPressed: () {
+                      // 사용자가 안할거래
+                      Navigator.pop(context);
+                    }, child: Text('Done', style: TextStyle( color: Colors.green, fontSize: 18))),
+                  )
               ),
-
-
               // Todo : 추가할거 추가하자
-              
             ],
           ),
         ),

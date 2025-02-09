@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // 외부 package import
 import 'package:provider/provider.dart';
 import 'package:http/http.dart';
+import 'package:upstock/register.dart';
 import 'package:upstock/test.dart';
 
 // 내부 파일 Import
@@ -54,7 +55,12 @@ class _MyAppState extends State<MyApp> {
     // 앱 실행 시 로그인 if 문 처리 (로그인되어 있지 않으면 바로 다시 navigator 적용), firebase에서도 rule처리 해줘야 함.
 
     // 앱 실행 시 로그인 체크 -> 계정 관련된 것 저장
-
+    // todo : 필요없어지면 지우기
+    // widgetsbinding을 사용한 이유는 첫 번째 프레임 랜더링 안되고 실행하면 오류 뿜뿜함
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (c) => Register()));
+    });
   }
 
   @override

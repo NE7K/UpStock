@@ -26,22 +26,23 @@ class Register extends StatelessWidget {
                   height: 300,
               ),
         
-              SizedBox( height: 50 ),
-        
-              SizedBox(
-                width: double.infinity,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Stock Comunication',
-                        style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.w600
-                        )
-                    ),
-                  ],
-                ),
-              ),
+              SizedBox( height: 30 ),
+
+              // todo : 일단 제목으로 넣어두긴 했는데 없는게 차라리 이쁜듯 ㅋㅋ
+              // SizedBox(
+              //   width: double.infinity,
+              //   child: Column(
+              //     crossAxisAlignment: CrossAxisAlignment.start,
+              //     children: [
+              //       Text('Stock Comunication',
+              //           style: TextStyle(
+              //             fontSize: 25,
+              //             fontWeight: FontWeight.w600
+              //           )
+              //       ),
+              //     ],
+              //   ),
+              // ),
         
               SizedBox( height: 20 ),
 
@@ -109,7 +110,16 @@ class Register extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text('Do you need any help?', style: TextStyle( fontWeight: FontWeight.w600, fontSize: 14))
+                    TextButton(onPressed: () {
+                      // todo : 간단하게 페이지 이동 넣지머
+                    },
+                        child: Text('Do you need any help?',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 14,
+                                color: Colors.black
+                            )
+                        ))
                   ],
                 ),
               ),
@@ -117,15 +127,34 @@ class Register extends StatelessWidget {
               SizedBox( height: 30 ),
 
               Container(
-                margin: EdgeInsets.symmetric( horizontal: 50 ),
-                child: TextButton(onPressed: () {}, child: Text('Register')),
+                height: 50,
+                margin: EdgeInsets.symmetric( horizontal: 80 ),
+                decoration: BoxDecoration(
+                  color: Colors.green[500],
+                  borderRadius: BorderRadius.circular(50)
+                ),
+                child: Center( child: TextButton(onPressed: () {
+                  // todo : 회원가입 firebase 연동하셈
+                }, child: Text('Register', style: TextStyle( color: Colors.white, fontSize: 18)))),
               ),
 
-              SizedBox( height: 10 ),
+              SizedBox( height: 20 ),
 
               Container(
-                margin: EdgeInsets.symmetric( horizontal: 50 ),
-                child: TextButton(onPressed: () {}, child: Text('Done')),
+                margin: EdgeInsets.symmetric( horizontal: 80 ),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.green[500]!,
+                    width: 1
+                  ),
+                  borderRadius: BorderRadius.circular(50)
+                ),
+                child: Center(
+                  child: TextButton(onPressed: () {
+                    // 사용자가 안할거래
+                    Navigator.pop(context);
+                  }, child: Text('Done', style: TextStyle( color: Colors.black, fontSize: 18))),
+                )
               ),
 
 

@@ -15,7 +15,7 @@ Future <List<Map<String, dynamic>>> getStockData() async {
   // 데이터 가져올 때에는 여러가지 동시에
   return Future.wait(symbol.entries.map((name) async {
     // 1일 데이터 가져오기 name.value는 심볼의 티커 가져오는거임 ㅇㅇ
-    var result = await http.get(Uri.parse('https://query1.finance.yahoo.com/v8/finance/chart/${name.value}?range=5d&interval=1d'));
+    final result = await http.get(Uri.parse('https://query1.finance.yahoo.com/v8/finance/chart/${name.value}?range=5d&interval=1d'));
 
     // null 체크해주래
     if (result.statusCode != 200) {
@@ -23,21 +23,19 @@ Future <List<Map<String, dynamic>>> getStockData() async {
     }
 
     // jsondecode을 쓰는 이유는 json에서 데이터 내가 쓰려고 ㅋㅋ
-    var data = jsonDecode(result.body)['chart']['result'][0];
-    var prices = data['indicators']['quote'][0]['close'];
+    final data = jsonDecode(result.body)['chart']['result'][0];
+    final prices = data['indicators']['quote'][0]['close'];
     // todo : 야후 파이낸스 api json 파일 양식 참고해서 추가적인 데이터 추가해야 함
 
     return {
       'symbol' : name.key, // 심볼 이름임 굳이 지금은 필요없는데, 혹시 몰라서 나중에 쓸거 같음
       'currentPrice' : prices.last, // 최근 가격 전날 가격임
       // todo : 차트 시각화하려고 아래는 복잡하게 구함
-      'prices' :  ((prices.last - prices[prices.length - 2]) / prices[prices.length - 2]) * 100, // 최근 가격
+      'prices' : List.generate(
+        prices.length,
+            (i) => FlSpot(i.toDouble(), prices[i]?.toDouble() ?? 0),
+      ),
       'changePercent' : List.generate(prices.length, (i) => FlSpot(i.toDouble(), prices[i]?.toDouble() ?? 0))
-      // 등락률 계산, flospot은 x랑 y축
-    // 리스트 생성: List.generate(prices.length, (i) => FlSpot(i.toDouble(), prices[i]?.toDouble() ?? 0))
-    // prices.length는 배열의 길이로, 생성할 리스트의 요소 수를 정합니다.
-    // i는 현재 인덱스, prices[i]는 해당 인덱스의 가격입니다.
-    // i.toDouble()와 prices[i]?.toDouble() ?? 0는 각각 x축과 y축의 값으로 사용됩니다. 여기서 prices[i]?.toDouble()는 prices[i]가 null이 아니면 double로 변환, null이면 0을 반환합니다.
     };
   }));
 }
@@ -88,38 +86,52 @@ class _HomeState extends State<Home> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    isLoading ?
+                    Center(child: CircularProgressIndicator()) :
+                    // 응 삼항연산자야
                     Container(
                       padding: EdgeInsets.all(8),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                          color: Colors.grey
-                        ),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey,
+                            blurRadius: 20,
+                            offset: Offset(5, 5)
+                          )
+                        ]
                       ),
-                      child:
-                      // 만약에 데이터 가져오고 있으면 로딩바 보여주셈
-                      isLoading ?
-                          Center(child: CircularProgressIndicator()) :
-                          // 응 삼항연산자야
-                      Column(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Text(stockData[0]['symbol']),
-                          Text(stockData[0]['currentPrice'].toStringAsFixed(0)),
-                          Text('차트'),
+                          // toStringAsFixed 소수점 떼려고 씀
+                          Text('${stockData[0]['symbol']} : ${stockData[0]['currentPrice'].toStringAsFixed(0)}'),
+
+                          // todo : 다우존스 차트 부분
+                          LineChart(
+                            LineChartData(
+                              lineBarsData: [
+                                LineChartBarData(
+
+                                )
+                              ],
+                              titlesData: FlTitlesData(show: false), // 축 제목 숨김
+                              borderData: FlBorderData(show: false), // 테두리 숨김
+                              gridData: FlGridData(show: false), // 격자 숨김
+                            )
+                          )
                         ],
                       ),
                     ),
                     Container(
                       padding: EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: Colors.grey
-                      ),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Text(stockData[1]['symbol']),
-                          Text(stockData[1]['currentPrice'].toString()),
+                          Text('${stockData[1]['symbol']} : ${stockData[1]['currentPrice'].toStringAsFixed(0)}'),
+
+                          SizedBox( height: 20 ),
+
                           Text('차트'),
                         ],
                       ),

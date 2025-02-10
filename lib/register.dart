@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:upstock/home.dart';
-import 'package:upstock/main.dart';
 
 class Register extends StatelessWidget {
   Register({super.key});

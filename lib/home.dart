@@ -100,12 +100,13 @@ class _HomeState extends State<Home> {
                     Container(
                       padding: EdgeInsets.all(5),
                       decoration: BoxDecoration(
+                        border: Border.all( color: Colors.grey[300]! ),
                         borderRadius: BorderRadius.circular(20),
                         color: Colors.white,
                         boxShadow: [
                           BoxShadow(
                             color: Colors.grey,
-                            blurRadius: 20,
+                            blurRadius: 12,
                             offset: Offset(5, 5)
                           )
                         ]
@@ -121,8 +122,8 @@ class _HomeState extends State<Home> {
                           Container(
                             padding: EdgeInsets.all(5),
                             child: SizedBox(
-                              width: 180,  // 차트 너비 설정
-                              height: 80,  // 차트 높이 설정
+                              width: 170,  // 차트 너비 설정
+                              height: 70,  // 차트 높이 설정
                               child: LineChart(
                                   LineChartData(
                                       gridData: FlGridData(show: false),  // 격자 라인 안 보이게 설정
@@ -153,20 +154,23 @@ class _HomeState extends State<Home> {
                                   color: (stockData[0]['changePercent'].last.y >= stockData[0]['changePercent'].first.y) ? Colors.red : Colors.blue
                               )
                           )
-
-
                         ],
                       ),
                     ),
+
+                    // 공간 필요
+                    SizedBox( width: 1 ),
+
                     Container(
                       padding: EdgeInsets.all(5),
                       decoration: BoxDecoration(
+                          border: Border.all( color: Colors.grey[300]! ),
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white,
                           boxShadow: [
                             BoxShadow(
                                 color: Colors.grey,
-                                blurRadius: 20,
+                                blurRadius: 12,
                                 offset: Offset(5, 5)
                             )
                           ]
@@ -180,8 +184,8 @@ class _HomeState extends State<Home> {
                           Container(
                             padding: EdgeInsets.all(5),
                             child: SizedBox(
-                              width: 180,
-                              height: 80,
+                              width: 170,
+                              height: 70,
                               child: LineChart(
                                 LineChartData(
                                   gridData: FlGridData(show: false), // 격자 제거
@@ -232,11 +236,21 @@ class _HomeState extends State<Home> {
               // 커뮤니티 부분임 ㅋㅋ
               Container(
                 width: double.infinity,
+                margin: EdgeInsets.all(10),
                 height: 500,
                 decoration: BoxDecoration(
-                  color: Colors.green
+                  color: Colors.green,
+                  borderRadius: BorderRadius.circular(20)
                 ),
-                child: Text('테스트다 임마'),
+                child: Column(
+                  children: [
+                    SizedBox( height: 50 ),
+                    
+                    Container(
+                      child: Text('fdf'),
+                    )
+                  ],
+                )
               )
 
             ],

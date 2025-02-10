@@ -15,7 +15,7 @@ Future <List<Map<String, dynamic>>> getStockData() async {
   // 데이터 가져올 때에는 여러가지 동시에
   return Future.wait(symbol.entries.map((name) async {
     // 1일 데이터 가져오기 name.value는 심볼의 티커 가져오는거임 ㅇㅇ
-    var result = await http.get(Uri.parse('https://query1.finance.yahoo.com/v8/finance/chart/${name.value}?range=5d&interval=1d'));
+    var result = await http.get(Uri.parse('https://query1.finance.yahoo.com/v8/finance/chart/${name.value}?range=1d&interval=5m'));
 
     // null 체크해주래
     if (result.statusCode != 200) {
@@ -68,6 +68,23 @@ class _HomeState extends State<Home> {
     );
   }
 
+
+
+  double getChange() {
+    if (stockData[0]['changePercent'].isEmpty) return 0.0;  // 데이터가 비어있으면 0 반환
+    double startPrice = stockData[0]['changePercent'].first.y;
+    double endPrice = stockData[0]['changePercent'].last.y;
+    return endPrice - startPrice;
+  }
+
+  double getPercentageChange() {
+    if (stockData[0]['changePercent'].isEmpty) return 0.0;  // 데이터가 비어있으면 0 반환
+    double startPrice = stockData[0]['changePercent'].first.y;
+    double endPrice = stockData[0]['changePercent'].last.y;
+    if (startPrice == 0) return 0.0;  // 시작 가격이 0이면 0 반환하여 나눗셈 오류 방지
+    return (endPrice - startPrice) / startPrice * 100.0;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,6 +126,40 @@ class _HomeState extends State<Home> {
                         children: [
                           // toStringAsFixed 소수점 떼려고 씀
                           Text('${stockData[0]['symbol']} : ${stockData[0]['currentPrice'].toStringAsFixed(0)}'),
+
+                          SizedBox(
+                            width: 150,  // 차트 너비 설정
+                            height: 80,  // 차트 높이 설정
+                            child: LineChart(
+                                LineChartData(
+                                    gridData: FlGridData(show: false),  // 격자 라인 안 보이게 설정
+                                    titlesData: FlTitlesData(show: false),  // 축 제목 안 보이게 설정
+                                    borderData: FlBorderData(show: false),  // 차트 테두리 안 보이게 설정
+                                    lineBarsData: [
+                                      LineChartBarData(
+                                        spots: stockData[0]['changePercent'],  // 차트에 표시할 데이터
+                                        isCurved: true,  // 선을 곡선으로 표시
+                                        color: stockData[0]['changePercent'].first.y < stockData[0]['changePercent'].last.y ? Colors.red : Colors.blue,  // 선 색상은 시작 가격과 최종 가격 비교에 따라 결정
+                                        barWidth: 2,  // 선 두께는 2
+                                        dotData: FlDotData(show: false),  // 데이터 점 안 보이게 설정
+                                        belowBarData: BarAreaData(show: false),  // 선 아래 영역 색칠 안 함
+                                      )
+                                    ]
+                                )
+                            ),
+                          ),
+
+                          Text(
+                              '${getChange().toStringAsFixed(2)}(${getPercentageChange().toStringAsFixed(2)}%)',
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: getChange() >= 0 ? Colors.red : Colors.blue
+                              )
+                          )
+
+
+
                         ],
                       ),
                     ),

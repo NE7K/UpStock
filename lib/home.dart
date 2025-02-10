@@ -68,23 +68,6 @@ class _HomeState extends State<Home> {
     );
   }
 
-
-
-  double getChange() {
-    if (stockData[0]['changePercent'].isEmpty) return 0.0;  // 데이터가 비어있으면 0 반환
-    double startPrice = stockData[0]['changePercent'].first.y;
-    double endPrice = stockData[0]['changePercent'].last.y;
-    return endPrice - startPrice;
-  }
-
-  double getPercentageChange() {
-    if (stockData[0]['changePercent'].isEmpty) return 0.0;  // 데이터가 비어있으면 0 반환
-    double startPrice = stockData[0]['changePercent'].first.y;
-    double endPrice = stockData[0]['changePercent'].last.y;
-    if (startPrice == 0) return 0.0;  // 시작 가격이 0이면 0 반환하여 나눗셈 오류 방지
-    return (endPrice - startPrice) / startPrice * 100.0;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,7 +75,7 @@ class _HomeState extends State<Home> {
       // 내용 많아질건데 미리 스크롤뷰 넣자잉
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.all(10),
+          margin: EdgeInsets.all(5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -128,76 +111,103 @@ class _HomeState extends State<Home> {
                           Text('${stockData[0]['symbol']} : ${stockData[0]['currentPrice'].toStringAsFixed(0)}'),
 
                           // 그래프
-                          SizedBox(
-                            width: 180,  // 차트 너비 설정
-                            height: 80,  // 차트 높이 설정
-                            child: LineChart(
-                                LineChartData(
-                                    gridData: FlGridData(show: false),  // 격자 라인 안 보이게 설정
-                                    titlesData: FlTitlesData(show: false),  // 축 제목 안 보이게 설정
-                                    borderData: FlBorderData(show: false),  // 차트 테두리 안 보이게 설정
-                                    lineBarsData: [
-                                      LineChartBarData(
-                                        spots: stockData[0]['changePercent'],  // 차트에 표시할 데이터
-                                        isCurved: true,  // 선을 곡선으로 표시
-                                        color: stockData[0]['changePercent'].first.y < stockData[0]['changePercent'].last.y ? Colors.red : Colors.blue,  // 선 색상은 시작 가격과 최종 가격 비교에 따라 결정
-                                        barWidth: 2,  // 선 두께는 2
-                                        dotData: FlDotData(show: false),  // 데이터 점 안 보이게 설정
-                                        belowBarData: BarAreaData(show: false),  // 선 아래 영역 색칠 안 함
-                                      )
-                                    ]
-                                )
+                          Container(
+                            padding: EdgeInsets.all(5),
+                            child: SizedBox(
+                              width: 180,  // 차트 너비 설정
+                              height: 80,  // 차트 높이 설정
+                              child: LineChart(
+                                  LineChartData(
+                                      gridData: FlGridData(show: false),  // 격자 라인 안 보이게 설정
+                                      titlesData: FlTitlesData(show: false),  // 축 제목 안 보이게 설정
+                                      borderData: FlBorderData(show: false),  // 차트 테두리 안 보이게 설정
+                                      lineBarsData: [
+                                        LineChartBarData(
+                                          spots: stockData[0]['changePercent'],  // 차트에 표시할 데이터
+                                          isCurved: true,  // 선을 곡선으로 표시
+                                          color: stockData[0]['changePercent'].first.y < stockData[0]['changePercent'].last.y ? Colors.red : Colors.blue,  // 선 색상은 시작 가격과 최종 가격 비교에 따라 결정
+                                          barWidth: 2,  // 선 두께는 2
+                                          dotData: FlDotData(show: false),  // 데이터 점 안 보이게 설정
+                                          belowBarData: BarAreaData(show: false),  // 선 아래 영역 색칠 안 함
+                                        )
+                                      ]
+                                  )
+                              ),
                             ),
                           ),
 
                           // 변동성 나타내는 텍스트
-                          Text('${getChange().toStringAsFixed(2)}(${getPercentageChange().toStringAsFixed(2)}%)',
+                          Text(
+                              '${(stockData[0]['changePercent'].last.y - stockData[0]['changePercent'].first.y).toStringAsFixed(2)}'
+                                  '(${((stockData[0]['changePercent'].last.y - stockData[0]['changePercent'].first.y) / stockData[0]['changePercent'].first.y * 100).toStringAsFixed(2)}%)',
                               style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
-                                  color: getChange() >= 0 ? Colors.red : Colors.blue
+                                  color: (stockData[0]['changePercent'].last.y >= stockData[0]['changePercent'].first.y) ? Colors.red : Colors.blue
                               )
                           )
+
 
                         ],
                       ),
                     ),
                     Container(
                       padding: EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 20,
+                                offset: Offset(5, 5)
+                            )
+                          ]
+                      ),
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text('${stockData[1]['symbol']} : ${stockData[1]['currentPrice'].toStringAsFixed(0)}'),
 
                           SizedBox( height: 20 ),
 
-                          SizedBox(
-                            width: 180,
-                            height: 80,
-                            child: LineChart(
-                              LineChartData(
-                                gridData: FlGridData(show: false), // 격자 제거
-                                titlesData: FlTitlesData(show: false), // 제목 제거
-                                borderData: FlBorderData(show: false), // 기타 외부 정보 제거
-                                // 데이터 들어가는 곳
-                                lineBarsData: [
-                                  LineChartBarData(
-                                    spots: stockData[1]['changePercent'], // 데이터 삽입하고
-                                    isCurved: true, // 커브로 바꿔주고
-                                    dotData: FlDotData(show: false), // 점 구질구질한거 안보이게 설정
-                                    belowBarData: BarAreaData(show: false), // 선 아래 색칠 없애기
-                                    barWidth: 2,
-                                    color: stockData[1]['changePercent'].first.y < stockData[1]['changePercent'].last.y ? Colors.red : Colors.blue
-                                  )
-                                ]
-                              )
+                          Container(
+                            padding: EdgeInsets.all(5),
+                            child: SizedBox(
+                              width: 180,
+                              height: 80,
+                              child: LineChart(
+                                LineChartData(
+                                  gridData: FlGridData(show: false), // 격자 제거
+                                  titlesData: FlTitlesData(show: false), // 제목 제거
+                                  borderData: FlBorderData(show: false), // 기타 외부 정보 제거
+                                  // 데이터 들어가는 곳
+                                  lineBarsData: [
+                                    LineChartBarData(
+                                      spots: stockData[1]['changePercent'], // 데이터 삽입하고
+                                      isCurved: true, // 커브로 바꿔주고
+                                      dotData: FlDotData(show: false), // 점 구질구질한거 안보이게 설정
+                                      belowBarData: BarAreaData(show: false), // 선 아래 색칠 없애기
+                                      barWidth: 2,
+                                      color: stockData[1]['changePercent'].first.y < stockData[1]['changePercent'].last.y ? Colors.red : Colors.blue
+                                    )
+                                  ]
+                                )
+                              ),
                             ),
                           ),
 
-                          Text('${stockData[1]['changePercnet']}',
+                          Text(
+                              '${(stockData[1]['changePercent'].last.y - stockData[1]['changePercent'].first.y).toStringAsFixed(2)}'
+                                  '(${((stockData[1]['changePercent'].last.y - stockData[1]['changePercent'].first.y) / stockData[1]['changePercent'].first.y * 100).toStringAsFixed(2)}%)',
                               style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: getChange() >= 0 ? Colors.red : Colors.blue))
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: (stockData[1]['changePercent'].last.y >= stockData[1]['changePercent'].first.y) ? Colors.red : Colors.blue
+                              )
+                          )
+
+
                         ],
                       ),
                     )

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 // 외부 package import
 import 'package:provider/provider.dart';
-import 'package:http/http.dart';
 import 'package:upstock/register.dart';
 import 'package:upstock/test.dart';
 

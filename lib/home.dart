@@ -10,7 +10,7 @@ Future <List<Map<String, dynamic>>> getStockData() async {
   // 정보 늦으니까 await, Future 쓰고 Json Map 자료니까 타입 선언도 같이해줘야 함
 
   // 다우존스랑 나스닥 심볼 적어놔야 부르지 ㅇㅈ?
-  final symbol = {'다우존스' : '^DJI', '나스닥' : '^NDX'};
+  final symbol = {'DOW' : '^DJI', 'NASDAQ' : '^NDX'};
 
   // 데이터 가져올 때에는 여러가지 동시에
   return Future.wait(symbol.entries.map((name) async {
@@ -88,12 +88,13 @@ class _HomeState extends State<Home> {
               ),
               SizedBox( height: 20 ),
 
-              SizedBox(
-                width: double.infinity,
-                height: 200,
+              Container(
+                margin: EdgeInsets.symmetric( horizontal: 10 ),
+                height: 220,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
+                    // todo : 이거 작동되는지 체크 ㅅㄱ
                     isLoading ?
                     Center(child: CircularProgressIndicator()) :
                     // 응 삼항연산자야
@@ -245,6 +246,8 @@ class _HomeState extends State<Home> {
                 child: Column(
                   children: [
                     SizedBox( height: 50 ),
+
+                    // todo : 리스트뷰로 ㄱㄱ
                     
                     Container(
                       child: Text('fdf'),

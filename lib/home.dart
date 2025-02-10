@@ -127,8 +127,9 @@ class _HomeState extends State<Home> {
                           // toStringAsFixed 소수점 떼려고 씀
                           Text('${stockData[0]['symbol']} : ${stockData[0]['currentPrice'].toStringAsFixed(0)}'),
 
+                          // 그래프
                           SizedBox(
-                            width: 150,  // 차트 너비 설정
+                            width: 180,  // 차트 너비 설정
                             height: 80,  // 차트 높이 설정
                             child: LineChart(
                                 LineChartData(
@@ -149,16 +150,14 @@ class _HomeState extends State<Home> {
                             ),
                           ),
 
-                          Text(
-                              '${getChange().toStringAsFixed(2)}(${getPercentageChange().toStringAsFixed(2)}%)',
+                          // 변동성 나타내는 텍스트
+                          Text('${getChange().toStringAsFixed(2)}(${getPercentageChange().toStringAsFixed(2)}%)',
                               style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                   color: getChange() >= 0 ? Colors.red : Colors.blue
                               )
                           )
-
-
 
                         ],
                       ),
@@ -171,7 +170,34 @@ class _HomeState extends State<Home> {
 
                           SizedBox( height: 20 ),
 
-                          Text('차트'),
+                          SizedBox(
+                            width: 180,
+                            height: 80,
+                            child: LineChart(
+                              LineChartData(
+                                gridData: FlGridData(show: false), // 격자 제거
+                                titlesData: FlTitlesData(show: false), // 제목 제거
+                                borderData: FlBorderData(show: false), // 기타 외부 정보 제거
+                                // 데이터 들어가는 곳
+                                lineBarsData: [
+                                  LineChartBarData(
+                                    spots: stockData[1]['changePercent'], // 데이터 삽입하고
+                                    isCurved: true, // 커브로 바꿔주고
+                                    dotData: FlDotData(show: false), // 점 구질구질한거 안보이게 설정
+                                    belowBarData: BarAreaData(show: false), // 선 아래 색칠 없애기
+                                    barWidth: 2,
+                                    color: stockData[1]['changePercent'].first.y < stockData[1]['changePercent'].last.y ? Colors.red : Colors.blue
+                                  )
+                                ]
+                              )
+                            ),
+                          ),
+
+                          Text('${stockData[1]['changePercnet']}',
+                              style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: getChange() >= 0 ? Colors.red : Colors.blue))
                         ],
                       ),
                     )

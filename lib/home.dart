@@ -80,8 +80,14 @@ class _HomeState extends State<Home> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox( height: 80 ),
-              Text('대표 지수', style: TextStyle( fontSize: 20, color: Colors.black )),
+              Row(
+                children: [
+                  SizedBox( width: 10 ),
+                  Text('대표 지수', style: TextStyle( fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold )),
+                ],
+              ),
               SizedBox( height: 20 ),
+
               SizedBox(
                 width: double.infinity,
                 height: 200,
@@ -92,7 +98,7 @@ class _HomeState extends State<Home> {
                     Center(child: CircularProgressIndicator()) :
                     // 응 삼항연산자야
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: EdgeInsets.all(5),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
                         color: Colors.white,
@@ -108,7 +114,8 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           // toStringAsFixed 소수점 떼려고 씀
-                          Text('${stockData[0]['symbol']} : ${stockData[0]['currentPrice'].toStringAsFixed(0)}'),
+                          Text('${stockData[0]['symbol']} : ${stockData[0]['currentPrice'].toStringAsFixed(0)}',
+                              style: TextStyle( fontWeight: FontWeight.bold, fontSize: 18 )),
 
                           // 그래프
                           Container(
@@ -152,7 +159,7 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.all(8),
+                      padding: EdgeInsets.all(5),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white,
@@ -167,9 +174,8 @@ class _HomeState extends State<Home> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Text('${stockData[1]['symbol']} : ${stockData[1]['currentPrice'].toStringAsFixed(0)}'),
-
-                          SizedBox( height: 20 ),
+                          Text('${stockData[1]['symbol']} : ${stockData[1]['currentPrice'].toStringAsFixed(0)}',
+                              style: TextStyle( fontWeight: FontWeight.bold, fontSize: 18 )),
 
                           Container(
                             padding: EdgeInsets.all(5),
@@ -207,13 +213,32 @@ class _HomeState extends State<Home> {
                               )
                           )
 
-
                         ],
                       ),
                     )
                   ],
                 )
+              ),
+
+              SizedBox( height: 50 ),
+
+              Row(
+                children: [
+                  SizedBox( width: 10 ),
+                  Text('커뮤니티', style: TextStyle( fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold ))
+                ],
+              ),
+
+              // 커뮤니티 부분임 ㅋㅋ
+              Container(
+                width: double.infinity,
+                height: 500,
+                decoration: BoxDecoration(
+                  color: Colors.green
+                ),
+                child: Text('테스트다 임마'),
               )
+
             ],
           ),
         ),

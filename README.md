@@ -1,5 +1,7 @@
 # 프로젝트 설명
 
+<br></br>
+
 ![image](https://github.com/user-attachments/assets/0b854d0a-00f9-470e-9d6a-3245d905573a)
 
 - Firebase Database와 연동되어 있는 회원가입 시스템

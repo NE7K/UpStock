@@ -6,9 +6,8 @@ import 'package:upstock/register.dart';
 import 'package:upstock/test.dart';
 
 // 내부 파일 Import
-import 'home.dart'; // fl_chart
+import 'home/home.dart'; // fl_chart
 import 'profile/profile.dart';
-import 'package:upstock/profile/profile.dart';
 import 'package:upstock/style/style.dart' as style; // style.dart
 
 

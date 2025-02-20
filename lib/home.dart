@@ -36,11 +36,7 @@ Future <List<Map<String, dynamic>>> getStockData() async {
       'prices' :  ((prices.last - prices[prices.length - 2]) / prices[prices.length - 2]) * 100, // 최근 가격
       'changePercent' : List.generate(prices.length, (i) => FlSpot(i.toDouble(), prices[i]?.toDouble() ?? 0))
       // 등락률 계산, flospot은 x랑 y축
-    // 리스트 생성: List.generate(prices.length, (i) => FlSpot(i.toDouble(), prices[i]?.toDouble() ?? 0))
-    // prices.length는 배열의 길이로, 생성할 리스트의 요소 수를 정합니다.
-    // i는 현재 인덱스, prices[i]는 해당 인덱스의 가격입니다.
-    // i.toDouble()와 prices[i]?.toDouble() ?? 0는 각각 x축과 y축의 값으로 사용됩니다. 여기서 prices[i]?.toDouble()는 prices[i]가 null이 아니면 double로 변환, null이면 0을 반환합니다.
-    };
+      };
   }));
 }
 
@@ -104,9 +100,10 @@ class _HomeState extends State<Home> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         // todo : 이거 로딩 shimmer로 변경해야 함 + 작동되는지도 체크해야 함
-                        isLoading ?
-                        Center(child: CircularProgressIndicator()) :
-                        // 응 삼항연산자야
+                        // todo : null 체크해야 하는데, 함수나 위젯으로 만들어서 통합 관리할지 정해야 함
+
+
+                        // 응 삼항연산자 위치야
                         Container(
                           padding: EdgeInsets.all(8),
                           decoration: BoxDecoration(

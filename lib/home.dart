@@ -5,6 +5,8 @@ import 'package:fl_chart/fl_chart.dart'; // 차트 임포트임 없으면 차트
 
 import 'dart:convert'; // json import
 
+import 'package:shimmer/shimmer.dart'; // shimmer import
+
 // 다우존스랑 나스닥 100 정보 가져올거임
 Future <List<Map<String, dynamic>>> getStockData() async {
   // 정보 늦으니까 await, Future 쓰고 Json Map 자료니까 타입 선언도 같이해줘야 함
@@ -253,7 +255,11 @@ class _HomeState extends State<Home> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text('테스트임 ㄹㅇ')
+                      Shimmer.fromColors(
+                        baseColor: Colors.grey[300]!,
+                        highlightColor: Colors.grey[100]!,
+                        child: Text('data'), // shimmer 테스트
+                      )
                     ],
                   ),
                 )

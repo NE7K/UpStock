@@ -103,7 +103,7 @@ class _HomeState extends State<Home> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        // todo : 이거 로딩 작동되는지 체크 ㅅㄱ
+                        // todo : 이거 로딩 shimmer로 변경해야 함 + 작동되는지도 체크해야 함
                         isLoading ?
                         Center(child: CircularProgressIndicator()) :
                         // 응 삼항연산자야
@@ -258,7 +258,10 @@ class _HomeState extends State<Home> {
                       Shimmer.fromColors(
                         baseColor: Colors.grey[300]!,
                         highlightColor: Colors.grey[100]!,
-                        child: Text('data'), // shimmer 테스트
+                        child: SizedBox(
+                          height: 20,
+                          width: 100,
+                        )// shimmer 테스트
                       )
                     ],
                   ),

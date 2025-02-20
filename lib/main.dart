@@ -45,7 +45,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
-  // 함수
+  // state 담는 함수
   var tab = 0;
 
   @override

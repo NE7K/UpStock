@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:upstock/profile/announcement.dart';
 import 'package:upstock/profile/peedback.dart';
 import 'package:upstock/profile/screen.dart';
-import 'package:upstock/register.dart';
+import 'package:upstock/account/register.dart';
 
 
 class Profile extends StatefulWidget {

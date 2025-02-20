@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 // 외부 package import
 import 'package:provider/provider.dart';
-import 'package:upstock/register.dart';
-import 'package:upstock/test.dart';
+import 'package:upstock/account/register.dart';
+import 'package:upstock/upload/test.dart';
 
 // 내부 파일 Import
 import 'home/home.dart'; // fl_chart
@@ -13,7 +13,7 @@ import 'package:upstock/style/style.dart' as style; // style.dart
 
 // firebase set import
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'firebase/firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

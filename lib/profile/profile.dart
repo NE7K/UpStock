@@ -7,6 +7,7 @@ import 'package:upstock/profile/announcement.dart';
 import 'package:upstock/profile/peedback.dart';
 import 'package:upstock/profile/screen.dart';
 import 'package:upstock/account/register.dart';
+import 'package:upstock/account/login.dart';
 
 
 class Profile extends StatefulWidget {
@@ -117,8 +118,13 @@ class _ProfileState extends State<Profile> {
                     )
                 ),
 
-                TextButton(onPressed: () {}, child: Text('테스트 로그인 버튼')),
+                TextButton(onPressed: () {
+                  Navigator.push(context,
+                    MaterialPageRoute(builder: (c) => Login()));
+                }, child: Text('테스트 로그인 버튼')),
+
                 TextButton(onPressed: () {}, child: Text('테스트 로그아웃 버튼')),
+
                 TextButton(onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (c) => Register()));

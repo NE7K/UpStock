@@ -1,11 +1,44 @@
 import 'package:flutter/material.dart';
 
-class Register extends StatelessWidget {
+// firebase register and login
+import 'package:firebase_auth/firebase_auth.dart';
+final auth = FirebaseAuth.instance;
+
+class Register extends StatefulWidget {
   Register({super.key});
 
+  @override
+  State<Register> createState() => _RegisterState();
+}
+
+class _RegisterState extends State<Register> {
   // TODO : MediaQuery 사용해서 동적 UI 제공. 사진 포함
-  // TODO : context도 main.dart에서 가져와야 함
-  // var screenWidth = MediaQuery.of(context).size.width;
+
+  // 유저
+  TextEditingController userID = TextEditingController();
+  // 이멜 controller
+  TextEditingController email = TextEditingController();
+  // 비번 controller
+  TextEditingController password = TextEditingController();
+
+  userRegister() async {
+    try {
+      var result = await auth.createUserWithEmailAndPassword(
+        email: email.text.trim(), // email 가져와서 공백 제거하고 넣어
+        password: password.text.trim(),
+      );
+      result.user?.updateDisplayName(userID.text.trim()); // ? 쓰는 이유는 null일까봐
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  // 유저 회원가입
+  @override
+  void initState() {
+    super.initState();
+    userRegister();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +52,12 @@ class Register extends StatelessWidget {
           child: Column(
             children: [
               SizedBox( height: 100 ),
-        
+
               Image.asset('assets/images/icon.png',
                   width: 200,
                   height: 200,
               ),
-        
+
               SizedBox( height: 30 ),
 
               // todo : 일단 제목으로 넣어두긴 했는데 없는게 차라리 이쁜듯 ㅋㅋ
@@ -42,10 +75,41 @@ class Register extends StatelessWidget {
                   ],
                 ),
               ),
-        
+
               SizedBox( height: 20 ),
 
               TextField(
+                controller: userID,
+                decoration: InputDecoration(
+                    labelText: 'User name',
+                    hintText: 'Insert your nickname',
+                    labelStyle: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400
+                    ),
+
+                    prefixIcon: Icon(Icons.person_outline), // icon images
+
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey.shade200, width: 1.5),
+                        borderRadius: BorderRadius.circular(10)
+                    ),
+                    floatingLabelStyle: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black, width: 1.5),
+                        borderRadius: BorderRadius.circular(10)
+                    )
+                ),
+              ),
+
+              SizedBox( height: 20 ),
+
+              TextField(
+                controller: email,
                 decoration: InputDecoration(
                   labelText: 'Email',
                   hintText: 'Insert your e-mail',
@@ -55,7 +119,7 @@ class Register extends StatelessWidget {
                     fontWeight: FontWeight.w400
                   ),
 
-                  prefixIcon: Icon(Icons.person_outline), // icon images
+                  prefixIcon: Icon(Icons.email_outlined), // icon images
 
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey.shade200, width: 1.5),
@@ -75,6 +139,7 @@ class Register extends StatelessWidget {
               SizedBox(height: 20),
 
               TextField(
+                controller: password,
                 obscureText: true, // 비번인거 감춤 ㅅㄱ
                 decoration: InputDecoration(
                   labelText: 'Password',
@@ -134,12 +199,13 @@ class Register extends StatelessWidget {
                   // .expend 쓰면 container 크기만큼 클릭 ㅆㄱㄴ
                   child: TextButton(onPressed: () {
                     // todo : 회원가입 firebase 연동하셈
+                    userRegister();
+
                   }, child: Text('Register', style: TextStyle( color: Colors.white, fontSize: 18))),
                 ),
               ),
 
               SizedBox( height: 20 ),
-
 
               Container(
                   height: 50,

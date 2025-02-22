@@ -16,6 +16,10 @@ import 'package:upstock/account/register.dart'; // todo : 테스트용으로 냄
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase/firebase_options.dart';
 
+// firebase register and login
+import 'package:firebase_auth/firebase_auth.dart';
+final auth = FirebaseAuth.instance;
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -24,6 +28,7 @@ void main() async {
   runApp(
       MultiProvider(
           providers: [
+            // todo : provider 쓰려고 일단 만들어뒀는데 나중에 코드 정리할 때에만 사용할 예정
             ChangeNotifierProvider(create: (c) => Store())
           ],
           child: MaterialApp(
@@ -58,7 +63,7 @@ class _MyAppState extends State<MyApp> {
     // widgetsbinding을 사용한 이유는 첫 번째 프레임 랜더링 안되고 실행하면 오류 뿜뿜함
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Navigator.push(context,
-          MaterialPageRoute(builder: (c) => Login()));
+          MaterialPageRoute(builder: (c) => Register()));
     });
   }
 
@@ -79,8 +84,8 @@ class _MyAppState extends State<MyApp> {
             });
           },
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: '프로필'),
-            BottomNavigationBarItem(icon: Icon(Icons.add_box_outlined), label: '미정'),
+            BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: '홈'),
+            BottomNavigationBarItem(icon: Icon(Icons.add_box_outlined), label: '게시글'),
             BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: '프로필'),
           ]
       )

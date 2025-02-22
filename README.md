@@ -92,4 +92,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## 📧 Contact
 
-For questions or feedback, please contact [Your Email](mailto:your-email@example.com).
+For questions or feedback, please contact [NE7K](mailto:neighborsoft@gmail.com).

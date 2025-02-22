@@ -25,6 +25,11 @@ class _LoginState extends State<Login> {
     }
   }
 
+  final failLogin = SnackBar(
+    content: Text('로그인 실패함 ㅅㄱ'),
+    duration: Duration(seconds: 2),
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -136,7 +141,8 @@ class _LoginState extends State<Login> {
                                   fontSize: 14,
                                   color: Colors.green
                               )
-                          ))
+                          )),
+
                     ],
                   ),
                 ),
@@ -153,9 +159,17 @@ class _LoginState extends State<Login> {
                   child: SizedBox.expand(
                     // .expend 쓰면 container 크기만큼 클릭 ㅆㄱㄴ
                     child: TextButton(onPressed: () {
-                      // todo : 회원가입 firebase 연동하셈
+
                       userLogin();
-                      Navigator.pop(context);
+                      // todo : if문 써서 정상적으로 로그인된거 확인하면 pop 때리삼
+
+                      if(auth.currentUser?.uid == null){
+                        print('로그인되지 않았습니다.');
+                        ScaffoldMessenger.of(context).showSnackBar(failLogin);
+                      } else {
+                        Navigator.pop(context);
+                      }
+
                     }, child: Text('Login', style: TextStyle( color: Colors.white, fontSize: 18))),
                   ),
                 ),
@@ -175,12 +189,21 @@ class _LoginState extends State<Login> {
                     child: SizedBox.expand(
                       child: TextButton(onPressed: () {
                         // 사용자가 안할거래
-                        Navigator.pop(context);
-                      }, child: Text('Done', style: TextStyle( color: Colors.green, fontSize: 18))),
+                        Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (c) => Register()));
+                      }, child: Text('Register', style: TextStyle( color: Colors.green, fontSize: 18))),
                     )
                 ),
-                // Todo : 추가할거 추가하자
 
+                SizedBox( height: 10 ),
+
+                Text("Don't have an account?",
+                    style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14,
+                      color: Colors.green
+                    )
+                ),
 
               ],
             ),

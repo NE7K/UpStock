@@ -57,7 +57,7 @@ class _MyAppState extends State<MyApp> {
     if(auth.currentUser?.uid == null) {
       print('로그인해라 ㅡㅡ');
 
-      Navigator.push(context,
+      Navigator.pushReplacement(context,
       MaterialPageRoute(builder: (c) => Login()));
     } else {
       Navigator.pop(context);

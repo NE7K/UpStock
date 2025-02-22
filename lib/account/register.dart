@@ -201,8 +201,11 @@ class _RegisterState extends State<Register> {
 
                     userRegister();
 
-                    // todo : 회원가입 정상적으로 진행되었으면 팝업 닫으셈
-                    Navigator.pop(context);
+                    if(auth.currentUser?.uid == null){
+                      print('회원가입이 정상적으로 진행되지 않았습니다.');
+                    } else {
+                      Navigator.pop(context);
+                    }
 
                   }, child: Text('Register', style: TextStyle( color: Colors.white, fontSize: 18))),
                 ),

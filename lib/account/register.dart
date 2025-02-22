@@ -184,28 +184,21 @@ class _RegisterState extends State<Register> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     TextButton(onPressed: () {
-                      // todo : 간단하게 페이지 이동 넣지머
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (c) => Login() ));
                     },
-                        child: Column(
-                          children: [
-                            TextButton(onPressed: () {
-                              Navigator.pushReplacement(context,
-                              MaterialPageRoute(builder: (c) => Login() ));
-                            },
-                                child: Text('Does this ID already exist?',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 14,
-                                        color: Colors.green
-                                    )
-                                ))
-                          ],
-                        )
-                    )],
+                        child: Text('Does this ID already exist?',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 14,
+                                color: Colors.green
+                            )
+                        )),
+                  ],
                 ),
               ),
 
-              SizedBox( height: 20 ),
+              SizedBox( height: 30 ),
 
               Container(
                 height: 50,

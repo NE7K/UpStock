@@ -1,7 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:upstock/account/register.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({super.key});
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+
+  userLogin() async {
+    try {
+      await auth.signInWithEmailAndPassword(
+          email: email.text.trim(),
+          password: password.text.trim()
+      );
+
+    } catch(e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +64,7 @@ class Login extends StatelessWidget {
                 SizedBox( height: 20 ),
 
                 TextField(
+                  controller: email,
                   decoration: InputDecoration(
                       labelText: 'Email',
                       hintText: 'Insert your e-mail',
@@ -71,6 +94,7 @@ class Login extends StatelessWidget {
                 SizedBox(height: 20),
 
                 TextField(
+                  controller: password,
                   obscureText: true, // 비번인거 감춤 ㅅㄱ
                   decoration: InputDecoration(
                       labelText: 'Password',
@@ -130,6 +154,8 @@ class Login extends StatelessWidget {
                     // .expend 쓰면 container 크기만큼 클릭 ㅆㄱㄴ
                     child: TextButton(onPressed: () {
                       // todo : 회원가입 firebase 연동하셈
+                      userLogin();
+                      Navigator.pop(context);
                     }, child: Text('Login', style: TextStyle( color: Colors.white, fontSize: 18))),
                   ),
                 ),

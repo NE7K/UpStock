@@ -25,6 +25,11 @@ class _ProfileState extends State<Profile> {
     super.initState();
   }
 
+  // user Logout system
+  userLogout() async {
+    await auth.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,16 +128,14 @@ class _ProfileState extends State<Profile> {
                 ),
 
                 TextButton(onPressed: () {
-                  Navigator.push(context,
-                    MaterialPageRoute(builder: (c) => Login()));
-                }, child: Text('테스트 로그인 버튼')),
+                  userLogout();
+                }, child: Text('로그아웃 버튼',
+                style: TextStyle(
+                  decoration: TextDecoration.underline,
+                  fontSize: 15,
+                  color: Colors.grey[800]
+                ))),
 
-                TextButton(onPressed: () {}, child: Text('테스트 로그아웃 버튼')),
-
-                TextButton(onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (c) => Register()));
-                  }, child: Text('테스트 회원가입 페이지 버튼')),
 
               ],
             ),

@@ -53,17 +53,29 @@ class _MyAppState extends State<MyApp> {
   // state 담는 함수
   var tab = 0;
 
+  checkLogin() {
+    if(auth.currentUser?.uid == null) {
+      print('로그인해라 ㅡㅡ');
+
+      Navigator.push(context,
+      MaterialPageRoute(builder: (c) => Login()));
+    } else {
+      Navigator.pop(context);
+    }
+  }
+
   @override
   void initState() {
     super.initState();
-    // 앱 실행 시 로그인 if 문 처리 (로그인되어 있지 않으면 바로 다시 navigator 적용), firebase에서도 rule처리 해줘야 함.
 
-    // 앱 실행 시 로그인 체크 -> 계정 관련된 것 저장
-    // todo : 필요없어지면 지우기
     // widgetsbinding을 사용한 이유는 첫 번째 프레임 랜더링 안되고 실행하면 오류 뿜뿜함
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Navigator.push(context,
           MaterialPageRoute(builder: (c) => Register()));
+
+      // todo : 앱 실행 시 로그인 if 문 처리 (로그인되어 있지 않으면 바로 다시 navigator 적용), firebase에서도 rule처리 해줘야 함.
+      checkLogin();
+      // 이거 밖에다가 빼면 오류남 ㅋㅋ
     });
   }
 

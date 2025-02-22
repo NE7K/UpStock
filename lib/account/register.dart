@@ -81,8 +81,8 @@ class _RegisterState extends State<Register> {
               TextField(
                 controller: userID,
                 decoration: InputDecoration(
-                    labelText: 'User name',
-                    hintText: 'Insert your nickname',
+                    labelText: 'User ID',
+                    hintText: 'Insert your ID',
                     labelStyle: TextStyle(
                         color: Colors.black,
                         fontSize: 14,
@@ -198,8 +198,11 @@ class _RegisterState extends State<Register> {
                 child: SizedBox.expand(
                   // .expend 쓰면 container 크기만큼 클릭 ㅆㄱㄴ
                   child: TextButton(onPressed: () {
-                    // todo : 회원가입 firebase 연동하셈
+
                     userRegister();
+
+                    // todo : 회원가입 정상적으로 진행되었으면 팝업 닫으셈
+                    Navigator.pop(context);
 
                   }, child: Text('Register', style: TextStyle( color: Colors.white, fontSize: 18))),
                 ),

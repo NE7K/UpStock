@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:http/http.dart' as http; // http import
 import 'package:fl_chart/fl_chart.dart'; // 차트 임포트임 없으면 차트 못 그림ㅋㅋ
-
-import 'dart:convert';
-
-import 'package:upstock/home/homebody.dart'; // json import
 
 class HomeHeader extends StatelessWidget {
   final List<Map<String, dynamic>> stockData;

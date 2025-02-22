@@ -2,8 +2,6 @@
 
 <br></br>
 
-<img src="https://github.com/user-attachments/assets/0b854d0a-00f9-470e-9d6a-3245d905573a" width="70%"> </img>
-
 - Firebase Database와 연동되어 있는 회원가입 시스템
 
 Email을 이용하는 시스템이 탑재되어 있습니다
@@ -17,6 +15,13 @@ Email을 이용하는 시스템이 탑재되어 있습니다
 다크모드로 전환할 수 있습니다
 
 사용자의 시스템에 맞춰 애플리케이션의 테마를 지정해줍니다
+
+## 🧑‍💻 기여자 및 기여분야
+
+|                [장성준(NE7K)](https://github.com/NE7K)                |                 [조예나(yyyenaak)](https://github.com/yyyenaak)                  |
+| :---------------------------------------------------------------------------: | :---------------------------------------------------------------------------: |
+| ![장성준의 프로필 사진](https://avatars.githubusercontent.com/u/81324262?v=4) | ![조예나의 프로필 사진](https://avatars.githubusercontent.com/u/170397500?v=4) |
+| 애플리케이션 제작 | 피드백 창구 개설 |
 
 ## 💿 사용된 외부 패키지
 

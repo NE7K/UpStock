@@ -38,6 +38,11 @@ class _RegisterState extends State<Register> {
     duration: Duration( seconds: 2 ),
   );
 
+  final shouldRegister = SnackBar(
+    content: Text('회원가입하라면 하셈'),
+    duration: Duration( seconds: 2),
+  );
+
   // 유저 회원가입
   @override
   void initState() {
@@ -231,8 +236,15 @@ class _RegisterState extends State<Register> {
                   ),
                   child: SizedBox.expand(
                     child: TextButton(onPressed: () {
-                      // 사용자가 안할거래
-                      Navigator.pop(context);
+
+                      // todo : 사용자는 애플리케이션을 사용하기 위해서 일단 회원가입 해야함
+                      if(auth.currentUser?.uid == null){
+                        print('회원가입을 진행하셔야 사용가능합니다.');
+                        ScaffoldMessenger.of(context).showSnackBar(shouldRegister);
+                      } else {
+                        Navigator.pop(context);
+                      }
+
                     }, child: Text('Done', style: TextStyle( color: Colors.green, fontSize: 18))),
                   )
               ),

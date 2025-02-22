@@ -1,38 +1,95 @@
-# 📁 프로젝트 설명
+# 📁 Project Description
 
 <br></br>
 
-<img src="https://github.com/user-attachments/assets/0b854d0a-00f9-470e-9d6a-3245d905573a" width="70%"> </img>
+- Registration system linked with Firebase Database
 
-- Firebase Database와 연동되어 있는 회원가입 시스템
+The system uses Email for registration
 
-Email을 이용하는 시스템이 탑재되어 있습니다
+## 📱 Main Screen
 
-## 📱 메인화면
+Displays major indices of US stocks such as Dow Jones and Nasdaq
 
-미국 주식의 대표 지수인 다우존스, 나스닥 지수를 보여줍니다
+## ⚙️ Settings Screen
 
-## ⚙️ 설정화면
+Allows switching to dark mode
 
-다크모드로 전환할 수 있습니다
+Sets the application theme according to the user's system
 
-사용자의 시스템에 맞춰 애플리케이션의 테마를 지정해줍니다
+## 🧑‍💻 Contributors and Contribution Areas
 
-## 💿 사용된 외부 패키지
+|                [장성준 (NE7K)](https://github.com/NE7K)                |                 [조예나 (yyyenaak)](https://github.com/yyyenaak)                  |
+| :---------------------------------------------------------------------------: | :---------------------------------------------------------------------------: |
+| ![Sungjun Jang's profile picture](https://avatars.githubusercontent.com/u/81324262?v=4) | ![Yena Cho's profile picture](https://avatars.githubusercontent.com/u/170397500?v=4) |
+| Application development | Feedback channel setup |
 
-**fl_chart** : 주식 차트를 그리기 위해 사용
+## 💿 External Packages Used
+
+**fl_chart**: Used for drawing stock charts
 <br></br>
-**provider** : 함수를 모아서 정리하기 위해 사용
+**provider**: Used for organizing functions
 <br></br>
-**http** : 인터넷과 통신하기 위해 사용
+**http**: Used for internet communication
 <br></br>
-**firebase_core** : firebase 패키지
+**firebase_core**: Firebase package
 <br></br>
-**firebase_auth** : firebase 패키지
+**firebase_auth**: Firebase package
 <br></br>
-**cloud_firestore** : firebase 패키지
+**cloud_firestore**: Firebase package
 <br></br>
-**webview_flutter** : 피드백 기능을 구현하기 위해 사용
+**webview_flutter**: Used for implementing feedback functionality
 <br></br>
-**shimmer** : 데이터 로딩 중임을 나타내기 위해 사용
+**shimmer**: Used to indicate data loading
 <br></br>
+
+## 🚀 Installation and Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/NE7K/upstock.git
+
+# Move to the project directory
+cd upstock
+
+# Install dependencies
+flutter pub get
+
+# Run the application
+flutter run
+```
+
+## 📋 Features
+
+- Registration and login using Firebase
+- View US stock indices (Dow Jones, Nasdaq)
+- Supports dark mode
+- Customizable application theme based on user system
+- Feedback functionality
+
+## 📷 Screenshots
+
+![Main Screen](path_to_main_screen_image)
+![Settings Screen](path_to_settings_screen_image)
+
+## 🛠️ Tech Stack
+
+- Flutter
+- Firebase (Auth, Firestore)
+- REST API (using http package)
+- fl_chart
+
+## 📝 Contribution Guide
+
+1. Fork this repository.
+2. Create a new branch. (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes. (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch. (`git push origin feature/AmazingFeature`)
+5. Open a pull request.
+
+## 📄 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## 📧 Contact
+
+For questions or feedback, please contact [Your Email](mailto:your-email@example.com).

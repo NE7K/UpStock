@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 // firebase register and login
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:upstock/account/login.dart';
 final auth = FirebaseAuth.instance;
 
 class Register extends StatefulWidget {
@@ -185,18 +186,26 @@ class _RegisterState extends State<Register> {
                     TextButton(onPressed: () {
                       // todo : 간단하게 페이지 이동 넣지머
                     },
-                        child: Text('Do you need any help?',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 14,
-                                color: Colors.green
-                            )
-                        ))
-                  ],
+                        child: Column(
+                          children: [
+                            TextButton(onPressed: () {
+                              Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (c) => Login() ));
+                            },
+                                child: Text('Does this ID already exist?',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 14,
+                                        color: Colors.green
+                                    )
+                                ))
+                          ],
+                        )
+                    )],
                 ),
               ),
 
-              SizedBox( height: 50 ),
+              SizedBox( height: 20 ),
 
               Container(
                 height: 50,

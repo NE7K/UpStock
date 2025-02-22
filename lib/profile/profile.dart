@@ -135,7 +135,7 @@ class _ProfileState extends State<Profile> {
                 TextButton(onPressed: () {
                   userLogout();
                   ScaffoldMessenger.of(context).showSnackBar(snackLogout);
-                  Navigator.push(context,
+                  Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (c) => Login()));
                 }, child: Text('로그아웃 버튼',
                 style: TextStyle(

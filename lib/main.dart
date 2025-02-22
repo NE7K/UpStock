@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 // 외부 package import
 import 'package:provider/provider.dart';
-import 'package:upstock/upload/test.dart';
+import 'package:upstock/upload/upload.dart';
 
 // 내부 파일 Import
 import 'home/home.dart'; // fl_chart

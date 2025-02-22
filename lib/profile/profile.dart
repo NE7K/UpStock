@@ -134,6 +134,7 @@ class _ProfileState extends State<Profile> {
 
                 TextButton(onPressed: () {
                   userLogout();
+                  ScaffoldMessenger.of(context).showSnackBar(snackLogout);
                 }, child: Text('로그아웃 버튼',
                 style: TextStyle(
                   decoration: TextDecoration.underline,

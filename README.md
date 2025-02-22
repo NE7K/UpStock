@@ -1,10 +1,10 @@
 # 📁 Project Description
 
-<br></br>
+context
 
-- Registration system linked with Firebase Database
+## 📊 User Flow
 
-The system uses Email for registration
+<img src="https://github.com/user-attachments/assets/cf2d9c62-4d8d-4fbe-8ff6-4b94502d7858" width="60%">
 
 ## 📱 Main Screen
 

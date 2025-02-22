@@ -10,7 +10,9 @@ context
 
 Displays major indices of US stocks such as Dow Jones and Nasdaq
 
-## ⚙️ Settings Screen
+## ⚙️ Profile Screen
+
+<img src="https://github.com/user-attachments/assets/3828c710-859e-4f28-992b-116624fe91e3" width="40%">
 
 Allows switching to dark mode
 
@@ -21,7 +23,7 @@ Sets the application theme according to the user's system
 |                [장성준 (NE7K)](https://github.com/NE7K)                |                 [조예나 (yyyenaak)](https://github.com/yyyenaak)                  |
 | :---------------------------------------------------------------------------: | :---------------------------------------------------------------------------: |
 | ![Sungjun Jang's profile picture](https://avatars.githubusercontent.com/u/81324262?v=4) | ![Yena Cho's profile picture](https://avatars.githubusercontent.com/u/170397500?v=4) |
-| Application development | Feedback channel setup |
+| Application development | Feedback page development |
 
 ## 💿 External Packages Used
 
@@ -68,8 +70,9 @@ flutter run
 
 ## 📷 Screenshots
 
-![Main Screen](path_to_main_screen_image)
-![Settings Screen](path_to_settings_screen_image)
+<img src="https://github.com/user-attachments/assets/fab62f96-603f-4e84-ae66-5da0559fcae4" width="40%">
+
+<img src="https://github.com/user-attachments/assets/f7774eff-1c97-460f-93d8-9d6bdf3ed334" width="40%">
 
 ## 🛠️ Tech Stack
 

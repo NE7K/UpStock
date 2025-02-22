@@ -30,6 +30,11 @@ class _ProfileState extends State<Profile> {
     await auth.signOut();
   }
 
+  final snackLogout = SnackBar(
+    content: Text('로그아웃함 ㅋㅋ'),
+    duration: Duration( seconds: 2 ),
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

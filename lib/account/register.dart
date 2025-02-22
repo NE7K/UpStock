@@ -33,6 +33,11 @@ class _RegisterState extends State<Register> {
     }
   }
 
+  final failRegister = SnackBar(
+    content: Text('회원가입 실패함 ㅅㄱ'),
+    duration: Duration( seconds: 2 ),
+  );
+
   // 유저 회원가입
   @override
   void initState() {
@@ -203,6 +208,7 @@ class _RegisterState extends State<Register> {
 
                     if(auth.currentUser?.uid == null){
                       print('회원가입이 정상적으로 진행되지 않았습니다.');
+                      ScaffoldMessenger.of(context).showSnackBar(failRegister);
                     } else {
                       Navigator.pop(context);
                     }

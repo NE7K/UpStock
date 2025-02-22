@@ -28,20 +28,20 @@ class Register extends StatelessWidget {
               SizedBox( height: 30 ),
 
               // todo : 일단 제목으로 넣어두긴 했는데 없는게 차라리 이쁜듯 ㅋㅋ
-              // SizedBox(
-              //   width: double.infinity,
-              //   child: Column(
-              //     crossAxisAlignment: CrossAxisAlignment.start,
-              //     children: [
-              //       Text('Stock Comunication',
-              //           style: TextStyle(
-              //             fontSize: 25,
-              //             fontWeight: FontWeight.w600
-              //           )
-              //       ),
-              //     ],
-              //   ),
-              // ),
+              SizedBox(
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('Register',
+                        style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.w600
+                        )
+                    ),
+                  ],
+                ),
+              ),
         
               SizedBox( height: 20 ),
 

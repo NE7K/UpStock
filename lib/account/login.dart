@@ -29,7 +29,7 @@ class Login extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('로그인 할거임?',
+                      Text('Login',
                           style: TextStyle(
                             fontSize: 25,
                             fontWeight: FontWeight.w600
@@ -106,7 +106,7 @@ class Login extends StatelessWidget {
                       TextButton(onPressed: () {
                         // todo : 간단하게 페이지 이동 넣지머
                       },
-                          child: Text('Forgot your password or id?',
+                          child: Text('Forgot your Email or Password?',
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontSize: 14,

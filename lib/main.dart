@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 // 외부 package import
 import 'package:provider/provider.dart';
-import 'package:upstock/account/register.dart';
 import 'package:upstock/upload/test.dart';
 
 // 내부 파일 Import
@@ -10,6 +9,8 @@ import 'home/home.dart'; // fl_chart
 import 'profile/profile.dart';
 import 'package:upstock/style/style.dart' as style; // style.dart
 
+import 'package:upstock/account/login.dart';
+import 'package:upstock/account/register.dart'; // todo : 테스트용으로 냄겨둠 냅둬라
 
 // firebase set import
 import 'package:firebase_core/firebase_core.dart';
@@ -57,7 +58,7 @@ class _MyAppState extends State<MyApp> {
     // widgetsbinding을 사용한 이유는 첫 번째 프레임 랜더링 안되고 실행하면 오류 뿜뿜함
     WidgetsBinding.instance.addPostFrameCallback((_) {
       Navigator.push(context,
-          MaterialPageRoute(builder: (c) => Register()));
+          MaterialPageRoute(builder: (c) => Login()));
     });
   }
 

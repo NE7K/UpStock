@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 // 내부 파일 연동
 import 'package:upstock/profile/announcement.dart';
+import 'package:upstock/profile/information.dart';
 import 'package:upstock/profile/peedback.dart';
 import 'package:upstock/profile/screen.dart';
 import 'package:upstock/account/register.dart';
@@ -110,12 +111,15 @@ class _ProfileState extends State<Profile> {
                     },
                 ),
 
-                Text('개인정보보호방침 및 이용약관',
+                TextButton(onPressed: () {
+                  Navigator.push(context,
+                  MaterialPageRoute(builder: (c) => Information()));
+                }, child: Text('개인정보보호방침 및 이용약관',
                     style: TextStyle(
                         decoration: TextDecoration.underline,
                         fontSize: 9,
                         color: Colors.grey[600]
-                    )
+                    )),
                 ),
 
                 TextButton(onPressed: () {

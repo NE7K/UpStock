@@ -4,6 +4,7 @@ import 'package:upstock/account/login.dart';
 
 // 파이어베이스 쓰려면 넣어라.. 오류난다
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:upstock/main.dart';
 final auth = FirebaseAuth.instance;
 
 class Register extends StatefulWidget {
@@ -36,7 +37,8 @@ class _RegisterState extends State<Register> {
       );
       result.user?.updateDisplayName(userID.text.trim()); // ? 쓰는 이유는 null일까봐
       if (mounted) {
-        Navigator.pop(context);
+        Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (c) => Mainpage()));
       }
     } catch (e) {
       print(e);

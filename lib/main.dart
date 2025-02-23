@@ -10,7 +10,6 @@ import 'profile/profile.dart';
 import 'package:upstock/style/style.dart' as style; // style.dart
 
 import 'package:upstock/account/login.dart';
-import 'package:upstock/account/register.dart'; // todo : 테스트용으로 냄겨둠 냅둬라
 
 // firebase set import
 import 'package:firebase_core/firebase_core.dart';
@@ -50,17 +49,22 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
 
+  // todo : 나중에 로그인 확인할 때 사용할 코드
+  // if (auth.currentUser?.uid == null){
+  // print('로그인되지 않았습니다.');
+  // } else {
+  // }
+
   // state 담는 함수
   var tab = 0;
 
   checkLogin() {
     if(auth.currentUser?.uid == null) {
       print('로그인해라 ㅡㅡ');
-
-      Navigator.pushReplacement(context,
-      MaterialPageRoute(builder: (c) => Login()));
+      Navigator.push(context,
+          MaterialPageRoute(builder: (c) => Login()));
     } else {
-      Navigator.pop(context);
+      print('로그인했어요.');
     }
   }
 
@@ -70,9 +74,6 @@ class _MyAppState extends State<MyApp> {
 
     // widgetsbinding을 사용한 이유는 첫 번째 프레임 랜더링 안되고 실행하면 오류 뿜뿜함
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Navigator.push(context,
-          MaterialPageRoute(builder: (c) => Register()));
-
       // todo : 앱 실행 시 로그인 if 문 처리 (로그인되어 있지 않으면 바로 다시 navigator 적용), firebase에서도 rule처리 해줘야 함.
       checkLogin();
       // 이거 밖에다가 빼면 오류남 ㅋㅋ

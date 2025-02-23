@@ -22,15 +22,28 @@ class _RegisterState extends State<Register> {
   // 비번 controller
   TextEditingController password = TextEditingController();
 
+  bool isRegistering = false;
+
   userRegister() async {
+    setState(() {
+      isRegistering = true;
+    });
     try {
       var result = await auth.createUserWithEmailAndPassword(
         email: email.text.trim(), // email 가져와서 공백 제거하고 넣어
         password: password.text.trim(),
       );
       result.user?.updateDisplayName(userID.text.trim()); // ? 쓰는 이유는 null일까봐
+      if (mounted) {
+        Navigator.pop(context);
+      }
     } catch (e) {
       print(e);
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(failRegister);
+    } finally {
+      setState(() {
+        isRegistering = false;
+      });
     }
   }
 
@@ -208,18 +221,10 @@ class _RegisterState extends State<Register> {
                 ),
                 child: SizedBox.expand(
                   // .expend 쓰면 container 크기만큼 클릭 ㅆㄱㄴ
-                  child: TextButton(onPressed: () {
-
-                    userRegister();
-
-                    if(auth.currentUser?.uid == null){
-                      print('회원가입이 정상적으로 진행되지 않았습니다.');
-                      ScaffoldMessenger.of(context).showSnackBar(failRegister);
-                    } else {
-                      Navigator.pop(context);
-                    }
-
-                  }, child: Text('Register', style: TextStyle( color: Colors.white, fontSize: 18))),
+                  child: TextButton(
+                      onPressed: () { isRegistering ? null : userRegister(); },
+                      child: Text( isRegistering ? '회원가입 중' : 'Register', style: TextStyle( color: Colors.white, fontSize: 18))
+                  ),
                 ),
               ),
 

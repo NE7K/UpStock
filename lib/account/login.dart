@@ -14,16 +14,34 @@ class _LoginState extends State<Login> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
 
-  // 로그인
+  // 로그인하는 중인지 체크할려고 만듦 ㅅㄱ
+  bool isLoggingIn = false;
+
+  // 로그인 함수
   userLogin() async {
+
+    setState(() {
+      isLoggingIn = true; // 체크 중이라고 보내고
+    });
+
     try {
       await auth.signInWithEmailAndPassword(
           email: email.text.trim(),
           password: password.text.trim()
       );
-
+      // 여기서 mounted 쓴 이유는 화면에 없는 위젯 조작 방지하려고 한거임
+      if(mounted)  {
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (c) => MyApp()));
+      }
     } catch(e) {
       print(e);
+      // 이것도 위에랑 똑같음 이유 경고떠서 넣음 ㅋㅋ
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(failLogin);
+    } finally {
+      setState(() {
+        isLoggingIn = false; // 로딩 끝났다고 해줘야지
+      });
     }
   }
 
@@ -160,18 +178,9 @@ class _LoginState extends State<Login> {
                   ),
                   child: SizedBox.expand(
                     // .expend 쓰면 container 크기만큼 클릭 ㅆㄱㄴ
-                    child: TextButton(onPressed: () {
-
-                      userLogin();
-
-                      if (auth.currentUser?.uid == null){
-                        print('로그인되지 않았습니다.');
-                        ScaffoldMessenger.of(context).showSnackBar(failLogin);
-                      } else {
-                        Navigator.pop(context);
-                      }
-
-                    }, child: Text('Login', style: TextStyle( color: Colors.white, fontSize: 18))),
+                    child: TextButton(
+                        onPressed: () { isLoggingIn ? null : userLogin(); },
+                        child: Text( isLoggingIn ? '로그인 중' : 'Login', style: TextStyle( color: Colors.white, fontSize: 18))),
                   ),
                 ),
 
@@ -190,7 +199,7 @@ class _LoginState extends State<Login> {
                     child: SizedBox.expand(
                       child: TextButton(onPressed: () {
                         // 사용자가 안할거래
-                        Navigator.pushReplacement(context,
+                        Navigator.push(context,
                         MaterialPageRoute(builder: (c) => Register()));
                       }, child: Text('Register', style: TextStyle( color: Colors.green, fontSize: 18))),
                     )

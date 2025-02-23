@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:shimmer/main.dart';
 import 'package:upstock/account/register.dart';
+import 'package:upstock/main.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
+final auth = FirebaseAuth.instance;
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -32,7 +35,7 @@ class _LoginState extends State<Login> {
       // 여기서 mounted 쓴 이유는 화면에 없는 위젯 조작 방지하려고 한거임
       if(mounted)  {
         Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (c) => MyApp()));
+        MaterialPageRoute(builder: (c)=> Mainpage()));
       }
     } catch(e) {
       print(e);

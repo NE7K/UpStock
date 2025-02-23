@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:upstock/account/login.dart';
+
 // firebase register and login
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:upstock/account/login.dart';
 final auth = FirebaseAuth.instance;
 
 class Register extends StatefulWidget {

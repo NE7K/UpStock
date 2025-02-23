@@ -62,6 +62,10 @@ class HomeHeader extends StatelessWidget {
                           height: 65,  // 차트 높이 설정
                           child: LineChart(
                               LineChartData(
+                                // 사용자가 마우스 위에 올렸을 때 주가 나오는 부분 삭제
+                                lineTouchData: LineTouchData(
+                                  enabled: false
+                                ),
                                   gridData: FlGridData(show: false),  // 격자 라인 안 보이게 설정
                                   titlesData: FlTitlesData(show: false),  // 축 제목 안 보이게 설정
                                   borderData: FlBorderData(show: false),  // 차트 테두리 안 보이게 설정
@@ -119,6 +123,10 @@ class HomeHeader extends StatelessWidget {
                           height: 65,
                           child: LineChart(
                               LineChartData(
+                                // 사용자가 마우스 위에 올렸을 때 주가 나오는 부분 삭제
+                                lineTouchData: LineTouchData(
+                                    enabled: false
+                                ),
                                   gridData: FlGridData(show: false), // 격자 제거
                                   titlesData: FlTitlesData(show: false), // 제목 제거
                                   borderData: FlBorderData(show: false), // 기타 외부 정보 제거

@@ -71,7 +71,6 @@ class _RegisterState extends State<Register> {
 
               SizedBox( height: 30 ),
 
-              // todo : 일단 제목으로 넣어두긴 했는데 없는게 차라리 이쁜듯 ㅋㅋ
               SizedBox(
                 width: double.infinity,
                 child: Column(
@@ -239,7 +238,6 @@ class _RegisterState extends State<Register> {
                   child: SizedBox.expand(
                     child: TextButton(onPressed: () {
 
-                      // todo : 사용자는 애플리케이션을 사용하기 위해서 일단 회원가입 해야함
                       if(auth.currentUser?.uid == null){
                         print('회원가입을 진행하셔야 사용가능합니다.');
                         ScaffoldMessenger.of(context).showSnackBar(shouldRegister);
@@ -250,7 +248,7 @@ class _RegisterState extends State<Register> {
                     }, child: Text('Done', style: TextStyle( color: Colors.green, fontSize: 18))),
                   )
               ),
-              // Todo : 추가할거 추가하자
+
             ],
           ),
         ),

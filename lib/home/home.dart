@@ -33,7 +33,6 @@ Future <List<Map<String, dynamic>>> getStockData() async {
     return {
       'symbol' : name.key, // 심볼 이름임 굳이 지금은 필요없는데, 혹시 몰라서 나중에 쓸거 같음
       'currentPrice' : prices.last, // 최근 가격 전날 가격임
-      // todo : 차트 시각화하려고 아래는 복잡하게 구함
       'prices' :  ((prices.last - prices[prices.length - 2]) / prices[prices.length - 2]) * 100, // 최근 가격
       'changePercent' : List.generate(prices.length, (i) => FlSpot(i.toDouble(), prices[i]?.toDouble() ?? 0))
       // 등락률 계산, flospot은 x랑 y축

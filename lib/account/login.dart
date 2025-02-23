@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shimmer/main.dart';
 import 'package:upstock/account/register.dart';
 
 class Login extends StatefulWidget {
@@ -13,6 +14,7 @@ class _LoginState extends State<Login> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
 
+  // 로그인
   userLogin() async {
     try {
       await auth.signInWithEmailAndPassword(
@@ -25,8 +27,9 @@ class _LoginState extends State<Login> {
     }
   }
 
+  // 스낵바
   final failLogin = SnackBar(
-    content: Text('로그인 실패함 ㅅㄱ'),
+    content: Text('check your email or password'),
     duration: Duration(seconds: 2),
   );
 
@@ -50,7 +53,6 @@ class _LoginState extends State<Login> {
 
                 SizedBox( height: 30 ),
 
-                // todo : 일단 제목으로 넣어두긴 했는데 없는게 차라리 이쁜듯 ㅋㅋ
                 SizedBox(
                   width: double.infinity,
                   child: Column(
@@ -161,9 +163,8 @@ class _LoginState extends State<Login> {
                     child: TextButton(onPressed: () {
 
                       userLogin();
-                      // todo : if문 써서 정상적으로 로그인된거 확인하면 pop 때리삼
 
-                      if(auth.currentUser?.uid == null){
+                      if (auth.currentUser?.uid == null){
                         print('로그인되지 않았습니다.');
                         ScaffoldMessenger.of(context).showSnackBar(failLogin);
                       } else {
@@ -200,7 +201,7 @@ class _LoginState extends State<Login> {
                 Text("Don't have an account?",
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
-                      fontSize: 14,
+                      fontSize: 12,
                       color: Colors.green
                     )
                 ),

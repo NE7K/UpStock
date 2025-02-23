@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http; // http import
 import 'package:fl_chart/fl_chart.dart'; // 차트 임포트임 없으면 차트 못 그림ㅋㅋ
-
-import 'dart:convert';
+import 'dart:convert'; // json decode 때문
+import 'package:shimmer/shimmer.dart';
 
 import 'package:upstock/home/homebody.dart';
 import 'package:upstock/home/homeheader.dart'; // json import
@@ -81,7 +81,6 @@ class _HomeState extends State<Home> {
               children: [
 
                 HomeHeader(stockData : stockData),
-
                 HomeBody()
 
               ],

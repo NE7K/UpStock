@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'package:fl_chart/fl_chart.dart'; // 차트 임포트임 없으면 차트 못 그림ㅋㅋ
+import 'package:fl_chart/fl_chart.dart';
+import 'package:shimmer/shimmer.dart'; // 차트 임포트임 없으면 차트 못 그림ㅋㅋ
 
 class HomeHeader extends StatelessWidget {
+
   final List<Map<String, dynamic>> stockData;
+
   const HomeHeader({super.key, required this.stockData});
 
   @override
@@ -163,6 +166,48 @@ class HomeHeader extends StatelessWidget {
             )
         ),
       ],
+    );
+  }
+}
+
+
+// Shimmer Effect 위젯
+class ShimmerEffect extends StatelessWidget {
+  const ShimmerEffect({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 170,
+      child: Shimmer.fromColors(
+          baseColor: Colors.grey[300]!,
+          highlightColor: Colors.grey[100]!,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              ShimmerCard(),
+              ShimmerCard(),
+            ],
+          ),
+      )
+    );
+  }
+}
+
+// Shimmer Card 위젯
+class ShimmerCard extends StatelessWidget {
+  const ShimmerCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 150,
+      height: 150,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: Colors.grey[300]!)
+      ),
     );
   }
 }

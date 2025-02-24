@@ -9,16 +9,17 @@ import 'package:upstock/home/homebody.dart';
 import 'package:upstock/home/homeheader.dart'; // json import
 
 // 다우존스랑 나스닥 100 정보 가져올거임
-Future <List<Map<String, dynamic>>> getStockData() async {
+Future<List<Map<String, dynamic>>> getStockData() async {
   // 정보 늦으니까 await, Future 쓰고 Json Map 자료니까 타입 선언도 같이해줘야 함
 
   // 다우존스랑 나스닥 심볼 적어놔야 부르지 ㅇㅈ?
-  final symbol = {'DOW' : '^DJI', 'NASDAQ' : '^NDX'};
+  final symbol = {'DOW': '^DJI', 'NASDAQ': '^NDX'};
 
   // 데이터 가져올 때에는 여러가지 동시에
   return Future.wait(symbol.entries.map((name) async {
     // 1일 데이터 가져오기 name.value는 심볼의 티커 가져오는거임 ㅇㅇ
-    var result = await http.get(Uri.parse('https://query1.finance.yahoo.com/v8/finance/chart/${name.value}?range=1d&interval=5m'));
+    var result = await http.get(Uri.parse(
+        'https://query1.finance.yahoo.com/v8/finance/chart/${name.value}?range=1d&interval=5m'));
 
     // null 체크해주래
     if (result.statusCode != 200) {
@@ -31,49 +32,43 @@ Future <List<Map<String, dynamic>>> getStockData() async {
     // todo : 야후 파이낸스 api json 파일 양식 참고해서 추가적인 데이터 추가해야 함
 
     return {
-      'symbol' : name.key, // 심볼 이름임 굳이 지금은 필요없는데, 혹시 몰라서 나중에 쓸거 같음
-      'currentPrice' : prices.last, // 최근 가격 전날 가격임
-      'prices' :  ((prices.last - prices[prices.length - 2]) / prices[prices.length - 2]) * 100, // 최근 가격
-      'changePercent' : List.generate(prices.length, (i) => FlSpot(i.toDouble(), prices[i]?.toDouble() ?? 0))
+      'symbol': name.key, // 심볼 이름임 굳이 지금은 필요없는데, 혹시 몰라서 나중에 쓸거 같음
+      'currentPrice': prices.last, // 최근 가격 전날 가격임
+      'prices': ((prices.last - prices[prices.length - 2]) /
+              prices[prices.length - 2]) *
+          100, // 최근 가격
+      'changePercent': List.generate(prices.length,
+          (i) => FlSpot(i.toDouble(), prices[i]?.toDouble() ?? 0))
       // 등락률 계산, flospot은 x랑 y축
-      };
+    };
   }));
 }
 
 class Home extends StatefulWidget {
   const Home({super.key});
+
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-
   List<Map<String, dynamic>> stockData = []; // 주식 데이터를 저장할 리스트
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      // 내용 많아질건데 미리 스크롤뷰 넣자잉
-      body: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: Container(
-            margin: EdgeInsets.all(5),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+        backgroundColor: Colors.white,
+        // 내용 많아질건데 미리 스크롤뷰 넣자잉
+        // todo Sliver Appbar 써서 나중에 디자인
+        body: CustomScrollView(
+          // sliver [위젯 1, 위젯 2]
+          slivers: [
+            // 위젯 1
+            HomeHeader(stockData: stockData, getStockData: getStockData),
 
-                // todo getStockData 함수를 통채로 보내서 shimmer을 사용해보자
-                HomeHeader(stockData : stockData, getStockData : getStockData),
-                HomeBody()
-
-              ],
-            ),
-          ),)
-        ],
-
-      )
-    );
+            // 위젯 2 - 커스텀 리스트뷰
+            // HomeBody()
+          ], // sliver
+        ));
   }
 }

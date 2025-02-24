@@ -17,6 +17,7 @@ import 'firebase/firebase_options.dart';
 
 // firebase register and login
 import 'package:firebase_auth/firebase_auth.dart';
+
 final auth = FirebaseAuth.instance;
 
 void main() async {
@@ -24,31 +25,24 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(
-      MultiProvider(
-          providers: [
-            // todo : provider 쓰려고 일단 만들어뒀는데 나중에 코드 정리할 때에만 사용할 예정
-            ChangeNotifierProvider(create: (c) => Store())
-          ],
-          child: MaterialApp(
-              theme: style.theme,
-              home: Mainpage()
-          )
-      )
-  );
+  runApp(MultiProvider(providers: [
+    // todo : provider 쓰려고 일단 만들어뒀는데 나중에 코드 정리할 때에만 사용할 예정
+    ChangeNotifierProvider(create: (c) => Store())
+  ], child: MaterialApp(theme: style.theme, home: Mainpage())));
 }
 
-class Store extends ChangeNotifier { // 함수 관리
+class Store extends ChangeNotifier {
+  // 함수 관리
 }
 
 class Mainpage extends StatefulWidget {
   const Mainpage({super.key});
+
   @override
   State<Mainpage> createState() => _MainpageState();
 }
 
 class _MainpageState extends State<Mainpage> {
-
   // todo : 나중에 로그인 확인할 때 사용할 코드
   // if (auth.currentUser?.uid == null){
   // print('로그인되지 않았습니다.');
@@ -59,10 +53,10 @@ class _MainpageState extends State<Mainpage> {
   var tab = 0;
 
   checkLogin() {
-    if(auth.currentUser?.uid == null) {
+    if (auth.currentUser?.uid == null) {
       print('로그인해라 ㅡㅡ');
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (c) => Login()));
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (c) => Login()));
     } else {
       print('로그인했어요.');
     }
@@ -81,25 +75,23 @@ class _MainpageState extends State<Mainpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-      backgroundColor: Colors.white,
-
-      body: [Home(), Test(), Profile()][tab],
-
-      bottomNavigationBar: BottomNavigationBar(
-          showSelectedLabels: false, // 선택된 라벨 표시 false
-          showUnselectedLabels: false,
-          onTap: (i) {
-            setState(() {
-              tab = i;
-            });
-          },
-          items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: '홈'),
-            BottomNavigationBarItem(icon: Icon(Icons.add_box_outlined), label: '게시글'),
-            BottomNavigationBarItem(icon: Icon(Icons.person_outline), label: '프로필'),
-          ]
-      )
-    );
+        backgroundColor: Colors.white,
+        body: [Home(), Test(), Profile()][tab],
+        bottomNavigationBar: BottomNavigationBar(
+            showSelectedLabels: false, // 선택된 라벨 표시 false
+            showUnselectedLabels: false,
+            onTap: (i) {
+              setState(() {
+                tab = i;
+              });
+            },
+            items: [
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.home_outlined), label: '홈'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.add_box_outlined), label: '게시글'),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.person_outline), label: '프로필'),
+            ]));
   }
 }

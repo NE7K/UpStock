@@ -69,7 +69,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[100],
+      backgroundColor: Colors.white,
       // 내용 많아질건데 미리 스크롤뷰 넣자잉
       body: CustomScrollView(
         slivers: [

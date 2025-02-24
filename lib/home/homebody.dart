@@ -16,7 +16,7 @@ class HomeBody extends StatelessWidget {
 
         Row(
           children: [
-            SizedBox( width: 10 ),
+            SizedBox( width: 20 ),
             Text('커뮤니티', style: TextStyle( fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold ))
           ],
         ),

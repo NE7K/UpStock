@@ -25,10 +25,16 @@ class _UploadPageState extends State<UploadPage> {
       // todo 서버에서 게시글 번호를 받아와서 +1씩해서 저장해야 할듯?
           .doc('1')
           .set({'context' : userContext.text});
+      if(mounted) ScaffoldMessenger.of(context).showSnackBar(finishUpload);
     } catch(e) {
       print(e);
     }
   }
+
+  final finishUpload = SnackBar(
+      content: Text('업로드함 ㅋㅋ'),
+    duration: Duration( seconds: 2),
+  );
 
   @override
   Widget build(BuildContext context) {

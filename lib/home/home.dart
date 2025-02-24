@@ -60,14 +60,17 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.white,
         // 내용 많아질건데 미리 스크롤뷰 넣자잉
         // todo Sliver Appbar 써서 나중에 디자인
+
         body: CustomScrollView(
           // sliver [위젯 1, 위젯 2]
           slivers: [
+
             // 위젯 1
             HomeHeader(stockData: stockData, getStockData: getStockData),
 
             // 위젯 2 - 커스텀 리스트뷰
             HomeBody()
+
           ], // sliver
         ));
   }

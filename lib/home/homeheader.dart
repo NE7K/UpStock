@@ -84,18 +84,8 @@ class _HomeHeaderState extends State<HomeHeader> {
                           ],
                         )),
 
-                    SizedBox(height: 30),
+                    SizedBox(height: 20),
 
-                    Row(
-                      children: [
-                        SizedBox(width: 20),
-                        Text('커뮤니티',
-                            style: TextStyle(
-                                fontSize: 25,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold))
-                      ],
-                    ),
                   ],
                 )
               ],

@@ -18,7 +18,8 @@ class _HomeBodyState extends State<HomeBody> {
   List<Map<String, dynamic>> usercontext = [];
 
   getData() async {
-    var result = await firestore.collection('user').orderBy('date', descending: true).get();
+    var result = await firestore.collection('user').get();
+    // .orderBy('date', descending: true)
 
     List<Map<String, dynamic>> result2 = [];
 

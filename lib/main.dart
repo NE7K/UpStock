@@ -76,7 +76,7 @@ class _MainpageState extends State<Mainpage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        body: [Home(), Test(), Profile()][tab],
+        body: [Home(), UploadPage(), Profile()][tab],
         bottomNavigationBar: BottomNavigationBar(
             showSelectedLabels: false, // 선택된 라벨 표시 false
             showUnselectedLabels: false,

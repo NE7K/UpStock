@@ -30,13 +30,16 @@ class _HomeHeaderState extends State<HomeHeader> {
     try {
       // 가져와서
       var result = await widget.getStockData();
-      setState(() {
-        // 몰래 저장하고 로딩 끝내기 ㅋㅋㅋ
-        widget.stockData.addAll(result);
-        isLoading = false;
-      });
+      // todo 이거 마운티드 안써서 빨리하면 오류남 z < 넣어도 오류나네
+      if (mounted) {
+        setState(() {
+          // 몰래 저장하고 로딩 끝내기 ㅋㅋㅋ
+          widget.stockData.addAll(result);
+          isLoading = false;
+        });
+      }
     } catch (e) {
-      print('오류남 ㅅㄱ');
+      print(e);
     }
   }
 

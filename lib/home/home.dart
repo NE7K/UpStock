@@ -50,22 +50,6 @@ class _HomeState extends State<Home> {
 
   List<Map<String, dynamic>> stockData = []; // 주식 데이터를 저장할 리스트
 
-  bool isLoading = true;
-  // 로딩 상태 표시 왜냐하면 로딩 화면 띄울거라 ㅋㅋ
-
-  @override
-  void initState() {
-    super.initState();
-    // Future 데이터 콜백, 받으면 .then((data) => setState(()해서
-    getStockData().then((data) =>
-        setState(()
-        {
-          stockData = data; // 위에서 데이터 받았다?
-          isLoading = false; // 데이터 로딩 완료하면댐 ㅋㅋ
-        })
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,7 +64,8 @@ class _HomeState extends State<Home> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
 
-                HomeHeader(stockData : stockData),
+                // todo getStockData 함수를 통채로 보내서 shimmer을 사용해보자
+                HomeHeader(stockData : stockData, getStockData : getStockData),
                 HomeBody()
 
               ],

@@ -3,11 +3,43 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:shimmer/shimmer.dart'; // 차트 임포트임 없으면 차트 못 그림ㅋㅋ
 
-class HomeHeader extends StatelessWidget {
+class HomeHeader extends StatefulWidget {
 
+  // todo 그대로 가져오기
+  final Future<List<Map<String, dynamic>>> Function() getStockData;
   final List<Map<String, dynamic>> stockData;
 
-  const HomeHeader({super.key, required this.stockData});
+  const HomeHeader({super.key, required this.stockData, required this.getStockData});
+
+  @override
+  State<HomeHeader> createState() => _HomeHeaderState();
+}
+
+class _HomeHeaderState extends State<HomeHeader> {
+
+  // 로딩 체크
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    shimmerLoading();
+  }
+
+  // 홈 부모꺼 가져와서 막씀
+  shimmerLoading() async {
+    try {
+      // 가져와서
+      var result = await widget.getStockData();
+      setState(() {
+        // 몰래 저장하고 로딩 끝내기 ㅋㅋㅋ
+        widget.stockData.addAll(result);
+        isLoading = false;
+      });
+    } catch(e) {
+      print('오류남 ㅅㄱ');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +66,10 @@ class HomeHeader extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
 
-                // 삼항 연산자 isLoading ? ShimmerEffect : StockCard ~
-                ShimmerEffect(),
+                // todo 삼항 연산자 isLoading ? ShimmerEffect : StockCard ~
+                isLoading ? ShimmerEffect() : StockCard(stockData : widget.stockData[0]),
+                isLoading ? ShimmerEffect() : StockCard(stockData : widget.stockData[1]),
                 // StockCard(stockData : stockData[0]),
-                StockCard(stockData : stockData[1])
 
               ],
             )
@@ -73,7 +105,7 @@ class ShimmerEffect extends StatelessWidget {
               baseColor: Colors.grey[300]!,
               highlightColor: Colors.grey[100]!,
                 child: Container(
-                  width: 140,
+                  width: 100,
                   height: 20,
                   decoration: BoxDecoration(
                       color: Colors.white,
@@ -85,14 +117,12 @@ class ShimmerEffect extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(8),
             child: SizedBox(
-              width: 140,
+              width: 130,
               height: 65,
               child: Shimmer.fromColors(
                   baseColor: Colors.grey[300]!,
                   highlightColor: Colors.grey[100]!,
                   child: Container(
-                    height: 50,
-                    width: 50,
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(5)
@@ -106,7 +136,7 @@ class ShimmerEffect extends StatelessWidget {
             baseColor: Colors.grey[300]!,
             highlightColor: Colors.grey[100]!,
             child: Container(
-              width: 140,
+              width: 100,
               height: 20,
               decoration: BoxDecoration(
                   color: Colors.white,

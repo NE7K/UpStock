@@ -40,11 +40,7 @@ class HomeBody extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Shimmer.fromColors(
-                  baseColor: Colors.grey[300]!,
-                  highlightColor: Colors.grey[100]!,
-                  child: Text(' shimmer 테스트 ')
-              )
+
             ],
           ),
         )

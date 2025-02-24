@@ -17,6 +17,21 @@ class _UploadPageState extends State<UploadPage> {
 
   TextEditingController userContext = TextEditingController();
 
+  @override
+  void initState() {
+    super.initState();
+    // count 숫자 받아오는 함수
+    checkCount();
+  }
+
+  checkCount() async {
+    try {
+      var countResult = await firestore.collection('user').get();
+    } catch(e) {
+      print(e);
+    }
+  }
+
   userPost() async {
     try {
       // 이거 유저 컨트롤러 받아와서 포스팅하면댐 ㅋㅋ
@@ -24,7 +39,10 @@ class _UploadPageState extends State<UploadPage> {
           .collection('user')
       // todo 서버에서 게시글 번호를 받아와서 +1씩해서 저장해야 할듯?
           .doc('1')
-          .set({'context' : userContext.text});
+          .set({
+        'context' : userContext.text,
+        'like' : 0
+      });
       if(mounted) ScaffoldMessenger.of(context).showSnackBar(finishUpload);
     } catch(e) {
       print(e);

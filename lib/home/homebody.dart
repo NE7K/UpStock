@@ -20,6 +20,7 @@ class _HomeBodyState extends State<HomeBody> {
   getData() async {
     var result = await firestore.collection('user').get();
     // .orderBy('date', descending: true)
+    // todo timestamp add oo?
 
     List<Map<String, dynamic>> result2 = [];
 

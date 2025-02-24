@@ -67,7 +67,7 @@ class _HomeState extends State<Home> {
             HomeHeader(stockData: stockData, getStockData: getStockData),
 
             // 위젯 2 - 커스텀 리스트뷰
-            // HomeBody()
+            HomeBody()
           ], // sliver
         ));
   }

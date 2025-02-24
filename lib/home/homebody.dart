@@ -7,6 +7,13 @@ class HomeBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverList(delegate: SliverChildBuilderDelegate(builder));
+    return SliverList(
+        delegate: SliverChildBuilderDelegate(
+            childCount: 3,
+            (c, i) {
+              return Card();
+            }
+        )
+    );
   }
 }

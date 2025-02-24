@@ -14,23 +14,29 @@ class Announcement extends StatefulWidget {
 
 class _AnnouncementState extends State<Announcement> {
   List<Map<String, dynamic>> mastercontext = []; // 공지사항 저장 공간
-
   getData() async {
-    var result = await firestore
-        .collection('announcement')
-        .orderBy('date', descending: true) // date 순으로 정렬
-        .get(); // all get
+    try {
+      var result = await firestore
+          .collection('announcement')
+          .orderBy('date', descending: true)
+          .get();
 
-    List<Map<String, dynamic>> result2 = []; // result2 역할 type 지정
+      List<Map<String, dynamic>> newResults = [];
 
-    for (var doc in result.docs) {
-      // for문으로 result 데이터 저장
-      result2.add(doc.data()); // result2에 담아온 데이터 inser
+      if (result.docs.isNotEmpty) {
+        for (var doc in result.docs) {
+          newResults.add(doc.data());
+        }
+      }
+
+      setState(() {
+        mastercontext = newResults;
+      });
+    } catch (e) {
+      print("Error fetching data: $e");
     }
-    setState(() {
-      mastercontext = result2;
-    });
   }
+
 
   @override
   void initState() {

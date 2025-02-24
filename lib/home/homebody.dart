@@ -2,16 +2,45 @@ import 'package:flutter/material.dart';
 
 // 파이어베이스 쓰려면 넣어라.. 오류난다
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:upstock/profile/announcement.dart';
 
 final auth = FirebaseAuth.instance;
 
-class HomeBody extends StatelessWidget {
+class HomeBody extends StatefulWidget {
   const HomeBody({super.key});
+
+  @override
+  State<HomeBody> createState() => _HomeBodyState();
+}
+
+class _HomeBodyState extends State<HomeBody> {
+
+  List<Map<String, dynamic>> usercontext = [];
+
+  getData() async {
+    var result = await firestore.collection('user').orderBy('date', descending: true).get();
+
+    List<Map<String, dynamic>> result2 = [];
+
+    for (var doc in result.docs) {
+      result2.add(doc.data());
+    }
+    setState(() {
+      usercontext = result2;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
 
   @override
   Widget build(BuildContext context) {
     return SliverList(
-        delegate: SliverChildBuilderDelegate(childCount: 300, (c, i) {
+        delegate: SliverChildBuilderDelegate(
+            childCount: usercontext.length, (c, i) {
       return SizedBox(
         width: double.infinity,
         child: Column(
@@ -27,7 +56,8 @@ class HomeBody extends StatelessWidget {
 
                   SizedBox(width: 10),
 
-                  Text(auth.currentUser!.displayName ?? 'miss')
+                  // todo 글쓴이 사용자 이름으로 바꿔야함
+                  Text(auth.currentUser!.displayName ?? 'miss', style: TextStyle( fontSize: 16, fontWeight: FontWeight.bold ),)
                 ],
               ),
             ),
@@ -40,7 +70,7 @@ class HomeBody extends StatelessWidget {
 
             Container(
               padding: EdgeInsets.symmetric( horizontal: 10 ),
-              child: Text('내용이다 ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ',
+              child: Text(usercontext[i]['context'],
                 style: TextStyle( fontSize: 16 )
               ),
             ),
@@ -51,7 +81,8 @@ class HomeBody extends StatelessWidget {
                 children: [
                   IconButton(
                       onPressed: () {}, icon: Icon(Icons.favorite_outline)),
-                  Text('1'),
+                  Text(usercontext[i]['like'].toString()),
+                  // 댓글
                   // IconButton(
                   //     onPressed: () {}, icon: Icon(Icons.messenger_outline)),
                   // Text('2')

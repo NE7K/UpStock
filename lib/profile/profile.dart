@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 // 내부 파일 연동
 import 'package:upstock/profile/announcement.dart';
 import 'package:upstock/profile/information.dart';
+import 'package:upstock/profile/logout.dart';
 import 'package:upstock/profile/peedback.dart';
 import 'package:upstock/profile/screen.dart';
 import 'package:upstock/account/login.dart';
@@ -23,19 +24,9 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
 
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  // user Logout system
-  userLogout() async {
-    await auth.signOut();
-  }
-
-  final snackLogout = SnackBar(
-    content: Text('로그아웃함 ㅋㅋ'),
-    duration: Duration( seconds: 2 ),
+  final snackTest = SnackBar(
+    content: Text('개발 중임'),
+    duration: Duration( seconds: 1),
   );
 
   @override
@@ -48,7 +39,10 @@ class _ProfileState extends State<Profile> {
         title: Text('프로필'),
         
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.settings_outlined))
+          IconButton(onPressed: () {
+            Navigator.push(context,
+            MaterialPageRoute(builder: (c) => Logout()));
+          }, icon: Icon(Icons.settings_outlined))
         ],
       ),
 
@@ -79,11 +73,12 @@ class _ProfileState extends State<Profile> {
               ]
             ),
 
-
             // if 문 로그인 되어있는 경우에는 로그인 버튼, 로그인이 되어 있으면 로그아웃 버튼
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+
+                SizedBox( height: 5 ),
 
                 Divider(color: Colors.grey[200]),
 
@@ -91,7 +86,7 @@ class _ProfileState extends State<Profile> {
 
                 ListTile(
                   contentPadding: EdgeInsets.symmetric(vertical: 12),
-                  leading: Icon(Icons.wb_sunny_outlined),
+                  leading: Icon(Icons.bedtime_outlined),
                   title: Text('화면 테마'),
                   trailing: Icon(Icons.arrow_forward_ios, size: 15),
                   onTap: () {
@@ -128,25 +123,13 @@ class _ProfileState extends State<Profile> {
                 TextButton(onPressed: () {
                   Navigator.push(context,
                   MaterialPageRoute(builder: (c) => Information()));
-                }, child: Text('개인정보보호방침 및 이용약관',
+                }, child: Text('개인정보보호방침과 이용약관',
                     style: TextStyle(
                         decoration: TextDecoration.underline,
-                        fontSize: 9,
+                        fontSize: 12,
                         color: Colors.grey[600]
                     )),
                 ),
-
-                TextButton(onPressed: () {
-                  userLogout();
-                  ScaffoldMessenger.of(context).showSnackBar(snackLogout);
-                  Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (c) => Login()));
-                }, child: Text('로그아웃 버튼',
-                style: TextStyle(
-                  decoration: TextDecoration.underline,
-                  fontSize: 15,
-                  color: Colors.grey[800]
-                ))),
 
 
               ],

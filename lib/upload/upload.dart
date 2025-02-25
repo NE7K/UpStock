@@ -153,24 +153,25 @@ class _UploadPageState extends State<UploadPage> {
               ),
         
               SizedBox( height: 30 ),
-        
+
               Container(
-                width: double.infinity,
+                height: 50,
+                margin: EdgeInsets.symmetric( horizontal: 10 ),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.green
+                    color: Colors.green[500],
+                    borderRadius: BorderRadius.circular(50)
                 ),
-                child: Column(
-                  children: [
-                    TextButton(
-                        onPressed: () {
-                          userPost();
-                        },
-                        child: Text('업로드', style: TextStyle( color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold ))
-                    ),
-                  ],
-                )
-              )
+                child: SizedBox.expand(
+                  // .expend 쓰면 container 크기만큼 클릭 ㅆㄱㄴ
+                  child: TextButton(
+                      onPressed: () {
+                        userPost();
+                      },
+                      child: Text('업로드', style: TextStyle( color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold ))
+                  ),
+                ),
+              ),
+
         
             ],
           ),

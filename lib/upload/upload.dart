@@ -59,30 +59,104 @@ class _UploadPageState extends State<UploadPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text('새 게시물'),
+        title: Text('새 게시물', style: TextStyle( fontWeight: FontWeight.bold) ),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(1.0),
+          child: Container(
+            color: Colors.grey[300],
+            height: 1.0,
+          ),
+        ),
       ),
+
       body: Container(
-        margin: EdgeInsets.all(10),
-        width: double.infinity,
-        height: double.infinity,
+        margin: EdgeInsets.all(20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-            Text('이미지 칸', textAlign: TextAlign.left ),
+            Text('이미지 업로드', style: TextStyle( fontWeight: FontWeight.bold, fontSize: 18)),
 
-            Text('게시글 내용'),
+            SizedBox( height: 10 ),
 
-            TextField(
-              controller: userContext,
+            // 사진 업로드 및 표시
+            Container(
+              width: 70,
+              height: 70,
+              decoration: BoxDecoration(
+                border: Border.all( color: Colors.grey ),
+                borderRadius: BorderRadius.circular(10)
+              ),
+              // todo 업로드된 사진들은 오른쪽으로 배치 (후에 이미지 여러 개 배치)
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    children: [
+                      IconButton(onPressed: () {}, icon: Icon(Icons.camera_alt_outlined, color: Colors.grey[500])),
+                      Text('0/1', style: TextStyle( fontSize: 14, fontWeight: FontWeight.bold))
+                    ],
+                  )
+                ],
+              ),
             ),
+
+            SizedBox( height: 20 ),
+
+            Text('내용', style: TextStyle( fontWeight: FontWeight.bold, fontSize: 18)),
+
+            SizedBox( height: 10 ),
+
+            SizedBox(
+              width: double.infinity,
+              child: TextField(
+                controller: userContext,
+                decoration: InputDecoration(
+                  hintText: '글 내용   ',
+                  labelStyle: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400
+                  ),
+
+                    // 누르지 않았을 때
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide( color: Colors.grey.shade200, width: 1.5 ),
+                      borderRadius: BorderRadius.circular(10)
+                    ),
+                    // 눌렀을 때
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide( color: Colors.grey.shade200, width: 1.5 ),
+                      borderRadius: BorderRadius.circular(10)
+                    ),
+
+                ),
+              ),
+            ),
+
+            SizedBox( height: 30 ),
+
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.green
+              ),
+              child: Column(
+                children: [
+                  TextButton(
+                      onPressed: () {
+                        userPost();
+                      },
+                      child: Text('업로드', style: TextStyle( color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold ))
+                  ),
+                ],
+              )
+            )
 
           ],
         ),
       ),
-        bottomNavigationBar: ElevatedButton(onPressed: () {
-          // add 함수
-          userPost();
-        }, child: Text('공유'))
     );
   }
 }

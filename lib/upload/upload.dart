@@ -121,34 +121,39 @@ class _UploadPageState extends State<UploadPage> {
         
               SizedBox( height: 10 ),
         
-              SizedBox(
-                width: double.infinity,
-                child: TextField(
-                  controller: userContext,
-                  maxLength: 2000,
-                  textAlign: TextAlign.start,
-                  decoration: InputDecoration(
-                    // hintText: '글 내용',
-                    // 글 내용이라서 수직줘서 크기 키움
-                    labelStyle: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                    ),
-                    contentPadding: EdgeInsets.symmetric( vertical: 100 ),
-        
-                      // 누르지 않았을 때
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide( color: Colors.grey.shade200, width: 1.5 ),
-                        borderRadius: BorderRadius.circular(10)
-                      ),
-                      // 눌렀을 때
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide( color: Colors.grey.shade200, width: 1.5 ),
-                        borderRadius: BorderRadius.circular(10)
-                      ),
-        
+              TextField(
+                controller: userContext,
+                maxLength: 2000,
+                // null 값 주면 야매로 텍스트 필드 넓힐 수 있음 개꿀 ㅋㅋㅋㅋㅋㅋㅋ
+                maxLines: null,
+                textAlign: TextAlign.start,
+                decoration: InputDecoration(
+                  // 텍스트 필드 크기 키우기
+                  hintText: '''글 내용
+                  
+                  
+                  
+                  
+                  
+                  
+                 
+                  ''',
+                  // 글 내용이라서 수직줘서 크기 키움
+                  labelStyle: TextStyle(
+                    color: Colors.grey,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400,
                   ),
+                    // 누르지 않았을 때
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide( color: Colors.grey.shade200, width: 1.5 ),
+                      borderRadius: BorderRadius.circular(10)
+                    ),
+                    // 눌렀을 때
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide( color: Colors.grey.shade200, width: 1.5 ),
+                      borderRadius: BorderRadius.circular(10)
+                    ),
                 ),
               ),
         

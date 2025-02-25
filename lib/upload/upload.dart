@@ -39,8 +39,8 @@ class _UploadPageState extends State<UploadPage> {
         int currentCount = checkCount.get('count');
         int newCount = currentCount + 1;
 
-        // 이거 future 쓰라는거 같은데 머지 ㅋㅋㅋ
-        await transaction
+        // 이거 future 쓰라는거 같은데 머지 ㅋㅋㅋ > await 삭제함
+         transaction
             .set(firestore
             .collection('user')
             .doc(newCount.toString()), {

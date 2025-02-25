@@ -18,8 +18,7 @@ class _HomeBodyState extends State<HomeBody> {
   List<Map<String, dynamic>> usercontext = [];
 
   getData() async {
-    var result = await firestore.collection('user').get();
-    // .orderBy('date', descending: true)
+    var result = await firestore.collection('user').orderBy('date', descending: true).get();
     // todo timestamp add oo?
 
     List<Map<String, dynamic>> result2 = [];
@@ -66,7 +65,7 @@ class _HomeBodyState extends State<HomeBody> {
 
             SizedBox(height: 10),
 
-            Image.asset('assets/images/dall.webp'),
+            // Image.asset('assets/images/dall.webp'),
 
             Container(
               padding: EdgeInsets.symmetric( horizontal: 10 ),

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 // 내부 파일 연동
 import 'package:upstock/profile/announcement.dart';
 import 'package:upstock/profile/information.dart';
-import 'package:upstock/profile/logout.dart';
+import 'package:upstock/profile/setting.dart';
 import 'package:upstock/profile/peedback.dart';
 import 'package:upstock/profile/screen.dart';
 import 'package:upstock/account/login.dart';
@@ -41,7 +41,7 @@ class _ProfileState extends State<Profile> {
         actions: [
           IconButton(onPressed: () {
             Navigator.push(context,
-            MaterialPageRoute(builder: (c) => Logout()));
+            MaterialPageRoute(builder: (c) => UserSet()));
           }, icon: Icon(Icons.settings_outlined))
         ],
       ),
@@ -65,8 +65,8 @@ class _ProfileState extends State<Profile> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // 사용자 아이디 그리고 이멜 받아와서 프로필에 출력
-                     Text(auth.currentUser!.displayName ?? '아이디가 존재하지 않습니다.', style: TextStyle(fontSize: 20)),
-                     Text(auth.currentUser!.email ?? '로그인하지 않았습니다.', style: TextStyle( color: Colors.grey[600])),
+                     Text(auth.currentUser!.displayName ?? '아이디가 존재하지 않습니다.', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                     Text(auth.currentUser!.email ?? '로그인하지 않았습니다.', style: TextStyle( color: Colors.grey[600], fontSize: 16)),
                    ]
                   )
                 )

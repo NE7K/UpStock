@@ -66,9 +66,7 @@ class _HomeBodyState extends State<HomeBody> {
 
             SizedBox(height: 10),
 
-            Image.asset('assets/images/dall.webp', scale: 1 ),
-
-            SizedBox(height: 10),
+            Image.asset('assets/images/dall.webp'),
 
             Container(
               padding: EdgeInsets.symmetric( horizontal: 10 ),

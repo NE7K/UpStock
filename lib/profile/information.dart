@@ -6,7 +6,14 @@ class Information extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: Colors.white,
+
+      appBar: AppBar( title: Text('개인정보보호 및 이용약관') ),
+      
+      body: Container(
+
+      )
+
     );
   }
 }

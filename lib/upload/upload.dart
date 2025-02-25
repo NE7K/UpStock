@@ -94,12 +94,16 @@ class _UploadPageState extends State<UploadPage> {
                   Column(
                     children: [
                       IconButton(onPressed: () {}, icon: Icon(Icons.camera_alt_outlined, color: Colors.grey[500])),
-                      Text('0/1', style: TextStyle( fontSize: 14, fontWeight: FontWeight.bold))
+                      Text('0/1', style: TextStyle( fontSize: 14, fontWeight: FontWeight.bold)),
                     ],
                   )
                 ],
               ),
             ),
+
+            SizedBox( height: 20 ),
+
+            Text('이미지 임시 업로드 확인 위치'),
 
             SizedBox( height: 20 ),
 
@@ -111,13 +115,17 @@ class _UploadPageState extends State<UploadPage> {
               width: double.infinity,
               child: TextField(
                 controller: userContext,
+                maxLength: 2000,
+                textAlign: TextAlign.start,
                 decoration: InputDecoration(
-                  hintText: '글 내용   ',
+                  // hintText: '글 내용',
+                  // 글 내용이라서 수직줘서 크기 키움
                   labelStyle: TextStyle(
                     color: Colors.grey,
                     fontSize: 14,
-                    fontWeight: FontWeight.w400
+                    fontWeight: FontWeight.w400,
                   ),
+                  contentPadding: EdgeInsets.symmetric( vertical: 100 ),
 
                     // 누르지 않았을 때
                     enabledBorder: OutlineInputBorder(

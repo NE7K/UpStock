@@ -74,6 +74,12 @@ flutter run
 
 <img src="https://github.com/user-attachments/assets/f7774eff-1c97-460f-93d8-9d6bdf3ed334" width="40%">
 
+<img src="https://github.com/user-attachments/assets/4b6352fd-e5be-4dca-8cac-b0b441b3946a" width="40%">
+
+<img src="https://github.com/user-attachments/assets/4e359a72-3d17-477c-86ef-244fd1406406" width="40%">
+
+<img src="https://github.com/user-attachments/assets/76a1e15b-c93a-4a50-b349-1f2618b4f05d" width="40%">
+
 ## 🛠️ Tech Stack
 
 - Flutter

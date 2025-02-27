@@ -1,8 +1,4 @@
-# ===========================
-# General Ignore Rules
-# ===========================
-
-# Miscellaneous
+# 일반적으로 불필요한 파일
 *.class
 *.log
 *.pyc
@@ -16,17 +12,13 @@
 .swiftpm/
 migrate_working_dir/
 
-# IntelliJ / JetBrains IDE related
+# IDE 파일
 .idea/
 *.iml
 *.ipr
 *.iws
 
-# ===========================
-# Flutter / Dart / Pub Ignore
-# ===========================
-
-# Dart & Flutter related files
+# Dart & Flutter 관련 파일
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
@@ -34,18 +26,14 @@ migrate_working_dir/
 .pub/
 /build/
 
-# API documentation
+# API 문서
 **/doc/api/
 
-# Symbolication & Obfuscation
+# 심볼릭화 및 난독화 관련 파일
 app.*.symbols
 app.*.map.json
 
-# ===========================
-# Android Related
-# ===========================
-
-# Android build artifacts
+# Android build 결과물
 /android/.gradle
 /android/build/
 /android/app/debug/
@@ -55,11 +43,7 @@ app.*.map.json
 # Firebase API keys (Android)
 /android/app/google-services.json
 
-# ===========================
-# iOS Related
-# ===========================
-
-# Flutter-generated files
+# Flutter에서 생성되는 파일
 **/ios/Flutter/.last_build_id
 **/ios/Flutter/Generated.xcconfig
 **/ios/Flutter/flutter_assets/
@@ -68,7 +52,7 @@ app.*.map.json
 **/ios/Flutter/ephemeral/
 **/ios/*.generated.xcconfig
 
-# iOS Workspace & Dependencies
+# iOS 작업 공간 및 의존성 파일
 **/ios/Runner.xcworkspace
 **/ios/Pods/
 **/ios/Podfile.lock
@@ -78,22 +62,14 @@ app.*.map.json
 # Firebase API keys (iOS)
 /ios/Runner/GoogleService-Info.plist
 
-# ===========================
-# API Keys & Environment Files
-# ===========================
-
-# Prevent API key leaks
+# API 키 유출 방지용
 .env
 firebase.json
 /lib/firebase/firebase_options.dart
 
-# ===========================
-# Miscellaneous Files
-# ===========================
-
-# OS Generated Files
+# 운영체제에서 생성하는 파일
 **/Thumbs.db
 **/*.db
 
-# Generated Code
+# 자동생성되는 파일
 /generated_plugin_registrant.dart

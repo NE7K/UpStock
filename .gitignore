@@ -48,10 +48,9 @@ app.*.map.json
 /lib/firebase/firebase_options.dart
 
 # ios 구글 서비스 파일
-ios/Runner/GoogleService-Info.plist
+/ios/Runner/GoogleService-Info.plist
 
 # 안드로이드 구글 서비스 파일
-app/google-services.json
-
+/android/app/google-services.json
 # api key 유출 방지
 .env

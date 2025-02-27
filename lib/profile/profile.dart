@@ -8,7 +8,6 @@ import 'package:upstock/profile/information.dart';
 import 'package:upstock/profile/setting.dart';
 import 'package:upstock/profile/peedback.dart';
 import 'package:upstock/profile/screen.dart';
-import 'package:upstock/account/login.dart';
 
 // 파이어베이스 쓰려면 넣어라.. 오류난다
 import 'package:firebase_auth/firebase_auth.dart';

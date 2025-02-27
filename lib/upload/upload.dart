@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+// imagepicker import
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+
 // 파이어베이스 쓰려면 넣어라.. 오류난다
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:upstock/profile/announcement.dart';
@@ -63,6 +67,26 @@ class _UploadPageState extends State<UploadPage> {
     duration: Duration( seconds: 2),
   );
 
+  // image 저장
+  var userContextImage;
+  // 이미지 표시 안되게 처리
+  bool loadImage = false;
+
+  userimagePick() async {
+    var picker = ImagePicker();
+    var image = await picker.pickImage(source: ImageSource.gallery);
+    // picker.pickMultiImage(source: ImageSource.gallery); 이거는 사진 여러가지 선택
+
+    if (image != null) {
+      setState(() {
+        userContextImage = File(image.path);
+        loadImage = true;
+      }
+
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,39 +109,52 @@ class _UploadPageState extends State<UploadPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
         
-              Text('이미지 업로드', style: TextStyle( fontWeight: FontWeight.bold, fontSize: 18)),
+              Text('이미지 업로드', style: TextStyle( fontWeight: FontWeight.bold, fontSize: 22)),
         
-              SizedBox( height: 10 ),
+              SizedBox( height: 20 ),
         
               // 사진 업로드 및 표시
-              Container(
-                width: 70,
-                height: 70,
-                decoration: BoxDecoration(
-                  border: Border.all( color: Colors.grey ),
-                  borderRadius: BorderRadius.circular(10)
-                ),
-                // todo 업로드된 사진들은 오른쪽으로 배치 (후에 이미지 여러 개 배치)
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Column(
+              Row(
+                children: [
+                  Container(
+                    width: 70,
+                    height: 70,
+                    decoration: BoxDecoration(
+                      border: Border.all( color: Colors.grey ),
+                      borderRadius: BorderRadius.circular(10)
+                    ),
+                    // todo 업로드된 사진들은 오른쪽으로 배치 (후에 이미지 여러 개 배치)
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        IconButton(onPressed: () {}, icon: Icon(Icons.camera_alt_outlined, color: Colors.grey[500])),
-                        Text('0/1', style: TextStyle( fontSize: 14, fontWeight: FontWeight.bold)),
+                        Column(
+                          children: [
+                            IconButton(onPressed: () {
+                              userimagePick();
+                            }, icon: Icon(Icons.camera_alt_outlined, color: Colors.grey[500])),
+                            Text('0/1', style: TextStyle( fontSize: 14, fontWeight: FontWeight.bold)),
+                          ],
+                        ),
                       ],
-                    )
-                  ],
-                ),
+                    ),
+                  ),
+
+                  SizedBox( width: 10 ),
+
+                  // 이미지가 선택이 안되었을 때에는 아무것도 안띄워주다가 이미지 선택되면 이미지 보여주기
+                  loadImage
+                      ? ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.file(userContextImage, height: 70, width: 70, fit: BoxFit.fill),
+                  )
+                      : Text(''),
+
+                ],
               ),
         
-              SizedBox( height: 20 ),
+              SizedBox( height: 30 ),
         
-              Text('이미지 임시 업로드 확인 위치'),
-        
-              SizedBox( height: 20 ),
-        
-              Text('내용', style: TextStyle( fontWeight: FontWeight.bold, fontSize: 18)),
+              Text('내용', style: TextStyle( fontWeight: FontWeight.bold, fontSize: 22)),
         
               SizedBox( height: 10 ),
         

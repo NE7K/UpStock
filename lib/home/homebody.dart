@@ -19,6 +19,8 @@ class _HomeBodyState extends State<HomeBody> {
 
   // 내용 저장
   List<Map<String, dynamic>> usercontext = [];
+  // 이미지 변수고 이미지 url 여기다가 다 처 넣을거임 ? = null이 아니라는 것을 보장
+  List<String?> imageUrl = [];
 
   // 글 내용 불러오기
   getData() async {
@@ -27,34 +29,39 @@ class _HomeBodyState extends State<HomeBody> {
     // todo timestamp add oo?
 
     List<Map<String, dynamic>> result2 = [];
+    // url 임시로 저장할 곳
+    List<String?> imageUrlresult = [];
 
+    // 문서 반복문으로 다 저장 ㅋㅋ 쿼리 쓴거임
     for (var doc in result.docs) {
+      // imageNumber을 전달
+      String? url = await loadContextImage(doc.id);
+      // 이미지 변수에 url 저장
+      imageUrlresult.add(url);
+      // 텍스트 저장
       result2.add(doc.data());
     }
     setState(() {
       usercontext = result2;
+      imageUrl = imageUrlresult;
     });
   }
 
-  // 이미지 변수 ? = null이 아니라는 것을 보장
-  String ? imageUrl;
+  // 이미지 매개변수 받은거 사용
+  loadContextImage(String imageNumber) async {
+    try {
+      final ref = storage.ref().child('userContext/$imageNumber');
+      return await ref.getDownloadURL();
 
-  loadContextImage() async {
-
-    final ref = storage.ref().child('userContext/1');
-    var url = await ref.getDownloadURL();
-
-    setState(() {
-      imageUrl = url;
-    });
-
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override
   void initState() {
     super.initState();
     getData();
-    loadContextImage();
   }
 
   @override
@@ -85,9 +92,7 @@ class _HomeBodyState extends State<HomeBody> {
 
             SizedBox(height: 10),
 
-            imageUrl == null
-                ? Center(child: CircularProgressIndicator())
-                : Image.network(imageUrl!),
+            Image.network(imageUrl[i]!),
 
             SizedBox( height: 20 ),
 

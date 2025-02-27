@@ -98,133 +98,139 @@ class _UploadPageState extends State<UploadPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text('새 게시물', style: TextStyle( fontWeight: FontWeight.bold) ),
-        bottom: PreferredSize(
-          preferredSize: Size.fromHeight(1.0),
-          child: Container(
-            color: Colors.grey[300],
-            height: 1.0,
+    return GestureDetector(
+      onTap: () {
+        // 이거 추가하면 키보드 올린 상태에서 다른 곳 누르면 키보드 내려감 ㅋㅋㅋㅋㅋㅋㅋㅋㅋ 없으면 큰일남
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          title: Text('새 게시물', style: TextStyle( fontWeight: FontWeight.bold) ),
+          bottom: PreferredSize(
+            preferredSize: Size.fromHeight(1.0),
+            child: Container(
+              color: Colors.grey[300],
+              height: 1.0,
+            ),
           ),
         ),
-      ),
-
-      body: SingleChildScrollView(
-        child: Container(
-          margin: EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-        
-              Text('이미지 업로드', style: TextStyle( fontWeight: FontWeight.bold, fontSize: 22)),
-        
-              SizedBox( height: 20 ),
-        
-              // 사진 업로드 및 표시
-              Row(
-                children: [
-                  Container(
-                    width: 70,
-                    height: 70,
-                    decoration: BoxDecoration(
-                      border: Border.all( color: Colors.grey ),
-                      borderRadius: BorderRadius.circular(10)
+      
+        body: SingleChildScrollView(
+          child: Container(
+            margin: EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+          
+                Text('이미지 업로드', style: TextStyle( fontWeight: FontWeight.bold, fontSize: 22)),
+          
+                SizedBox( height: 20 ),
+          
+                // 사진 업로드 및 표시
+                Row(
+                  children: [
+                    Container(
+                      width: 70,
+                      height: 70,
+                      decoration: BoxDecoration(
+                        border: Border.all( color: Colors.grey ),
+                        borderRadius: BorderRadius.circular(10)
+                      ),
+                      // todo 업로드된 사진들은 오른쪽으로 배치 (후에 이미지 여러 개 배치)
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Column(
+                            children: [
+                              IconButton(onPressed: () {
+                                userimagePick();
+                              }, icon: Icon(Icons.camera_alt_outlined, color: Colors.grey[500])),
+                              Text('0/1', style: TextStyle( fontSize: 14, fontWeight: FontWeight.bold)),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                    // todo 업로드된 사진들은 오른쪽으로 배치 (후에 이미지 여러 개 배치)
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Column(
-                          children: [
-                            IconButton(onPressed: () {
-                              userimagePick();
-                            }, icon: Icon(Icons.camera_alt_outlined, color: Colors.grey[500])),
-                            Text('0/1', style: TextStyle( fontSize: 14, fontWeight: FontWeight.bold)),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  SizedBox( width: 10 ),
-
-                  // 이미지가 선택이 안되었을 때에는 아무것도 안띄워주다가 이미지 선택되면 이미지 보여주기
-                  loadImage
-                      ? ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.file(userContextImage, height: 70, width: 70, fit: BoxFit.fill),
-                  )
-                      : Text(''),
-
-                ],
-              ),
-        
-              SizedBox( height: 30 ),
-        
-              Text('내용', style: TextStyle( fontWeight: FontWeight.bold, fontSize: 22)),
-        
-              SizedBox( height: 10 ),
-        
-              TextField(
-                controller: userContext,
-                maxLength: 2000,
-                // null 값 주면 야매로 텍스트 필드 넓힐 수 있음 개꿀 ㅋㅋㅋㅋㅋㅋㅋ
-                maxLines: null,
-                textAlign: TextAlign.start,
-                decoration: InputDecoration(
-                  // 텍스트 필드 크기 키우기
-                  hintText: '''글 내용
-                  
-                  
-                  
-                  
-                  
-                  
-                 
-                  ''',
-                  // 글 내용이라서 수직줘서 크기 키움
-                  labelStyle: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                  ),
-                    // 누르지 않았을 때
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide( color: Colors.grey.shade200, width: 1.5 ),
-                      borderRadius: BorderRadius.circular(10)
-                    ),
-                    // 눌렀을 때
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide( color: Colors.grey.shade200, width: 1.5 ),
-                      borderRadius: BorderRadius.circular(10)
-                    ),
+      
+                    SizedBox( width: 10 ),
+      
+                    // 이미지가 선택이 안되었을 때에는 아무것도 안띄워주다가 이미지 선택되면 이미지 보여주기
+                    loadImage
+                        ? ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.file(userContextImage, height: 70, width: 70, fit: BoxFit.fill),
+                    )
+                        : Text(''),
+      
+                  ],
                 ),
-              ),
-        
-              SizedBox( height: 30 ),
-
-              Container(
-                height: 50,
-                margin: EdgeInsets.symmetric( horizontal: 10 ),
-                decoration: BoxDecoration(
-                    color: Colors.green[500],
-                    borderRadius: BorderRadius.circular(50)
-                ),
-                child: SizedBox.expand(
-                  // .expend 쓰면 container 크기만큼 클릭 ㅆㄱㄴ
-                  child: TextButton(
-                      onPressed: () {
-                        userPost();
-                      },
-                      child: Text('업로드', style: TextStyle( color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold ))
+          
+                SizedBox( height: 30 ),
+          
+                Text('내용', style: TextStyle( fontWeight: FontWeight.bold, fontSize: 22)),
+          
+                SizedBox( height: 10 ),
+          
+                TextField(
+                  controller: userContext,
+                  maxLength: 2000,
+                  // null 값 주면 야매로 텍스트 필드 넓힐 수 있음 개꿀 ㅋㅋㅋㅋㅋㅋㅋ
+                  maxLines: null,
+                  textAlign: TextAlign.start,
+                  decoration: InputDecoration(
+                    // 텍스트 필드 크기 키우기
+                    hintText: '''글 내용
+                    
+                    
+                    
+                    
+                    
+                    
+                   
+                    ''',
+                    // 글 내용이라서 수직줘서 크기 키움
+                    labelStyle: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                    ),
+                      // 누르지 않았을 때
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide( color: Colors.grey.shade200, width: 1.5 ),
+                        borderRadius: BorderRadius.circular(10)
+                      ),
+                      // 눌렀을 때
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide( color: Colors.grey.shade200, width: 1.5 ),
+                        borderRadius: BorderRadius.circular(10)
+                      ),
                   ),
                 ),
-              ),
-
-        
-            ],
+          
+                SizedBox( height: 30 ),
+      
+                Container(
+                  height: 50,
+                  margin: EdgeInsets.symmetric( horizontal: 10 ),
+                  decoration: BoxDecoration(
+                      color: Colors.green[500],
+                      borderRadius: BorderRadius.circular(50)
+                  ),
+                  child: SizedBox.expand(
+                    // .expend 쓰면 container 크기만큼 클릭 ㅆㄱㄴ
+                    child: TextButton(
+                        onPressed: () {
+                          userPost();
+                        },
+                        child: Text('업로드', style: TextStyle( color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold ))
+                    ),
+                  ),
+                ),
+      
+          
+              ],
+            ),
           ),
         ),
       ),

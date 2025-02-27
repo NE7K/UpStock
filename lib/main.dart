@@ -43,11 +43,6 @@ class Mainpage extends StatefulWidget {
 }
 
 class _MainpageState extends State<Mainpage> {
-  // todo : 나중에 로그인 확인할 때 사용할 코드
-  // if (auth.currentUser?.uid == null){
-  // print('로그인되지 않았습니다.');
-  // } else {
-  // }
 
   // state 담는 함수
   var tab = 0;

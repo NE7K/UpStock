@@ -20,9 +20,6 @@ class _HomeBodyState extends State<HomeBody> {
   // 내용 저장
   List<Map<String, dynamic>> usercontext = [];
 
-  // 이미지 저장
-  List<String> usercontextimage = [];
-
   // 글 내용 불러오기
   getData() async {
     var result = await firestore.collection('user').get();
@@ -37,21 +34,13 @@ class _HomeBodyState extends State<HomeBody> {
     setState(() {
       usercontext = result2;
     });
-  }
 
-  getImageData() async {
-    // Firebase Storage에서 이미지 URL 가져오기
-    String filePath = 'userContext/1';
-    Reference storageRef = FirebaseStorage.instance.ref().child(filePath);
-    String url = await storageRef.getDownloadURL();
-    return url;
   }
 
   @override
   void initState() {
     super.initState();
     getData();
-    getImageData();
   }
 
   @override
@@ -82,8 +71,7 @@ class _HomeBodyState extends State<HomeBody> {
 
             SizedBox(height: 10),
 
-            // 여기
-            Image.network('https://firebasestorage.googleapis.com/v0/b/upstock-b54e4.firebasestorage.app/o/userContext%2F1?alt=media&token=ac62183d-b086-4a7a-a923-6bf84a12b50c'),
+
 
             SizedBox( height: 20 ),
 

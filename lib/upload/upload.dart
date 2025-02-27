@@ -1,3 +1,4 @@
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 // imagepicker import
@@ -9,6 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:upstock/profile/announcement.dart';
 
 final auth = FirebaseAuth.instance;
+final base = FirebaseStorage.instance;
 
 class UploadPage extends StatefulWidget {
   const UploadPage({super.key});
@@ -43,13 +45,22 @@ class _UploadPageState extends State<UploadPage> {
         int currentCount = checkCount.get('count');
         int newCount = currentCount + 1;
 
+        // 이미지 선택한 것도 업로드할 수 있게 만들자 ㅋㅋ
+        if (userContextImage != null) {
+          // 파일 이름은 카운트에 맞게 그래야 불러오기 쉬울듯?
+          String fileName = newCount.toString();
+          // Reference = 파일 작업
+          Reference firebasestorage = base.ref().child('userContext/$fileName');
+          await firebasestorage.putFile(userContextImage);
+        }
+
         // 이거 future 쓰라는거 같은데 머지 ㅋㅋㅋ > await 삭제함
          transaction
             .set(firestore
             .collection('user')
             .doc(newCount.toString()), {
               'context' : userContext.text,
-              'like' : 0,
+              'like' : 0, // 이거 나중에 그냥 서버에 +1만 해주면댐 ㅋㅋ
             });
 
         // 카운트 +1해준 값 데베로 보내기

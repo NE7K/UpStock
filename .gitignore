@@ -41,6 +41,7 @@ app.*.map.json
 
 # Firebase api 올리면 안되는디;
 /lib/firebase/firebase_options.dart
+firebase.json
 
 # ios 구글 서비스 파일
 /ios/Runner/GoogleService-Info.plist

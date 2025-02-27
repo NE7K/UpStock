@@ -1,0 +1,99 @@
+# ===========================
+# General Ignore Rules
+# ===========================
+
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# IntelliJ / JetBrains IDE related
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# ===========================
+# Flutter / Dart / Pub Ignore
+# ===========================
+
+# Dart & Flutter related files
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+
+# API documentation
+**/doc/api/
+
+# Symbolication & Obfuscation
+app.*.symbols
+app.*.map.json
+
+# ===========================
+# Android Related
+# ===========================
+
+# Android build artifacts
+/android/.gradle
+/android/build/
+/android/app/debug/
+/android/app/profile/
+/android/app/release/
+
+# Firebase API keys (Android)
+/android/app/google-services.json
+
+# ===========================
+# iOS Related
+# ===========================
+
+# Flutter-generated files
+**/ios/Flutter/.last_build_id
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_assets/
+**/ios/Flutter/App.framework
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/ephemeral/
+**/ios/*.generated.xcconfig
+
+# iOS Workspace & Dependencies
+**/ios/Runner.xcworkspace
+**/ios/Pods/
+**/ios/Podfile.lock
+**/ios/Runner/GeneratedPluginRegistrant.*
+**/ios/.symlinks/
+
+# Firebase API keys (iOS)
+/ios/Runner/GoogleService-Info.plist
+
+# ===========================
+# API Keys & Environment Files
+# ===========================
+
+# Prevent API key leaks
+.env
+firebase.json
+/lib/firebase/firebase_options.dart
+
+# ===========================
+# Miscellaneous Files
+# ===========================
+
+# OS Generated Files
+**/Thumbs.db
+**/*.db
+
+# Generated Code
+/generated_plugin_registrant.dart

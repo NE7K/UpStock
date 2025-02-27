@@ -18,11 +18,6 @@ migrate_working_dir/
 *.iws
 .idea/
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
-
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id
@@ -52,6 +47,33 @@ app.*.map.json
 
 # 안드로이드 구글 서비스 파일
 /android/app/google-services.json
+android/app/google-services.json
 
 # api key 유출 방지
 .env
+
+# 추가적인 부분
+
+# Additional Android ignores
+/android/.gradle
+/android/build/
+
+# Additional iOS ignores
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_assets/
+**/ios/Flutter/App.framework
+**/ios/Flutter/Flutter.framework
+**/ios/Flutter/ephemeral/
+**/ios/*.generated.xcconfig
+**/ios/Runner.xcworkspace
+**/ios/Pods/
+**/ios/Podfile.lock
+**/ios/Runner/GeneratedPluginRegistrant.*
+**/ios/.symlinks/
+
+# Miscellaneous files
+**/Thumbs.db
+**/*.db
+
+# Generated code
+/generated_plugin_registrant.dart

@@ -81,9 +81,7 @@ class _UploadPageState extends State<UploadPage> {
       setState(() {
         userContextImage = File(image.path);
         loadImage = true;
-      }
-
-      );
+      });
     }
   }
 

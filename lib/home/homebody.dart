@@ -6,7 +6,7 @@ import 'package:upstock/profile/announcement.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 final auth = FirebaseAuth.instance;
-final base = FirebaseStorage.instance;
+final storage = FirebaseStorage.instance;
 
 class HomeBody extends StatefulWidget {
   const HomeBody({super.key});
@@ -34,6 +34,19 @@ class _HomeBodyState extends State<HomeBody> {
     setState(() {
       usercontext = result2;
     });
+  }
+
+  // 이미지 변수 ? = null이 아니라는 것을 보장
+  String ? imageUrl;
+
+  loadContextImage() async {
+
+    final ref = storage.ref().child('userContext/1');
+    var url = await ref.getDownloadURL();
+
+    setState(() {
+      imageUrl = url;
+    });
 
   }
 
@@ -41,6 +54,7 @@ class _HomeBodyState extends State<HomeBody> {
   void initState() {
     super.initState();
     getData();
+    loadContextImage();
   }
 
   @override
@@ -71,7 +85,9 @@ class _HomeBodyState extends State<HomeBody> {
 
             SizedBox(height: 10),
 
-
+            imageUrl == null
+                ? Center(child: CircularProgressIndicator())
+                : Image.network(imageUrl!),
 
             SizedBox( height: 20 ),
 

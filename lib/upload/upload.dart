@@ -89,6 +89,8 @@ class _UploadPageState extends State<UploadPage> {
     var image = await picker.pickImage(source: ImageSource.gallery);
     // picker.pickMultiImage(source: ImageSource.gallery); 이거는 사진 여러가지 선택
 
+    // todo 여기에 image crop 넣어야..
+
     if (image != null) {
       setState(() {
         userContextImage = File(image.path);
@@ -116,18 +118,18 @@ class _UploadPageState extends State<UploadPage> {
             ),
           ),
         ),
-      
+
         body: SingleChildScrollView(
           child: Container(
             margin: EdgeInsets.all(20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-          
+
                 Text('이미지 업로드', style: TextStyle( fontWeight: FontWeight.bold, fontSize: 22)),
-          
+
                 SizedBox( height: 20 ),
-          
+
                 // 사진 업로드 및 표시
                 Row(
                   children: [
@@ -153,9 +155,9 @@ class _UploadPageState extends State<UploadPage> {
                         ],
                       ),
                     ),
-      
+
                     SizedBox( width: 10 ),
-      
+
                     // 이미지가 선택이 안되었을 때에는 아무것도 안띄워주다가 이미지 선택되면 이미지 보여주기
                     loadImage
                         ? ClipRRect(
@@ -163,16 +165,16 @@ class _UploadPageState extends State<UploadPage> {
                       child: Image.file(userContextImage, height: 70, width: 70, fit: BoxFit.fill),
                     )
                         : Text(''),
-      
+
                   ],
                 ),
-          
+
                 SizedBox( height: 30 ),
-          
+
                 Text('내용', style: TextStyle( fontWeight: FontWeight.bold, fontSize: 22)),
-          
+
                 SizedBox( height: 10 ),
-          
+
                 TextField(
                   controller: userContext,
                   maxLength: 2000,
@@ -208,9 +210,9 @@ class _UploadPageState extends State<UploadPage> {
                       ),
                   ),
                 ),
-          
+
                 SizedBox( height: 30 ),
-      
+
                 Container(
                   height: 50,
                   margin: EdgeInsets.symmetric( horizontal: 10 ),
@@ -228,8 +230,8 @@ class _UploadPageState extends State<UploadPage> {
                     ),
                   ),
                 ),
-      
-          
+
+
               ],
             ),
           ),

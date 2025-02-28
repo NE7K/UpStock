@@ -99,7 +99,7 @@ class _HomeBodyState extends State<HomeBody> {
               children: [
                 SizedBox( width: 20 ),
                 // 유저 아이디
-                Text(auth.currentUser!.displayName.toString(), style: TextStyle( fontSize: 14, fontWeight: FontWeight.bold)),
+                Text(usercontext[i]['username'] ?? 'name', style: TextStyle( fontSize: 14, fontWeight: FontWeight.bold)),
                 SizedBox( width: 10 ),
                 Text('${usercontext[i]['context']}',
                     style: TextStyle( fontSize: 14 )

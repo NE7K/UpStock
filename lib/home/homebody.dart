@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 // 파이어베이스 쓰려면 넣어라.. 오류난다
@@ -123,7 +124,9 @@ class _HomeBodyState extends State<HomeBody> {
                   ),
 
                   // 작성 시간
-                  Text(usercontext[i]['date'].toString(), style: TextStyle( color: Colors.black, fontWeight: FontWeight.bold))
+                  Text(usercontext[i]['date'].toString(), style: TextStyle( color: Colors.black, fontWeight: FontWeight.bold)),
+
+                  // todo timestamp date 객체로 변환해서 사용해야 하는 것 같음. 변환해서 사용하자
                 ],
               ),
             )

@@ -59,6 +59,7 @@ class _UploadPageState extends State<UploadPage> {
             .set(firestore
             .collection('user')
             .doc(newCount.toString()), {
+              'username' : auth.currentUser!.displayName,
               'context' : userContext.text,
               'like' : 0, // 이거 나중에 그냥 서버에 +1만 해주면댐 ㅋㅋ
             });

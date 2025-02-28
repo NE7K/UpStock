@@ -52,7 +52,6 @@ class _HomeBodyState extends State<HomeBody> {
     try {
       final ref = storage.ref().child('userContext/$imageNumber');
       return await ref.getDownloadURL();
-
     } catch (e) {
       print(e);
     }
@@ -85,14 +84,14 @@ class _HomeBodyState extends State<HomeBody> {
                   SizedBox(width: 15),
 
                   // todo 글쓴이 사용자 이름으로 바꿔야함
-                  Text(auth.currentUser!.displayName ?? 'miss', style: TextStyle( fontSize: 16, fontWeight: FontWeight.bold )),
+                  Text(usercontext[i]['username'] ?? 'name', style: TextStyle( fontSize: 16, fontWeight: FontWeight.bold )),
                 ],
               ),
             ),
 
             SizedBox(height: 10),
 
-            Image.network(imageUrl[i]!),
+            buildImageNotEmpty(imageUrl[i]),
 
             SizedBox( height: 20 ),
 
@@ -127,4 +126,11 @@ class _HomeBodyState extends State<HomeBody> {
       );
     }));
   }
+}
+
+// 이미지 널이면 빈텍스트 보여줘야함 ㅋㅋㅋㅋ
+Widget buildImageNotEmpty(String? imageUrl) {
+  return imageUrl != null
+      ? Image.network(imageUrl)
+      : SizedBox();
 }

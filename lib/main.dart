@@ -32,7 +32,6 @@ void main() async {
 }
 
 class Store extends ChangeNotifier {
-  // 함수 관리
 }
 
 class Mainpage extends StatefulWidget {

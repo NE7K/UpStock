@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 // 파이어베이스 쓰려면 넣어라.. 오류난다
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:upstock/account/login.dart';
 
 final auth = FirebaseAuth.instance;
@@ -17,6 +20,30 @@ class _UserSetState extends State<UserSet> {
   // user Logout system
   userLogout() async {
     await auth.signOut();
+  }
+
+
+
+  // todo 사용자 uid로 파일 저장한 다음에 uid 파일 불러오는게 제일 베스트인듯 덮어씌우기도 편하고 관리도 쉬움
+
+  // user image 담을 곳
+  var userProfileImage;
+
+  // 유저 프로필 변경 함수
+  userProfileChange() async {
+    var picker = ImagePicker();
+    var image = await picker.pickImage(source: ImageSource.gallery);
+
+    // image null 체크
+    if (image != null) {
+      setState(() {
+        userProfileImage = File(image.path);
+      });
+    }
+  }
+
+  // 이미지 변경 저장 전 사용자에게 미리보기 띄우기
+  changeProfileNotUpload() {
   }
 
   final snackLogout = SnackBar(
@@ -72,7 +99,9 @@ class _UserSetState extends State<UserSet> {
                   child: Column(
                     children: [
                       TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            userProfileChange();
+                          },
                           child: Text('프로필 변경', style: TextStyle( color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold ))
                       ),
                     ],

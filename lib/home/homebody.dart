@@ -24,8 +24,7 @@ class _HomeBodyState extends State<HomeBody> {
 
   // 글 내용 불러오기
   getData() async {
-    var result = await firestore.collection('user').get();
-    // .orderBy('date', descending: true) 이거 시간대 아직 안 넣어서 작동을 안 함
+    var result = await firestore.collection('user').orderBy('date', descending: true).get();
     // todo timestamp add oo?
 
     List<Map<String, dynamic>> result2 = [];

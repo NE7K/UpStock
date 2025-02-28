@@ -8,6 +8,7 @@ import 'dart:io';
 // 파이어베이스 쓰려면 넣어라.. 오류난다
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:upstock/profile/announcement.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 final auth = FirebaseAuth.instance;
 final base = FirebaseStorage.instance;
@@ -34,8 +35,15 @@ class _UploadPageState extends State<UploadPage> {
       }
   }
 
+  // 업로드 현황
+  bool isUploading = false;
+
   // 업로드
   userPost() async {
+
+    setState(() {
+      isUploading = true;
+    });
     // initstate에 넣는 것보다는 포스트할 때에만 작동되게 끔하는게 좋을듯
     checkFirebaseCountData();
     // 트랜잭션했음 이유는 데이터베이스 작업을 하나로 묶어서 함 ㅇㅇ 그래서 하나가 실패하면 아예 취소되는거임 그래야 카운트가 잘 되니까
@@ -62,12 +70,18 @@ class _UploadPageState extends State<UploadPage> {
               'username' : auth.currentUser!.displayName,
               'context' : userContext.text,
               'like' : 0, // 이거 나중에 그냥 서버에 +1만 해주면댐 ㅋㅋ
+              'date' : FieldValue.serverTimestamp(),
+              // 이거 업로드 버튼을 누른 시점
             });
 
         // 카운트 +1해준 값 데베로 보내기
         transaction.update(countdocumment, {'count' : newCount});
         // 업로드 되었다는 표시
         if(mounted) ScaffoldMessenger.of(context).showSnackBar(finishUpload);
+        setState(() {
+          isUploading = false;
+        });
+        // todo Tap 0으로 이동
       });
     } catch(e) {
       print(e);
@@ -224,9 +238,9 @@ class _UploadPageState extends State<UploadPage> {
                     // .expend 쓰면 container 크기만큼 클릭 ㅆㄱㄴ
                     child: TextButton(
                         onPressed: () {
-                          userPost();
+                          isUploading ? null : userPost();
                         },
-                        child: Text('업로드', style: TextStyle( color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold ))
+                        child: Text(isUploading ? '업로드 중' : '업로드', style: TextStyle( color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold ))
                     ),
                   ),
                 ),

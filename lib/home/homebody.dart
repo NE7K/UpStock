@@ -108,15 +108,22 @@ class _HomeBodyState extends State<HomeBody> {
 
             Container(
               padding: EdgeInsets.symmetric( horizontal: 5 ),
-              child: Row(
+              child: Column(
                 children: [
-                  IconButton(
-                      onPressed: () {}, icon: Icon(Icons.favorite_outline)),
-                  Text(usercontext[i]['like'].toString()),
-                  // 댓글
-                  // IconButton(
-                  //     onPressed: () {}, icon: Icon(Icons.messenger_outline)),
-                  // Text('2')
+                  Row(
+                    children: [
+                      IconButton(
+                          onPressed: () {}, icon: Icon(Icons.favorite_outline)),
+                      Text(usercontext[i]['like'].toString()),
+                      // 댓글
+                      // IconButton(
+                      //     onPressed: () {}, icon: Icon(Icons.messenger_outline)),
+                      // Text('2')
+                    ],
+                  ),
+
+                  // 작성 시간
+                  Text(usercontext[i]['date'].toString(), style: TextStyle( color: Colors.black, fontWeight: FontWeight.bold))
                 ],
               ),
             )

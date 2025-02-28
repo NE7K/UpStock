@@ -54,6 +54,8 @@ dependencies:
   # 이미지 크롭해야
   image_cropper: ^9.0.0
 
+  # 타임 스탬프
+  timeago: ^3.7.0
 
   cupertino_icons: ^1.0.8
   flutter_dotenv: ^5.2.1

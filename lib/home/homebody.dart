@@ -7,6 +7,7 @@ import 'package:upstock/profile/announcement.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:shimmer/shimmer.dart'; // 차트 임포트임 없으면 차트 못 그림ㅋㅋ
 import 'package:timeago/timeago.dart' as timeago;
+import 'package:upstock/test.dart';
 
 final auth = FirebaseAuth.instance;
 final storage = FirebaseStorage.instance;
@@ -101,6 +102,7 @@ class _HomeBodyState extends State<HomeBody> {
       setState(() {
         if (pressLike == false) {
           pressLike = true;
+          // todo 이거 받아와서 바꿔야함
           firestore.collection('user').doc('1').update({'like' : 1});
         } else {
           pressLike = false;
@@ -193,12 +195,17 @@ class _HomeBodyState extends State<HomeBody> {
                             icon: pressLike ? Icon(Icons.favorite, color: Colors.red) : Icon(Icons.favorite_outline),
                         ),
 
+                        // todo setState 해줘야 반영된다잉
                         Text(usercontext[i]['like'].toString()),
 
                         // 댓글
                         // IconButton(
                         //     onPressed: () {}, icon: Icon(Icons.messenger_outline)),
                         // Text('2')
+                        TextButton(onPressed: () {
+                          Navigator.push(context,
+                          MaterialPageRoute(builder: (c)=> Test()));
+                        }, child: Text('dd'))
                       ],
                     ),
 

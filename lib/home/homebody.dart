@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:upstock/profile/announcement.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:shimmer/shimmer.dart'; // 차트 임포트임 없으면 차트 못 그림ㅋㅋ
+import 'package:timeago/timeago.dart' as timeago;
 
 final auth = FirebaseAuth.instance;
 final storage = FirebaseStorage.instance;
@@ -18,6 +19,7 @@ class HomeBody extends StatefulWidget {
 }
 
 class _HomeBodyState extends State<HomeBody> {
+
   // 내용 저장
   List<Map<String, dynamic>> usercontext = [];
 
@@ -29,15 +31,20 @@ class _HomeBodyState extends State<HomeBody> {
 
   // 글 내용 불러오기
   getData() async {
+
+    // 한국어 지원해주셈 ㄷㄷ
+    timeago.setLocaleMessages('ko', timeago.KoMessages());
+
+    // 로딩 걸어야지 Shimmer 쓸 수 있음
     setState(() {
       isLoading = true;
     });
 
     var result = await firestore
         .collection('user')
+        // date 순으로 정렬 기능
         .orderBy('date', descending: true)
         .get();
-    // todo timestamp add oo?
 
     List<Map<String, dynamic>> result2 = [];
     // url 임시로 저장할 곳
@@ -45,12 +52,24 @@ class _HomeBodyState extends State<HomeBody> {
 
     // 문서 반복문으로 다 저장 ㅋㅋ 쿼리 쓴거임
     for (var doc in result.docs) {
+
+      // 각 데이터를 Map 형태로 가져옴
+      var allData = doc.data();
+
+      // containsKey는 맵 자료에 'date'가 있으면 true 반환
+      if (allData.containsKey('date')) {
+        DateTime data = (allData['date'] as Timestamp).toDate();
+        allData['timeago'] = timeago.format(data, locale: 'ko');
+      }
+
       // imageNumber을 전달
       String? url = await loadContextImage(doc.id);
       // 이미지 변수에 url 저장
       imageUrlresult.add(url);
+
       // 텍스트 저장
-      result2.add(doc.data());
+      result2.add(allData);
+
     }
     setState(() {
       usercontext = result2;
@@ -121,6 +140,24 @@ class _HomeBodyState extends State<HomeBody> {
                 padding: EdgeInsets.symmetric(horizontal: 5),
                 child: Column(
                   children: [
+
+                    SizedBox( height: 5 ),
+
+                    Container(
+                      padding: EdgeInsets.only(left: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(usercontext[i]['timeago'].toString(),
+                              style: TextStyle(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.bold,
+                                fontSize: 10
+                              )),
+                        ],
+                      ),
+                    ),
+
                     Row(
                       children: [
                         IconButton(
@@ -134,12 +171,6 @@ class _HomeBodyState extends State<HomeBody> {
                       ],
                     ),
 
-                    // 작성 시간
-                    Text(usercontext[i]['date'].toString(),
-                        style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold)),
-
-                    // todo timestamp date 객체로 변환해서 사용해야 하는 것 같음. 변환해서 사용하자
                   ],
                 ),
               )
@@ -154,6 +185,7 @@ Widget buildImageNotEmpty(String? imageUrl) {
   return imageUrl != null ? Image.network(imageUrl) : SizedBox();
 }
 
+// Shimmer Effect 틀
 class ShimmerEffect extends StatelessWidget {
   const ShimmerEffect({super.key});
 

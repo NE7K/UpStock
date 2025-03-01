@@ -58,7 +58,9 @@ class _HomeBodyState extends State<HomeBody> {
 
       // containsKey는 맵 자료에 'date'가 있으면 true 반환
       if (allData.containsKey('date')) {
+        // date timestamp를 date로 변환해서 data에 저장
         DateTime data = (allData['date'] as Timestamp).toDate();
+        // timeago로 맵 자료에 저장
         allData['timeago'] = timeago.format(data, locale: 'ko');
       }
 
@@ -67,15 +69,16 @@ class _HomeBodyState extends State<HomeBody> {
       // 이미지 변수에 url 저장
       imageUrlresult.add(url);
 
-      // 텍스트 저장
+      // result2에 timeago 밀어넣기
       result2.add(allData);
-
     }
+
     setState(() {
       usercontext = result2;
       imageUrl = imageUrlresult;
       isLoading = false;
     });
+
   }
 
   // 이미지 매개변수 받은거 사용
@@ -86,6 +89,28 @@ class _HomeBodyState extends State<HomeBody> {
     } catch (e) {
       print(e);
     }
+  }
+
+  // 좋아요 버튼
+  bool pressLike = false;
+
+  // 좋아요
+  clickLike() async {
+
+    try {
+      setState(() {
+        if (pressLike == false) {
+          pressLike = true;
+          firestore.collection('user').doc('1').update({'like' : 1});
+        } else {
+          pressLike = false;
+          firestore.collection('user').doc('1').update({'like' : 0});
+        }
+      });
+    } catch(e) {
+      print(e);
+    }
+
   }
 
   @override
@@ -121,9 +146,10 @@ class _HomeBodyState extends State<HomeBody> {
                   ],
                 ),
               ),
+
               SizedBox(height: 10),
               buildImageNotEmpty(imageUrl[i]),
-              SizedBox(height: 20),
+              SizedBox(height: 15),
               Row(
                 children: [
                   SizedBox(width: 20),
@@ -161,9 +187,14 @@ class _HomeBodyState extends State<HomeBody> {
                     Row(
                       children: [
                         IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.favorite_outline)),
+                            onPressed: () {
+                              clickLike();
+                            },
+                            icon: pressLike ? Icon(Icons.favorite, color: Colors.red) : Icon(Icons.favorite_outline),
+                        ),
+
                         Text(usercontext[i]['like'].toString()),
+
                         // 댓글
                         // IconButton(
                         //     onPressed: () {}, icon: Icon(Icons.messenger_outline)),

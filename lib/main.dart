@@ -81,11 +81,11 @@ class _MainpageState extends State<Mainpage> {
             },
             items: [
               BottomNavigationBarItem(
-                  icon: Icon(Icons.home_outlined), label: '홈'),
+                  icon: Icon(Icons.home_outlined, color: Colors.grey[800]), label: '홈'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.add_box_outlined), label: '게시글'),
+                  icon: Icon(Icons.add_box_outlined, color: Colors.grey[800]), label: '게시글'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.person_outline), label: '프로필'),
+                  icon: Icon(Icons.person_outline, color: Colors.grey[800],), label: '프로필'),
             ]));
   }
 }

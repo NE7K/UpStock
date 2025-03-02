@@ -10,6 +10,9 @@ class Homebodyshimmer extends StatelessWidget {
       width: double.infinity,
       child: Column(
         children: [
+
+          SizedBox(height: 20),
+
           Row(
             children: [
               SizedBox(width: 10),
@@ -118,6 +121,30 @@ class Homebodyshimmer extends StatelessWidget {
           SizedBox( height: 20 )
         ],
       ),
+    );
+  }
+}
+
+class ShimmerImage extends StatelessWidget {
+  const ShimmerImage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(width: 10),
+        Shimmer.fromColors(
+          baseColor: Colors.grey[200]!,
+          highlightColor: Colors.grey[100]!,
+          child: Container(
+            width: 300,
+            height: 20,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20)),
+          ),
+        )
+      ],
     );
   }
 }

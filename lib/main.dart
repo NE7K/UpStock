@@ -70,7 +70,8 @@ class _MainpageState extends State<Mainpage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
-        body: [Home(), UploadPage(), Profile()][tab],
+        // appbar 추가 안할거면 safearea 추가해줘야함
+        body: SafeArea(child: [Home(), UploadPage(), Profile()][tab]),
         bottomNavigationBar: BottomNavigationBar(
             showSelectedLabels: false, // 선택된 라벨 표시 false
             showUnselectedLabels: false,

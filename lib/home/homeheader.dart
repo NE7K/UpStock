@@ -51,8 +51,6 @@ class _HomeHeaderState extends State<HomeHeader> {
         child: Column(
       children: [
 
-        SizedBox(height: 70),
-
         Row(
           children: [
             SizedBox(width: 20),
@@ -105,21 +103,6 @@ class _HomeHeaderState extends State<HomeHeader> {
               ),
             );
           }),
-        ),
-
-        SizedBox(height: 30),
-
-        Row(
-          children: [
-            SizedBox(width: 20),
-            Text('인기 커뮤니티',
-                style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold)
-            ),
-
-          ],
         ),
 
       ],

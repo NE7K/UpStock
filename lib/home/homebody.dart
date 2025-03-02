@@ -151,7 +151,20 @@ class ListUserContext extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: 10),
+
+        SizedBox( height: 10 ),
+
+        // Row(
+        //   children: [
+        //     SizedBox(width: 20),
+        //     Text('인기 커뮤니티',
+        //         style: TextStyle(
+        //             fontSize: 25,
+        //             color: Colors.black,
+        //             fontWeight: FontWeight.bold)
+        //     ),
+        //   ],
+        // ),
 
         Container(
           padding: EdgeInsets.only(left: 10, top: 10),
@@ -171,7 +184,10 @@ class ListUserContext extends StatelessWidget {
           ),
         ),
         SizedBox(height: 10),
+
+        // todo 이ㅓㄱ shimmer 따로 처리해줘야함 텍스ㅡ트보다 로딩 느림
         buildImageNotEmpty(imageUrl),
+
         SizedBox(height: 15),
         Row(
           children: [

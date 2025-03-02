@@ -48,13 +48,12 @@ class _HomeHeaderState extends State<HomeHeader> {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
         child: Container(
-            margin: EdgeInsets.all(5),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Column(
                   children: [
-                    SizedBox(height: 80),
+                    SizedBox(height: 70),
 
                     // todo : 사이즈 박스 없앨 수 있으면 없애보기 코드 더럽다
                     Row(
@@ -64,32 +63,27 @@ class _HomeHeaderState extends State<HomeHeader> {
                             style: TextStyle(
                                 fontSize: 25,
                                 color: Colors.black,
-                                fontWeight: FontWeight.bold)),
+                                fontWeight: FontWeight.bold)
+                        ),
                       ],
                     ),
 
-                    // 대표 지수랑 카드뷰 사이 간격
+                    // 대표 지수랑 슬라이더 사이 간격
                     SizedBox(height: 20),
 
-                    // 카드뷰 파트 시작점
-                    SizedBox(
-                        height: 170,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            // todo 삼항 연산자 isLoading ? ShimmerEffect : StockCard ~
-                            isLoading
-                                ? Homeheadershimmer()
-                                : StockCard(stockData: widget.stockData[0]),
-                            isLoading
-                                ? Homeheadershimmer()
-                                : StockCard(stockData: widget.stockData[1]),
-                            // StockCard(stockData : stockData[0]),
-                          ],
-                        )),
+                    // todo 삼항 연산자 isLoading ? ShimmerEffect : StockCard ~
+                    // isLoading
+                    //     ? Homeheadershimmer()
+                    //     : StockCard(stockData: widget.stockData[0]),
+
+                    Homeheadershimmer(),
+
+                    // isLoading
+                    //     ? Homeheadershimmer()
+                    //     : StockCard(stockData: widget.stockData[1]),
+                    // StockCard(stockData : stockData[0]),
 
                     SizedBox(height: 20),
-
                   ],
                 )
               ],
@@ -108,6 +102,7 @@ class StockCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(8),
+      width: 170,
       decoration: BoxDecoration(
           border: Border.all(color: Colors.grey[300]!),
           borderRadius: BorderRadius.circular(20),

@@ -34,7 +34,8 @@ class Homebodyshimmer extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(20)),
-                  )),
+                  )
+              ),
             ],
           ),
           SizedBox(height: 10),
@@ -100,19 +101,17 @@ class Homebodyshimmer extends StatelessWidget {
           Row(
             children: [
               SizedBox(width: 10),
-              Icon(Icons.favorite_outline),
-              SizedBox(width: 5),
               Shimmer.fromColors(
                 baseColor: Colors.grey[200]!,
                 highlightColor: Colors.grey[100]!,
                 child: Container(
-                  width: 40,
+                  width: 70,
                   height: 20,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20)),
                 ),
-              )
+              ),
             ],
           ),
 

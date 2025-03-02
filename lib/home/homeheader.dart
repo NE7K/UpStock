@@ -10,8 +10,7 @@ class HomeHeader extends StatefulWidget {
   final Future<List<Map<String, dynamic>>> Function() getStockData;
   final List<Map<String, dynamic>> stockData;
 
-  const HomeHeader(
-      {super.key, required this.stockData, required this.getStockData});
+  const HomeHeader({super.key, required this.stockData, required this.getStockData});
 
   @override
   State<HomeHeader> createState() => _HomeHeaderState();
@@ -20,6 +19,7 @@ class HomeHeader extends StatefulWidget {
 class _HomeHeaderState extends State<HomeHeader> {
   // 로딩 체크
   bool isLoading = true;
+  int currentIndex = 0; // 인디케이터 현재 위치 인덱스
 
   @override
   void initState() {
@@ -66,12 +66,17 @@ class _HomeHeaderState extends State<HomeHeader> {
         // 대표 지수랑 슬라이더 사이 간격
         SizedBox(height: 20),
 
-        // slider 위치
+        // Carousel Slider
         CarouselSlider(
           options: CarouselOptions(
             height: 200,
             autoPlay: false,
             viewportFraction: 1.0,
+            onPageChanged: (index, context) {
+              setState(() {
+                currentIndex = index;
+              });
+            },
           ),
           items: [
             isLoading
@@ -83,7 +88,23 @@ class _HomeHeaderState extends State<HomeHeader> {
           ],
         ),
 
-        SizedBox(height: 40),
+        // 수동 인디케이터 추가
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: List.generate(2, (index) {
+            return Container(
+              width: 8,
+              height: 8,
+              margin: EdgeInsets.symmetric(horizontal: 4),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: currentIndex == index ? Colors.green : Colors.grey[300],
+              ),
+            );
+          }),
+        ),
+
+        SizedBox(height: 30),
 
         Row(
           children: [
@@ -113,18 +134,33 @@ class StockCard extends StatelessWidget {
     return Container(
       // 동적 배치
       width: MediaQuery.of(context).size.width*0.9,
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.black
-        )
-      ),
+      padding: EdgeInsets.all(10),
       child: Column(
         children: [
-          // toStringAsFixed 소수점 떼려고 씀
-          Text(
-              '${stockData['symbol']} : ${stockData['currentPrice'].toStringAsFixed(0)}',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-      
+
+          Row(
+            children: [
+
+              // toStringAsFixed 소수점 떼려고 씀
+              Text(
+                  '${stockData['symbol']} : ${stockData['currentPrice'].toStringAsFixed(0)}',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
+
+              SizedBox(width: 15),
+
+              Text(
+                  '${(stockData['changePercent'].last.y - stockData['changePercent'].first.y).toStringAsFixed(2)}'
+                      '(${((stockData['changePercent'].last.y - stockData['changePercent'].first.y) / stockData['changePercent'].first.y * 100).toStringAsFixed(2)}%)',
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: (stockData['changePercent'].last.y >=
+                          stockData['changePercent'].first.y)
+                          ? Colors.red
+                          : Colors.blue)),
+            ],
+          ),
+
           SizedBox(height: 20),
       
           // 그래프
@@ -150,7 +186,7 @@ class StockCard extends StatelessWidget {
                         ? Colors.red
                         : Colors.blue,
                     // 선 색상은 시작 가격과 최종 가격 비교에 따라 결정
-                    barWidth: 1.5,
+                    barWidth: 2,
                     // 선 두께는 2
                     dotData: FlDotData(show: false),
                     // 데이터 점 안 보이게 설정
@@ -158,19 +194,9 @@ class StockCard extends StatelessWidget {
                   )
                 ])),
           ),
-      
+
           SizedBox(height: 20),
           // 변동성 나타내는 텍스트
-          Text(
-              '${(stockData['changePercent'].last.y - stockData['changePercent'].first.y).toStringAsFixed(2)}'
-              '(${((stockData['changePercent'].last.y - stockData['changePercent'].first.y) / stockData['changePercent'].first.y * 100).toStringAsFixed(2)}%)',
-              style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: (stockData['changePercent'].last.y >=
-                          stockData['changePercent'].first.y)
-                      ? Colors.red
-                      : Colors.blue)),
         ],
       ),
     );

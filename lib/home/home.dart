@@ -12,7 +12,7 @@ Future<List<Map<String, dynamic>>> getStockData() async {
   // 정보 늦으니까 await, Future 쓰고 Json Map 자료니까 타입 선언도 같이해줘야 함
 
   // 다우존스랑 나스닥 심볼 적어놔야 부르지 ㅇㅈ?
-  final symbol = {'DOW': '^DJI', 'NASDAQ': '^NDX'};
+  final symbol = {'다우존스': '^DJI', '나스닥': '^NDX'};
 
   // 데이터 가져올 때에는 여러가지 동시에
   return Future.wait(symbol.entries.map((name) async {

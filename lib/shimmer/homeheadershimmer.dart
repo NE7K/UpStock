@@ -6,7 +6,7 @@ class Homeheadershimmer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width*0.9,
       child: Column(
         children: [

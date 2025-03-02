@@ -69,7 +69,7 @@ class _HomeHeaderState extends State<HomeHeader> {
         // Carousel Slider
         CarouselSlider(
           options: CarouselOptions(
-            height: 200,
+            height: MediaQuery.of(context).size.height*0.3,
             autoPlay: false,
             viewportFraction: 1.0,
             onPageChanged: (index, context) {
@@ -132,40 +132,41 @@ class StockCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        color: Color.fromRGBO(0, 0, 0, 0.8),
+        borderRadius: BorderRadius.circular(20),
+      ),
       // 동적 배치
       width: MediaQuery.of(context).size.width*0.9,
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.all(20),
       child: Column(
         children: [
 
-          Row(
-            children: [
+          Text(
+              '${stockData['symbol']}', style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+              color: Colors.white
+          )),
 
-              // toStringAsFixed 소수점 떼려고 씀
-              Text(
-                  '${stockData['symbol']} : ${stockData['currentPrice'].toStringAsFixed(0)}',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
+          SizedBox(width: 15),
 
-              SizedBox(width: 15),
-
-              Text(
-                  '${(stockData['changePercent'].last.y - stockData['changePercent'].first.y).toStringAsFixed(2)}'
-                      '(${((stockData['changePercent'].last.y - stockData['changePercent'].first.y) / stockData['changePercent'].first.y * 100).toStringAsFixed(2)}%)',
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: (stockData['changePercent'].last.y >=
-                          stockData['changePercent'].first.y)
-                          ? Colors.red
-                          : Colors.blue)),
-            ],
-          ),
+          Text(
+              '${(stockData['changePercent'].last.y - stockData['changePercent'].first.y).toStringAsFixed(2)}'
+                  '(${((stockData['changePercent'].last.y - stockData['changePercent'].first.y) / stockData['changePercent'].first.y * 100).toStringAsFixed(2)}%)',
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: (stockData['changePercent'].last.y >=
+                      stockData['changePercent'].first.y)
+                      ? Colors.red
+                      : Colors.blue)),
 
           SizedBox(height: 20),
       
           // 그래프
           SizedBox(
-            height: 100, // 차트 높이 설정
+            height: 110, // 차트 높이 설정
             child: LineChart(LineChartData(
                 // 사용자가 마우스 위에 올렸을 때 주가 나오는 부분 삭제
                 lineTouchData: LineTouchData(enabled: false),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 // 파이어베이스 쓰려면 넣어라.. 오류난다
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:upstock/home/homebodyshimmer.dart';
+import 'package:upstock/shimmer/homebodyshimmer.dart';
 import 'package:upstock/profile/announcement.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:timeago/timeago.dart' as timeago;

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:upstock/home/homeheadershimmer.dart'; // 차트 임포트임 없으면 차트 못 그림ㅋㅋ
+import 'package:upstock/shimmer/homeheadershimmer.dart'; // 차트 임포트임 없으면 차트 못 그림ㅋㅋ
 
 class HomeHeader extends StatefulWidget {
   // todo 그대로 가져오기

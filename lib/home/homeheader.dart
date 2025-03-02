@@ -50,6 +50,7 @@ class _HomeHeaderState extends State<HomeHeader> {
     return SliverToBoxAdapter(
         child: Column(
       children: [
+
         SizedBox(height: 70),
 
         Row(
@@ -95,8 +96,8 @@ class _HomeHeaderState extends State<HomeHeader> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(2, (index) {
             return Container(
-              width: 8,
-              height: 8,
+              width: 5,
+              height: 5,
               margin: EdgeInsets.symmetric(horizontal: 4),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
@@ -115,10 +116,12 @@ class _HomeHeaderState extends State<HomeHeader> {
                 style: TextStyle(
                     fontSize: 25,
                     color: Colors.black,
-                    fontWeight: FontWeight.bold)),
+                    fontWeight: FontWeight.bold)
+            ),
 
           ],
         ),
+
       ],
     ));
   }
@@ -144,15 +147,12 @@ class StockCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
           Text(
               '${stockData['symbol']}', style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 30,
               color: Colors.white
           )),
-
-          SizedBox(width: 15),
 
           Text(
               '${(stockData['changePercent'].last.y - stockData['changePercent'].first.y).toStringAsFixed(2)}'
@@ -163,7 +163,8 @@ class StockCard extends StatelessWidget {
                   color: (stockData['changePercent'].last.y >=
                       stockData['changePercent'].first.y)
                       ? Colors.red
-                      : Colors.blue)),
+                      : Colors.blue)
+          ),
 
           SizedBox(height: 20),
       

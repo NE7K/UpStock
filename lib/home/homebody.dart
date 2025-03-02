@@ -122,6 +122,7 @@ class _HomeBodyState extends State<HomeBody> {
               ? Homebodyshimmer()
               : ListUserContext(
                   usercontext: usercontext[i],
+                  imageUrl : imageUrl[i],
                   clickLike: clickLike,
                   pressLike: pressLike,
                 )
@@ -142,17 +143,17 @@ class ListUserContext extends StatelessWidget {
 
   final VoidCallback clickLike;
   final bool pressLike;
+  final String? imageUrl;
 
   const ListUserContext(
-      {super.key,
-      required this.usercontext,
-      required this.clickLike,
-      required this.pressLike});
+      {super.key, required this.usercontext, required this.clickLike, required this.imageUrl, required this.pressLike});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+        SizedBox(height: 10),
+
         Container(
           padding: EdgeInsets.only(left: 10, top: 10),
           child: Row(
@@ -171,7 +172,7 @@ class ListUserContext extends StatelessWidget {
           ),
         ),
         SizedBox(height: 10),
-        // buildImageNotEmpty(imageUrl),
+        buildImageNotEmpty(imageUrl),
         SizedBox(height: 15),
         Row(
           children: [

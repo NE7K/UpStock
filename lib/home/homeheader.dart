@@ -83,7 +83,19 @@ class _HomeHeaderState extends State<HomeHeader> {
           ],
         ),
 
-        SizedBox(height: 40)
+        SizedBox(height: 40),
+
+        Row(
+          children: [
+            SizedBox(width: 20),
+            Text('인기 커뮤니티',
+                style: TextStyle(
+                    fontSize: 25,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold)),
+
+          ],
+        ),
       ],
     ));
   }
@@ -101,6 +113,11 @@ class StockCard extends StatelessWidget {
     return Container(
       // 동적 배치
       width: MediaQuery.of(context).size.width*0.9,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.black
+        )
+      ),
       child: Column(
         children: [
           // toStringAsFixed 소수점 떼려고 씀
@@ -112,8 +129,7 @@ class StockCard extends StatelessWidget {
       
           // 그래프
           SizedBox(
-            width: 380, // 차트 너비 설정
-            height: 120, // 차트 높이 설정
+            height: 100, // 차트 높이 설정
             child: LineChart(LineChartData(
                 // 사용자가 마우스 위에 올렸을 때 주가 나오는 부분 삭제
                 lineTouchData: LineTouchData(enabled: false),

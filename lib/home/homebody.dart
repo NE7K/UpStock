@@ -205,7 +205,7 @@ class _HomeBodyState extends State<HomeBody> {
                         TextButton(onPressed: () {
                           Navigator.push(context,
                           MaterialPageRoute(builder: (c)=> Test()));
-                        }, child: Text('dd'))
+                        }, child: Text('Shimmer Test Layot'))
                       ],
                     ),
 

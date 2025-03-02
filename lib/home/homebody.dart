@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 // 파이어베이스 쓰려면 넣어라.. 오류난다
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:upstock/home/homebodyshimmer.dart';
 import 'package:upstock/profile/announcement.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:shimmer/shimmer.dart'; // 차트 임포트임 없으면 차트 못 그림ㅋㅋ
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:upstock/test.dart';
 
@@ -20,7 +20,6 @@ class HomeBody extends StatefulWidget {
 }
 
 class _HomeBodyState extends State<HomeBody> {
-
   // 내용 저장
   List<Map<String, dynamic>> usercontext = [];
 
@@ -28,18 +27,12 @@ class _HomeBodyState extends State<HomeBody> {
   List<String?> imageUrl = [];
 
   // 사진 및 게시글 로딩 중
-  bool isLoading = false;
+  bool isLoading = true;
 
   // 글 내용 불러오기
   getData() async {
-
     // 한국어 지원해주셈 ㄷㄷ
     timeago.setLocaleMessages('ko', timeago.KoMessages());
-
-    // 로딩 걸어야지 Shimmer 쓸 수 있음
-    setState(() {
-      isLoading = true;
-    });
 
     var result = await firestore
         .collection('user')
@@ -53,7 +46,6 @@ class _HomeBodyState extends State<HomeBody> {
 
     // 문서 반복문으로 다 저장 ㅋㅋ 쿼리 쓴거임
     for (var doc in result.docs) {
-
       // 각 데이터를 Map 형태로 가져옴
       var allData = doc.data();
 
@@ -77,7 +69,7 @@ class _HomeBodyState extends State<HomeBody> {
     setState(() {
       usercontext = result2;
       imageUrl = imageUrlresult;
-      isLoading = false;
+      isLoading = true;
     });
 
   }
@@ -97,22 +89,20 @@ class _HomeBodyState extends State<HomeBody> {
 
   // 좋아요
   clickLike() async {
-
     try {
       setState(() {
         if (pressLike == false) {
           pressLike = true;
           // todo 이거 받아와서 바꿔야함
-          firestore.collection('user').doc('1').update({'like' : 1});
+          firestore.collection('user').doc('1').update({'like': 1});
         } else {
           pressLike = false;
-          firestore.collection('user').doc('1').update({'like' : 0});
+          firestore.collection('user').doc('1').update({'like': 0});
         }
       });
-    } catch(e) {
+    } catch (e) {
       print(e);
     }
-
   }
 
   @override
@@ -128,92 +118,14 @@ class _HomeBodyState extends State<HomeBody> {
             SliverChildBuilderDelegate(childCount: usercontext.length, (c, i) {
       return SizedBox(
           width: double.infinity,
-          child: Column(
-            children: [
-              Container(
-                padding: EdgeInsets.only(left: 10, top: 10),
-                child: Row(
-                  children: [
-                    CircleAvatar(
-                        radius: 20,
-                        backgroundImage: NetworkImage(
-                            'https://ne7k.github.io/app/profile.jpg')),
-
-                    SizedBox(width: 15),
-
-                    // todo 글쓴이 사용자 이름으로 바꿔야함
-                    Text(usercontext[i]['username'] ?? 'name',
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold)),
-                  ],
-                ),
-              ),
-
-              SizedBox(height: 10),
-              buildImageNotEmpty(imageUrl[i]),
-              SizedBox(height: 15),
-              Row(
-                children: [
-                  SizedBox(width: 20),
-                  // 유저 아이디
-                  Text(usercontext[i]['username'] ?? 'name',
-                      style:
-                          TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
-                  SizedBox(width: 10),
-                  Text('${usercontext[i]['context']}',
-                      style: TextStyle(fontSize: 14)),
-                ],
-              ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 5),
-                child: Column(
-                  children: [
-
-                    SizedBox( height: 5 ),
-
-                    Container(
-                      padding: EdgeInsets.only(left: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(usercontext[i]['timeago'].toString(),
-                              style: TextStyle(
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.bold,
-                                fontSize: 10
-                              )),
-                        ],
-                      ),
-                    ),
-
-                    Row(
-                      children: [
-                        IconButton(
-                            onPressed: () {
-                              clickLike();
-                            },
-                            icon: pressLike ? Icon(Icons.favorite, color: Colors.red) : Icon(Icons.favorite_outline),
-                        ),
-
-                        // todo setState 해줘야 반영된다잉
-                        Text(usercontext[i]['like'].toString()),
-
-                        // 댓글
-                        // IconButton(
-                        //     onPressed: () {}, icon: Icon(Icons.messenger_outline)),
-                        // Text('2')
-                        TextButton(onPressed: () {
-                          Navigator.push(context,
-                          MaterialPageRoute(builder: (c)=> Test()));
-                        }, child: Text('Shimmer Test Layot'))
-                      ],
-                    ),
-
-                  ],
-                ),
-              )
-            ],
-          ));
+          child: isLoading
+              ? Homebodyshimmer()
+              : ListUserContext(
+                  usercontext: usercontext[i],
+                  clickLike: clickLike,
+                  pressLike: pressLike,
+                )
+      );
     }));
   }
 }
@@ -223,140 +135,103 @@ Widget buildImageNotEmpty(String? imageUrl) {
   return imageUrl != null ? Image.network(imageUrl) : SizedBox();
 }
 
-// Shimmer Effect 틀
-class ShimmerEffect extends StatelessWidget {
-  const ShimmerEffect({super.key});
+// Home body usercontext 통합 관리
+
+class ListUserContext extends StatelessWidget {
+  final Map<String, dynamic> usercontext;
+
+  final VoidCallback clickLike;
+  final bool pressLike;
+
+  const ListUserContext(
+      {super.key,
+      required this.usercontext,
+      required this.clickLike,
+      required this.pressLike});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: Column(
-        children: [
-          Row(
+    return Column(
+      children: [
+        Container(
+          padding: EdgeInsets.only(left: 10, top: 10),
+          child: Row(
             children: [
-              SizedBox(width: 10),
               CircleAvatar(
-                child: Shimmer.fromColors(
-                  baseColor: Colors.grey[200]!,
-                  highlightColor: Colors.grey[100]!,
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20)),
+                  radius: 20,
+                  backgroundImage:
+                      NetworkImage('https://ne7k.github.io/app/profile.jpg')),
+
+              SizedBox(width: 15),
+
+              // todo 글쓴이 사용자 이름으로 바꿔야함
+              Text(usercontext['username'] ?? 'name',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            ],
+          ),
+        ),
+        SizedBox(height: 10),
+        // buildImageNotEmpty(imageUrl),
+        SizedBox(height: 15),
+        Row(
+          children: [
+            SizedBox(width: 20),
+            // 유저 아이디
+            Text(usercontext['username'] ?? 'name',
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+            SizedBox(width: 10),
+            Text('${usercontext['context']}', style: TextStyle(fontSize: 14)),
+          ],
+        ),
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 5),
+          child: Column(
+            children: [
+              SizedBox(height: 5),
+              Container(
+                padding: EdgeInsets.only(left: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(usercontext['timeago'].toString(),
+                        style: TextStyle(
+                            color: Colors.grey,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 10)),
+                  ],
+                ),
+              ),
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      clickLike();
+                    },
+                    icon: pressLike
+                        ? Icon(Icons.favorite, color: Colors.red)
+                        : Icon(Icons.favorite_outline),
                   ),
-                ),
+
+                  // todo setState 해줘야 반영된다잉
+                  Text(usercontext['like'].toString()),
+
+                  // 댓글
+                  // IconButton(
+                  //     onPressed: () {}, icon: Icon(Icons.messenger_outline)),
+                  // Text('2')
+
+                  TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context, MaterialPageRoute(builder: (c) => Test()));
+                      },
+                      child: Text('Shimmer Test Layot'))
+                ],
               ),
-              SizedBox(width: 10),
-              Shimmer.fromColors(
-                  baseColor: Colors.grey[200]!,
-                  highlightColor: Colors.grey[100]!,
-                  child: Container(
-                    width: 100,
-                    height: 20,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20)),
-                  )),
             ],
           ),
-
-          SizedBox(height: 10),
-
-          Shimmer.fromColors(
-            baseColor: Colors.grey[200]!,
-            highlightColor: Colors.grey[100]!,
-            child: Container(
-              width: double.infinity,
-              height: 300,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                // borderRadius: BorderRadius.circular(10)
-              ),
-            ),
-          ),
-
-          SizedBox(height: 20),
-
-          Row(
-            children: [
-              SizedBox(width: 10),
-              Shimmer.fromColors(
-                baseColor: Colors.grey[200]!,
-                highlightColor: Colors.grey[100]!,
-                child: Container(
-                  width: 70,
-                  height: 20,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20)),
-                ),
-              ),
-              SizedBox(width: 10),
-              Shimmer.fromColors(
-                baseColor: Colors.grey[200]!,
-                highlightColor: Colors.grey[100]!,
-                child: Container(
-                  width: 300,
-                  height: 20,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20)),
-                ),
-              )
-            ],
-          ),
-
-          SizedBox( height: 10 ),
-
-          Row(
-            children: [
-              SizedBox( width: 10),
-
-              Shimmer.fromColors(
-                baseColor: Colors.grey[200]!,
-                highlightColor: Colors.grey[100]!,
-                child: Container(
-                  width: 40,
-                  height: 20,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20)),
-                ),
-
-              )
-            ],
-          ),
-
-          SizedBox( height: 10 ),
-
-          Row(
-            children: [
-
-              SizedBox( width: 10 ),
-
-              Icon(Icons.favorite_outline),
-
-              SizedBox( width: 5),
-
-              Shimmer.fromColors(
-                baseColor: Colors.grey[200]!,
-                highlightColor: Colors.grey[100]!,
-                child: Container(
-                  width: 40,
-                  height: 20,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20)),
-                ),
-              )
-
-            ],
-          )
-
-        ],
-      ),
+        )
+      ],
     );
   }
-
 }

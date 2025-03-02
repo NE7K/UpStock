@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:fl_chart/fl_chart.dart';
-import 'package:shimmer/shimmer.dart'; // 차트 임포트임 없으면 차트 못 그림ㅋㅋ
+import 'package:shimmer/shimmer.dart';
+import 'package:upstock/home/homeheadershimmer.dart'; // 차트 임포트임 없으면 차트 못 그림ㅋㅋ
 
 class HomeHeader extends StatefulWidget {
   // todo 그대로 가져오기
@@ -78,10 +79,10 @@ class _HomeHeaderState extends State<HomeHeader> {
                           children: [
                             // todo 삼항 연산자 isLoading ? ShimmerEffect : StockCard ~
                             isLoading
-                                ? ShimmerEffect()
+                                ? Homeheadershimmer()
                                 : StockCard(stockData: widget.stockData[0]),
                             isLoading
-                                ? ShimmerEffect()
+                                ? Homeheadershimmer()
                                 : StockCard(stockData: widget.stockData[1]),
                             // StockCard(stockData : stockData[0]),
                           ],
@@ -93,64 +94,6 @@ class _HomeHeaderState extends State<HomeHeader> {
                 )
               ],
             )));
-  }
-}
-
-// ShimmerEffect 위젯
-class ShimmerEffect extends StatelessWidget {
-  const ShimmerEffect({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        padding: EdgeInsets.all(8),
-        decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey[300]!),
-            borderRadius: BorderRadius.circular(20),
-            color: Colors.white,
-            boxShadow: [BoxShadow(blurRadius: 0.1)]),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Shimmer.fromColors(
-              baseColor: Colors.grey[300]!,
-              highlightColor: Colors.grey[100]!,
-              child: Container(
-                width: 100,
-                height: 20,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(5)),
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.all(8),
-              child: SizedBox(
-                width: 130,
-                height: 65,
-                child: Shimmer.fromColors(
-                    baseColor: Colors.grey[300]!,
-                    highlightColor: Colors.grey[100]!,
-                    child: Container(
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(5)),
-                    )),
-              ),
-            ),
-            Shimmer.fromColors(
-              baseColor: Colors.grey[300]!,
-              highlightColor: Colors.grey[100]!,
-              child: Container(
-                width: 100,
-                height: 20,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(5)),
-              ),
-            ),
-          ],
-        ));
   }
 }
 

@@ -88,6 +88,8 @@ class _HomeHeaderState extends State<HomeHeader> {
           ],
         ),
 
+        SizedBox( height: 20 ),
+
         // 수동 인디케이터 추가
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -98,7 +100,7 @@ class _HomeHeaderState extends State<HomeHeader> {
               margin: EdgeInsets.symmetric(horizontal: 4),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: currentIndex == index ? Colors.green : Colors.grey[300],
+                color: currentIndex == index ? Colors.black87 : Colors.grey[300],
               ),
             );
           }),
@@ -138,14 +140,15 @@ class StockCard extends StatelessWidget {
       ),
       // 동적 배치
       width: MediaQuery.of(context).size.width*0.9,
-      padding: EdgeInsets.all(20),
+      padding: EdgeInsets.all(25),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
 
           Text(
               '${stockData['symbol']}', style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 24,
+              fontSize: 30,
               color: Colors.white
           )),
 
@@ -155,7 +158,7 @@ class StockCard extends StatelessWidget {
               '${(stockData['changePercent'].last.y - stockData['changePercent'].first.y).toStringAsFixed(2)}'
                   '(${((stockData['changePercent'].last.y - stockData['changePercent'].first.y) / stockData['changePercent'].first.y * 100).toStringAsFixed(2)}%)',
               style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: (stockData['changePercent'].last.y >=
                       stockData['changePercent'].first.y)
@@ -187,7 +190,7 @@ class StockCard extends StatelessWidget {
                         ? Colors.red
                         : Colors.blue,
                     // 선 색상은 시작 가격과 최종 가격 비교에 따라 결정
-                    barWidth: 2,
+                    barWidth: 2.5,
                     // 선 두께는 2
                     dotData: FlDotData(show: false),
                     // 데이터 점 안 보이게 설정

@@ -38,6 +38,9 @@ dependencies:
   # 타임 스탬프
   timeago: ^3.7.0
 
+  # home header slide
+  carousel_slider: ^5.0.0
+
   cupertino_icons: ^1.0.8
   flutter_dotenv: ^5.2.1
 

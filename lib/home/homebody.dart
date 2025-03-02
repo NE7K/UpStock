@@ -69,7 +69,7 @@ class _HomeBodyState extends State<HomeBody> {
     setState(() {
       usercontext = result2;
       imageUrl = imageUrlresult;
-      isLoading = true;
+      isLoading = false;
     });
 
   }
@@ -220,12 +220,14 @@ class ListUserContext extends StatelessWidget {
                   //     onPressed: () {}, icon: Icon(Icons.messenger_outline)),
                   // Text('2')
 
-                  TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context, MaterialPageRoute(builder: (c) => Test()));
-                      },
-                      child: Text('Shimmer Test Layot'))
+                  // todo Shimmer 테스트용
+                  // TextButton(
+                  //     onPressed: () {
+                  //       Navigator.push(
+                  //           context, MaterialPageRoute(builder: (c) => Test()));
+                  //     },
+                  //     child: Text('Shimmer Test Layot'))
+
                 ],
               ),
             ],

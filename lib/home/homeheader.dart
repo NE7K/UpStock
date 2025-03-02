@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:fl_chart/fl_chart.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:upstock/shimmer/homeheadershimmer.dart'; // 차트 임포트임 없으면 차트 못 그림ㅋㅋ
 
+// 슬라이더
+import 'package:carousel_slider/carousel_slider.dart';
+
 class HomeHeader extends StatefulWidget {
-  // todo 그대로 가져오기
   final Future<List<Map<String, dynamic>>> Function() getStockData;
   final List<Map<String, dynamic>> stockData;
 
@@ -47,47 +48,44 @@ class _HomeHeaderState extends State<HomeHeader> {
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
-        child: Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(
-                  children: [
-                    SizedBox(height: 70),
+        child: Column(
+      children: [
+        SizedBox(height: 70),
 
-                    // todo : 사이즈 박스 없앨 수 있으면 없애보기 코드 더럽다
-                    Row(
-                      children: [
-                        SizedBox(width: 20),
-                        Text('대표 지수',
-                            style: TextStyle(
-                                fontSize: 25,
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold)
-                        ),
-                      ],
-                    ),
+        Row(
+          children: [
+            SizedBox(width: 20),
+            Text('대표 지수',
+                style: TextStyle(
+                    fontSize: 25,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold)),
+          ],
+        ),
 
-                    // 대표 지수랑 슬라이더 사이 간격
-                    SizedBox(height: 20),
+        // 대표 지수랑 슬라이더 사이 간격
+        SizedBox(height: 20),
 
-                    // todo 삼항 연산자 isLoading ? ShimmerEffect : StockCard ~
-                    // isLoading
-                    //     ? Homeheadershimmer()
-                    //     : StockCard(stockData: widget.stockData[0]),
+        // slider 위치
+        CarouselSlider(
+          options: CarouselOptions(
+            height: 200,
+            autoPlay: false,
+            viewportFraction: 1.0,
+          ),
+          items: [
+            isLoading
+                ? Homeheadershimmer()
+                : StockCard(stockData: widget.stockData[0]),
+            isLoading
+                ? Homeheadershimmer()
+                : StockCard(stockData: widget.stockData[1]),
+          ],
+        ),
 
-                    Homeheadershimmer(),
-
-                    // isLoading
-                    //     ? Homeheadershimmer()
-                    //     : StockCard(stockData: widget.stockData[1]),
-                    // StockCard(stockData : stockData[0]),
-
-                    SizedBox(height: 20),
-                  ],
-                )
-              ],
-            )));
+        SizedBox(height: 40)
+      ],
+    ));
   }
 }
 
@@ -101,57 +99,51 @@ class StockCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(8),
-      width: 170,
-      decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey[300]!),
-          borderRadius: BorderRadius.circular(20),
-          color: Colors.white,
-          boxShadow: [BoxShadow(blurRadius: 0.1)]),
+      // 동적 배치
+      width: MediaQuery.of(context).size.width*0.9,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           // toStringAsFixed 소수점 떼려고 씀
           Text(
               '${stockData['symbol']} : ${stockData['currentPrice'].toStringAsFixed(0)}',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-
+      
+          SizedBox(height: 20),
+      
           // 그래프
-          Container(
-            padding: EdgeInsets.all(5),
-            child: SizedBox(
-              width: 140, // 차트 너비 설정
-              height: 65, // 차트 높이 설정
-              child: LineChart(LineChartData(
-                  // 사용자가 마우스 위에 올렸을 때 주가 나오는 부분 삭제
-                  lineTouchData: LineTouchData(enabled: false),
-                  gridData: FlGridData(show: false),
-                  // 격자 라인 안 보이게 설정
-                  titlesData: FlTitlesData(show: false),
-                  // 축 제목 안 보이게 설정
-                  borderData: FlBorderData(show: false),
-                  // 차트 테두리 안 보이게 설정
-                  lineBarsData: [
-                    LineChartBarData(
-                      spots: stockData['changePercent'],
-                      // 차트에 표시할 데이터
-                      isCurved: true,
-                      // 선을 곡선으로 표시
-                      color: stockData['changePercent'].first.y <
-                              stockData['changePercent'].last.y
-                          ? Colors.red
-                          : Colors.blue,
-                      // 선 색상은 시작 가격과 최종 가격 비교에 따라 결정
-                      barWidth: 2,
-                      // 선 두께는 2
-                      dotData: FlDotData(show: false),
-                      // 데이터 점 안 보이게 설정
-                      belowBarData: BarAreaData(show: false), // 선 아래 영역 색칠 안 함
-                    )
-                  ])),
-            ),
+          SizedBox(
+            width: 380, // 차트 너비 설정
+            height: 120, // 차트 높이 설정
+            child: LineChart(LineChartData(
+                // 사용자가 마우스 위에 올렸을 때 주가 나오는 부분 삭제
+                lineTouchData: LineTouchData(enabled: false),
+                gridData: FlGridData(show: false),
+                // 격자 라인 안 보이게 설정
+                titlesData: FlTitlesData(show: false),
+                // 축 제목 안 보이게 설정
+                borderData: FlBorderData(show: false),
+                // 차트 테두리 안 보이게 설정
+                lineBarsData: [
+                  LineChartBarData(
+                    spots: stockData['changePercent'],
+                    // 차트에 표시할 데이터
+                    isCurved: true,
+                    // 선을 곡선으로 표시
+                    color: stockData['changePercent'].first.y <
+                            stockData['changePercent'].last.y
+                        ? Colors.red
+                        : Colors.blue,
+                    // 선 색상은 시작 가격과 최종 가격 비교에 따라 결정
+                    barWidth: 1.5,
+                    // 선 두께는 2
+                    dotData: FlDotData(show: false),
+                    // 데이터 점 안 보이게 설정
+                    belowBarData: BarAreaData(show: false), // 선 아래 영역 색칠 안 함
+                  )
+                ])),
           ),
-
+      
+          SizedBox(height: 20),
           // 변동성 나타내는 텍스트
           Text(
               '${(stockData['changePercent'].last.y - stockData['changePercent'].first.y).toStringAsFixed(2)}'

@@ -3,7 +3,7 @@ description: "Stock SNS"
 
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.0+1
+version: 0.1.0+1
 
 environment:
   sdk: ^3.6.0
@@ -36,18 +36,18 @@ dependencies:
   # 타임 스탬프
   timeago: ^3.7.0
 
-  # 추후 사용 예정 패키지
-
   # home header slide
   carousel_slider: ^5.0.0
+
+  # -- 추후 사용 예정 패키지 --
 
   # SharedPreferences
   shared_preferences: ^2.5.2
 
-  # 이미지 크롭해야
+  # 이미지 크롭
   image_cropper: ^9.0.0
 
-  # 함수 모아서 정리하는 용도
+  # 함수 정리 및 공유
   provider: ^6.1.2
 
   cupertino_icons: ^1.0.8

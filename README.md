@@ -243,6 +243,7 @@ Users can access their profile to view details and modify settings.
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
+
 ## 📧 Contact
 
 For questions or feedback, please contact [NE7K](mailto:sjjang16@naver.com) or [NeighborSoft](mailto:neighborsoft@gmail.com).

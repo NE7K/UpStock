@@ -94,7 +94,7 @@ class _UserSetState extends State<UserSet> {
                 padding: EdgeInsets.only(left: 20, right: 20),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: Colors.green
+                      color: Colors.black87
                   ),
                   child: Column(
                     children: [

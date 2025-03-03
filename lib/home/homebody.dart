@@ -65,11 +65,13 @@ class _HomeBodyState extends State<HomeBody> {
       result2.add(allData);
     }
 
-    setState(() {
-      usercontext = result2;
-      imageUrl = imageUrlresult;
-      isLoading = false;
-    });
+    if(mounted) {
+      setState(() {
+        usercontext = result2;
+        imageUrl = imageUrlresult;
+        isLoading = false;
+      });
+    }
 
   }
 

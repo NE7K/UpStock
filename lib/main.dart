@@ -70,6 +70,7 @@ class _MainpageState extends State<Mainpage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
+        // appBar: AppBar(title: Text('zz'), backgroundColor: Colors.black,),
         // appbar 추가 안할거면 safearea 추가해줘야함
         body: SafeArea(child: [Home(), UploadPage(), Profile()][tab]),
         bottomNavigationBar: BottomNavigationBar(

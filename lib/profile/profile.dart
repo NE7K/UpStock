@@ -64,7 +64,7 @@ class _ProfileState extends State<Profile> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // 사용자 아이디 그리고 이멜 받아와서 프로필에 출력
-                     Text(auth.currentUser!.displayName ?? '아이디가 존재하지 않습니다.', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                     Text(auth.currentUser!.displayName ?? '아이디가 존재하지 않습니다.', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color.fromRGBO(0, 0, 0, 0.8))),
                      Text(auth.currentUser!.email ?? '로그인하지 않았습니다.', style: TextStyle( color: Colors.grey[600], fontSize: 16)),
                    ]
                   )

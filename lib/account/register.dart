@@ -206,7 +206,7 @@ class _RegisterState extends State<Register> {
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 14,
-                                color: Colors.green
+                                color: Color.fromRGBO(0, 0, 0, 0.8),
                             )
                         )),
                   ],
@@ -219,7 +219,7 @@ class _RegisterState extends State<Register> {
                 height: 50,
                 margin: EdgeInsets.symmetric( horizontal: 80 ),
                 decoration: BoxDecoration(
-                  color: Colors.green[500],
+                  color: Color.fromRGBO(0, 0, 0, 0.8),
                   borderRadius: BorderRadius.circular(50)
                 ),
                 child: SizedBox.expand(
@@ -238,7 +238,7 @@ class _RegisterState extends State<Register> {
                   margin: EdgeInsets.symmetric( horizontal: 80 ),
                   decoration: BoxDecoration(
                       border: Border.all(
-                          color: Colors.green[500]!,
+                          color: Color.fromRGBO(0, 0, 0, 0.8),
                           width: 1
                       ),
                       borderRadius: BorderRadius.circular(50)
@@ -253,7 +253,7 @@ class _RegisterState extends State<Register> {
                         Navigator.pop(context);
                       }
 
-                    }, child: Text('Done', style: TextStyle( color: Colors.green, fontSize: 18))),
+                    }, child: Text('Done', style: TextStyle( color: Color.fromRGBO(0, 0, 0, 0.8), fontSize: 18))),
                   )
               ),
             ],

@@ -53,16 +53,72 @@ class _AnnouncementState extends State<Announcement> {
       body: ListView.builder(
           itemCount: mastercontext.length,
           itemBuilder: (context, index) {
-            return Container(
-              decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Column(
-                children: [
-                  Text('d')
-                ],
-              ),
+            return Column(
+              children: [
+                SizedBox(height: 20),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.3,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(0, 0, 0, 0.6),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 20),
+                      //제목
+                      Row(
+                        children: [
+                          SizedBox(width: 20),
+                          Text(mastercontext[index]['title'],
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+
+                      SizedBox(height: 20),
+
+                      Row(
+                        children: [
+                          SizedBox(width: 20),
+                          Text(mastercontext[index]['context'],
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold)),
+                        ],
+                      ),
+
+                      SizedBox(height: 30),
+
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height*0.12,
+                        width: MediaQuery.of(context).size.width*0.85,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            SizedBox(width: 20),
+                            Text( (mastercontext[index]['date'] as Timestamp)
+                                  .toDate()
+                                  .toString()
+                                  .substring(0, 16),
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             );
           }),
     );

@@ -44,6 +44,50 @@ UpStock aims to help users analyze real-time stock data and make informed invest
 
 <img src="https://github.com/user-attachments/assets/cf2d9c62-4d8d-4fbe-8ff6-4b94502d7858" width="80%">
 
+The following diagram illustrates the user flow within the UpStock application:
+
+### 🔑 Authentication Process
+
+When the app is launched, it first checks if the user is logged in.
+
+If the user is not logged in, they are redirected to the Login Screen.
+
+If they don't have an account, they can proceed to the Sign-up Screen to create an account.
+
+If the user is logged in, they are directed to the Main Community Screen.
+
+### 🏠 Main Community Screen
+
+Users can access two key features:
+
+View major stock indices (e.g., Dow Jones, Nasdaq 100)
+
+Browse user-generated posts
+
+If a user wants to upload a post, they are redirected to the Post Upload Screen.
+
+### 📝 Post Upload Process
+
+Users can create a new post that includes stock-related content.
+
+They can choose to reference stock market information in their posts.
+
+Once uploaded, posts appear in the Community Feed.
+
+### 👤 Profile Section
+
+Users can access their Profile Screen, where they can:
+
+Navigate to Theme Settings to adjust app appearance.
+
+Provide feedback through the Feedback Screen, which is linked to the home page.
+
+View announcements from the Announcements Screen, which retrieves data from the Firebase server.
+
+Review the Privacy Policy & Terms of Service.
+
+The user flow ensures a seamless experience by integrating stock tracking, community engagement, and personalization options. 
+
 ## 🧑‍💻 Contributors and Contribution Areas
 
 |                [장성준 (NE7K)](https://github.com/NE7K)                |                 [조예나 (yyyenaak)](https://github.com/yyyenaak)                  |
@@ -163,14 +207,32 @@ upstock/
 │   ├── test.dart                 # Test components
 ```
 
+## 📷 Screens
 
+### 1️⃣ Login & Sign-up
+Users can create an account and log in using Firebase authentication.
 
+<p align="center"> <img src="images/login.png" width="250"> <img src="images/register.png" width="250"> </p>
 
+### 2️⃣ Main Community Screen
+Users can view major stock indices and browse user-generated posts.
 
+<p align="center"> <img src="images/main_community.png" width="250"> </p>
 
+### 3️⃣ Post Upload
+Users can create new posts that include stock-related content.
 
+<p align="center"> <img src="images/upload_post.png" width="250"> </p>
 
+### 4️⃣ Profile Screen
+Users can access their profile to view details and modify settings.
 
+<p align="center"> <img src="images/profile.png" width="250"> </p>
+
+### 5️⃣ Feedback & Announcements
+Users can submit feedback within the app and check announcements.
+
+<p align="center"> <img src="images/feedback.png" width="250"> <img src="images/announcement.png" width="250"> </p>
 
 ## 📝 Contribution Guide
 

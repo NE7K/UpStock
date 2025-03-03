@@ -231,7 +231,7 @@ class _UploadPageState extends State<UploadPage> {
                   height: 50,
                   margin: EdgeInsets.symmetric( horizontal: 10 ),
                   decoration: BoxDecoration(
-                      color: Colors.green[500],
+                      color: Colors.black87,
                       borderRadius: BorderRadius.circular(50)
                   ),
                   child: SizedBox.expand(

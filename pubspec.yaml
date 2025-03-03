@@ -12,8 +12,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # 함수 모아서 정리하는 용도
-  provider: ^6.1.2
   # 서버 필수 패키지
   http: ^1.3.0
 
@@ -34,17 +32,23 @@ dependencies:
 
   # 이미지 선택
   image_picker: ^1.1.2
-  # 이미지 크롭해야
-  image_cropper: ^9.0.0
 
   # 타임 스탬프
   timeago: ^3.7.0
+
+  # 추후 사용 예정 패키지
 
   # home header slide
   carousel_slider: ^5.0.0
 
   # SharedPreferences
   shared_preferences: ^2.5.2
+
+  # 이미지 크롭해야
+  image_cropper: ^9.0.0
+
+  # 함수 모아서 정리하는 용도
+  provider: ^6.1.2
 
   cupertino_icons: ^1.0.8
   flutter_dotenv: ^5.2.1

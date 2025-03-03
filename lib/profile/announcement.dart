@@ -60,7 +60,7 @@ class _AnnouncementState extends State<Announcement> {
                   height: MediaQuery.of(context).size.height * 0.3,
                   width: MediaQuery.of(context).size.width * 0.9,
                   decoration: BoxDecoration(
-                    color: Color.fromRGBO(0, 0, 0, 0.6),
+                    color: Color.fromRGBO(0, 0, 0, 0.78),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Column(
@@ -84,18 +84,19 @@ class _AnnouncementState extends State<Announcement> {
                       Row(
                         children: [
                           SizedBox(width: 20),
-                          Text(mastercontext[index]['context'],
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold)),
+                          Expanded(
+                            child: Text(mastercontext[index]['context'],
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold)),
+                          ),
                         ],
                       ),
 
-                      SizedBox(height: 30),
 
                       SizedBox(
-                        height: MediaQuery.of(context).size.height*0.12,
+                        height: MediaQuery.of(context).size.height*0.13,
                         width: MediaQuery.of(context).size.width*0.85,
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.end,
@@ -124,55 +125,3 @@ class _AnnouncementState extends State<Announcement> {
     );
   }
 }
-
-// Card(
-// // 그림자 방향 바꾸려면 다른거
-// color: Colors.white,
-// elevation: 8,
-// shadowColor: Colors.grey[300],
-//
-// margin: EdgeInsets.symmetric(vertical: 15),
-// shape: RoundedRectangleBorder(
-// borderRadius: BorderRadius.circular(8)),
-//
-// child: Container(
-// padding: EdgeInsets.all(25),
-// child: Column(
-// crossAxisAlignment: CrossAxisAlignment.start,
-// children: [
-// Text(
-// mastercontext[index]['title'],
-// style: TextStyle(
-// color: Colors.black,
-// fontSize: 30,
-// fontWeight: FontWeight.w300,
-// letterSpacing: 1.5,
-// ),
-// ),
-// SizedBox(height: 20),
-// Divider(height: 1, color: Colors.grey[200]),
-// SizedBox(height: 20),
-// Text(
-// mastercontext[index]['context'],
-// style: TextStyle(
-// fontSize: 15,
-// ),
-// ),
-// SizedBox(height: 50),
-// Align(
-// alignment: Alignment.bottomRight,
-// child: Text(
-// (mastercontext[index]['date'] as Timestamp)
-//     .toDate()
-//     .toString()
-//     .substring(0, 16),
-// style: TextStyle(
-// fontSize: 10,
-// color: Colors.grey[800],
-// ),
-// ),
-// )
-// ],
-// ),
-// ),
-// );

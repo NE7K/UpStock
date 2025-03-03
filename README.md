@@ -1,22 +1,92 @@
-# 📁 Project Description
+![Image](https://github.com/user-attachments/assets/c96d3b79-fd5e-41a0-8dcc-52400da018b0)
 
-context
+## 📖 Project Overview
 
-## 📊 User Flow
+UpStock is a mobile application designed to provide real-time updates on U.S. stock indices with a user-friendly interface. It supports user authentication via Firebase, stock data visualization, and user feedback submission. Additionally, the app enhances user experience with smooth loading animations using Shimmer effects.
 
-<img src="https://github.com/user-attachments/assets/cf2d9c62-4d8d-4fbe-8ff6-4b94502d7858" width="60%">
+## 🔍 Key Features
 
-## 📱 Main Screen
+User Authentication: Registration and login functionality via Firebase Authentication
 
-Displays major indices of US stocks such as Dow Jones and Nasdaq
+Stock Index Tracking: Real-time updates on major indices such as Dow Jones and Nasdaq 100
 
-## ⚙️ Profile Screen
+Chart Visualization: Intuitive data visualization powered by the fl_chart package
 
-<img src="https://github.com/user-attachments/assets/3828c710-859e-4f28-992b-116624fe91e3" width="40%">
+Feedback System: Allows users to submit feedback via WebView
 
-Allows switching to dark mode
+Dark Mode Support: UI theme adapts automatically to the user's system settings
 
-Sets the application theme according to the user's system
+Shimmer Effect: Smooth loading animations for enhanced user experience
+
+## 🏗️ Future Development Plans
+
+✅ Short-Term Goals (1–3 months)
+
+User Data Storage: Implement user-specific stock watchlists using Firebase Firestore
+
+Chart Enhancements: Introduce more chart types and extended time frames for stock index variations
+
+Notification System: Enable alerts for significant stock index fluctuations
+
+## 🚀 Mid-to-Long-Term Goals (3–6 months)
+
+Portfolio Management: Allow users to create their own investment portfolios and track real-time value changes
+
+Social Features: Introduce community features for sharing stock insights and discussions
+
+Server Optimization: Optimize data structure and backend scalability to reduce Firebase costs
+
+Multi-Platform Support: Expand support for iOS and web versions
+
+UpStock aims to help users analyze real-time stock data and make informed investment decisions more conveniently. With continuous updates, the app will evolve into a more intuitive and powerful tool for stock market enthusiasts.
+
+## 📊 Target User Flow
+
+<img src="https://github.com/user-attachments/assets/cf2d9c62-4d8d-4fbe-8ff6-4b94502d7858" width="80%">
+
+The following diagram illustrates the user flow within the UpStock application:
+
+### 🔑 Authentication Process
+
+When the app is launched, it first checks if the user is logged in.
+
+If the user is not logged in, they are redirected to the Login Screen.
+
+If they don't have an account, they can proceed to the Sign-up Screen to create an account.
+
+If the user is logged in, they are directed to the Main Community Screen.
+
+### 🏠 Main Community Screen
+
+Users can access two key features:
+
+View major stock indices (e.g., Dow Jones, Nasdaq 100)
+
+Browse user-generated posts
+
+If a user wants to upload a post, they are redirected to the Post Upload Screen.
+
+### 📝 Post Upload Process
+
+Users can create a new post that includes stock-related content.
+
+They can choose to reference stock market information in their posts.
+
+Once uploaded, posts appear in the Community Feed.
+
+### 👤 Profile Section
+
+Users can access their Profile Screen, where they can:
+
+Navigate to Theme Settings to adjust app appearance.
+
+Provide feedback through the Feedback Screen, which is linked to the home page.
+
+View announcements from the Announcements Screen, which retrieves data from the Firebase server.
+
+Review the Privacy Policy & Terms of Service.
+
+The user flow ensures a seamless experience by integrating stock tracking, community engagement, and personalization options. 
 
 ## 🧑‍💻 Contributors and Contribution Areas
 
@@ -25,24 +95,52 @@ Sets the application theme according to the user's system
 | ![Sungjun Jang's profile picture](https://avatars.githubusercontent.com/u/81324262?v=4) | ![Yena Cho's profile picture](https://avatars.githubusercontent.com/u/170397500?v=4) |
 | Application development | Feedback page development |
 
-## 💿 External Packages Used
+## 💿 Packages used and planned to be used
 
-**fl_chart**: Used for drawing stock charts
-<br></br>
-**provider**: Used for organizing functions
-<br></br>
-**http**: Used for internet communication
-<br></br>
-**firebase_core**: Firebase package
-<br></br>
-**firebase_auth**: Firebase package
-<br></br>
-**cloud_firestore**: Firebase package
-<br></br>
-**webview_flutter**: Used for implementing feedback functionality
-<br></br>
-**shimmer**: Used to indicate data loading
-<br></br>
+```
+  flutter:
+    sdk: flutter
+
+  # 서버 필수 패키지
+  http: ^1.3.0
+
+  # firebase package
+  firebase_core: ^3.10.1
+  firebase_auth: ^5.4.1
+  firebase_storage: ^12.4.4
+  cloud_firestore: ^5.6.2
+
+  # flutter web view
+  webview_flutter: ^4.10.0
+
+  # 주식 차트용 핵심 외부 패키지
+  fl_chart: ^0.64.0
+
+  # Shimmer 효과 (Shimmer Loading)
+  shimmer: ^3.0.0
+
+  # 이미지 선택
+  image_picker: ^1.1.2
+
+  # 타임 스탬프
+  timeago: ^3.7.0
+
+  # home header slide
+  carousel_slider: ^5.0.0
+
+  # -- 추후 사용 예정 패키지 --
+
+  # SharedPreferences
+  shared_preferences: ^2.5.2
+
+  # 이미지 크롭
+  image_cropper: ^9.0.0
+
+  # 함수 정리 및 공유
+  provider: ^6.1.2
+
+```
+
 
 ## 🚀 Installation and Setup
 
@@ -68,24 +166,70 @@ flutter run
 - Customizable application theme based on user system
 - Feedback functionality
 
-## 📷 Screenshots
-
-<img src="https://github.com/user-attachments/assets/fab62f96-603f-4e84-ae66-5da0559fcae4" width="40%">
-
-<img src="https://github.com/user-attachments/assets/f7774eff-1c97-460f-93d8-9d6bdf3ed334" width="40%">
-
-<img src="https://github.com/user-attachments/assets/4b6352fd-e5be-4dca-8cac-b0b441b3946a" width="40%">
-
-<img src="https://github.com/user-attachments/assets/4e359a72-3d17-477c-86ef-244fd1406406" width="40%">
-
-<img src="https://github.com/user-attachments/assets/76a1e15b-c93a-4a50-b349-1f2618b4f05d" width="40%">
-
 ## 🛠️ Tech Stack
 
-- Flutter
-- Firebase (Auth, Firestore)
-- REST API (using http package)
-- fl_chart
+- Frontend: Flutter (Dart)
+- Backend: Firebase (Auth, Firestore, Storage)
+- Networking: REST API (http package)
+- Data Visualization: fl_chart
+- UI Enhancements: shimmer, carousel_slider
+
+
+## 📂 Project Structure
+```
+upstock/
+│── lib/
+│   ├── main.dart                 # Main entry point
+│   ├── account/                  # Authentication
+│   │   ├── login.dart            # Login page
+│   │   ├── register.dart         # Register page
+│   │   ├── search.dart           # Search functionality
+│   ├── firebase/                 # Firebase configuration
+│   │   ├── firebase_options.dart # Firebase settings
+│   ├── home/                     # Home components
+│   │   ├── home.dart             # Home page
+│   │   ├── homebody.dart         # Home body UI
+│   │   ├── homeheader.dart       # Header with stock chart
+│   ├── profile/                  # User profile settings
+│   │   ├── profile.dart          # Profile page
+│   │   ├── setting.dart          # Account settings
+│   │   ├── announcement.dart     # Announcement page
+│   │   ├── information.dart      # Privacy policy
+│   │   ├── peedback.dart         # Feedback form
+│   │   ├── screen.dart           # Dark mode settings
+│   ├── shimmer/                  # Shimmer effects for loading states
+│   │   ├── homebodyshimmer.dart  # Shimmer effect for home body
+│   │   ├── homeheadershimmer.dart # Shimmer effect for header
+│   ├── style/                    # Global styles
+│   │   ├── style.dart            # Theme and styles
+│   ├── upload/                   # Upload functionality
+│   │   ├── upload.dart           # Image and post upload
+│   ├── test.dart                 # Test components
+```
+
+## 📷 Screens
+
+### 1️⃣ Login & Sign-up
+Users can create an account and log in using Firebase authentication.
+
+<p align="left"> <img src="https://github.com/user-attachments/assets/6b7dc615-b7fe-465a-b700-1d2100a3381e" width="250"> <img src="https://github.com/user-attachments/assets/255d3513-7039-4d13-87be-92dfde4ccc16" width="250"> </p>
+
+### 2️⃣ Main Community Screen
+Users can view major stock indices and browse user-generated posts.
+
+<p align="left"> <img src="https://github.com/user-attachments/assets/9699b3d4-5989-46a4-b7fb-a2eb832144b4" width="250"> </p>
+
+### 3️⃣ Post Upload
+Users can create new posts that include stock-related content.
+
+<p align="left"> <img src="https://github.com/user-attachments/assets/4f93141a-561e-4b97-94f3-ead3ce461d3d" width="250"> </p>
+
+### 4️⃣ Profile Screen
+Users can access their profile to view details and modify settings.
+
+<p align="leftr"> <img src="https://github.com/user-attachments/assets/5a24ae5c-960f-451e-ad63-71919b64faeb" width="250">
+  <img src="https://github.com/user-attachments/assets/41c90cab-1849-40a3-8ff7-583308f4703f" width="250"> </p>
+
 
 ## 📝 Contribution Guide
 
@@ -101,4 +245,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## 📧 Contact
 
-For questions or feedback, please contact [NE7K](mailto:neighborsoft@gmail.com).
+For questions or feedback, please contact [NE7K](mailto:sjjang16@naver.com) or [NeighborSoft](mailto:neighborsoft@gmail.com).

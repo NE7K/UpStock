@@ -7,7 +7,6 @@ import 'package:upstock/profile/announcement.dart';
 import 'package:upstock/profile/information.dart';
 import 'package:upstock/profile/setting.dart';
 import 'package:upstock/profile/peedback.dart';
-import 'package:upstock/profile/screen.dart';
 
 // 파이어베이스 쓰려면 넣어라.. 오류난다
 import 'package:firebase_auth/firebase_auth.dart';
@@ -79,20 +78,20 @@ class _ProfileState extends State<Profile> {
 
                 SizedBox( height: 5 ),
 
-                Divider(color: Colors.grey[200]),
+                // Divider(color: Colors.grey[200]),
 
-                Text('설정', style: TextStyle( fontSize: 12, color: Colors.grey)),
-
-                ListTile(
-                  contentPadding: EdgeInsets.symmetric(vertical: 12),
-                  leading: Icon(Icons.bedtime_outlined),
-                  title: Text('화면 테마'),
-                  trailing: Icon(Icons.arrow_forward_ios, size: 15),
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (c) => Screen()));
-                    },
-                ),
+                // Text('설정', style: TextStyle( fontSize: 12, color: Colors.grey)),
+                //
+                // ListTile(
+                //   contentPadding: EdgeInsets.symmetric(vertical: 12),
+                //   leading: Icon(Icons.bedtime_outlined),
+                //   title: Text('화면 테마'),
+                //   trailing: Icon(Icons.arrow_forward_ios, size: 15),
+                //   onTap: () {
+                //     Navigator.push(context,
+                //         MaterialPageRoute(builder: (c) => Screen()));
+                //     },
+                // ),
 
                 Divider(color: Colors.grey[200],),
 

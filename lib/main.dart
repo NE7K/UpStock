@@ -8,8 +8,8 @@ import 'package:upstock/upload/upload.dart';
 import 'home/home.dart'; // fl_chart
 import 'profile/profile.dart';
 
-// style 가져오기
-// import 'package:upstock/style/style.dart' as style;
+//style 가져오기
+import 'package:upstock/style/style.dart' as style;
 
 import 'package:upstock/account/login.dart';
 
@@ -33,7 +33,8 @@ void main() async {
     // todo : provider 쓰려고 일단 만들어뒀는데 나중에 코드 정리할 때에만 사용할 예정
             ChangeNotifierProvider(create: (c) => Store()),
   ], child: MaterialApp(
-          home: const Mainpage())
+          theme: style.theme,
+          home: Mainpage())
       )
   );
 }

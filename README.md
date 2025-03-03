@@ -212,27 +212,24 @@ upstock/
 ### 1️⃣ Login & Sign-up
 Users can create an account and log in using Firebase authentication.
 
-<p align="center"> <img src="images/login.png" width="250"> <img src="images/register.png" width="250"> </p>
+<p align="left"> <img src="https://github.com/user-attachments/assets/6b7dc615-b7fe-465a-b700-1d2100a3381e" width="250"> <img src="https://github.com/user-attachments/assets/255d3513-7039-4d13-87be-92dfde4ccc16" width="250"> </p>
 
 ### 2️⃣ Main Community Screen
 Users can view major stock indices and browse user-generated posts.
 
-<p align="center"> <img src="images/main_community.png" width="250"> </p>
+<p align="left"> <img src="https://github.com/user-attachments/assets/9699b3d4-5989-46a4-b7fb-a2eb832144b4" width="250"> </p>
 
 ### 3️⃣ Post Upload
 Users can create new posts that include stock-related content.
 
-<p align="center"> <img src="images/upload_post.png" width="250"> </p>
+<p align="left"> <img src="https://github.com/user-attachments/assets/4f93141a-561e-4b97-94f3-ead3ce461d3d" width="250"> </p>
 
 ### 4️⃣ Profile Screen
 Users can access their profile to view details and modify settings.
 
-<p align="center"> <img src="images/profile.png" width="250"> </p>
+<p align="leftr"> <img src="https://github.com/user-attachments/assets/5a24ae5c-960f-451e-ad63-71919b64faeb" width="250">
+  <img src="https://github.com/user-attachments/assets/41c90cab-1849-40a3-8ff7-583308f4703f" width="250"> </p>
 
-### 5️⃣ Feedback & Announcements
-Users can submit feedback within the app and check announcements.
-
-<p align="center"> <img src="images/feedback.png" width="250"> <img src="images/announcement.png" width="250"> </p>
 
 ## 📝 Contribution Guide
 

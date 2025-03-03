@@ -6,16 +6,12 @@ class Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        title: Text('화면 설정'),
-      ),
-      body: Column(
-
-      )
-
-    );
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          title: Text('다크 모드 설정'),
+        ),
+        body: Column(
+          children: [],
+        ));
   }
 }
-
-

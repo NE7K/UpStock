@@ -7,7 +7,9 @@ import 'package:upstock/upload/upload.dart';
 // 내부 파일 Import
 import 'home/home.dart'; // fl_chart
 import 'profile/profile.dart';
-import 'package:upstock/style/style.dart' as style; // style.dart
+
+// style 가져오기
+// import 'package:upstock/style/style.dart' as style;
 
 import 'package:upstock/account/login.dart';
 
@@ -25,10 +27,15 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MultiProvider(providers: [
+  runApp(
+      MultiProvider(
+          providers: [
     // todo : provider 쓰려고 일단 만들어뒀는데 나중에 코드 정리할 때에만 사용할 예정
-    ChangeNotifierProvider(create: (c) => Store())
-  ], child: MaterialApp(theme: style.theme, home: Mainpage())));
+            ChangeNotifierProvider(create: (c) => Store()),
+  ], child: MaterialApp(
+          home: const Mainpage())
+      )
+  );
 }
 
 class Store extends ChangeNotifier {

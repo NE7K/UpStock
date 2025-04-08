@@ -32,8 +32,6 @@ UpStock aims to help users analyze real-time stock data and make informed invest
 
 ## 📊 Target User Flow
 
-<img src="https://github.com/user-attachments/assets/cf2d9c62-4d8d-4fbe-8ff6-4b94502d7858" width="80%">
-
 The following diagram illustrates the user flow within the UpStock application:
 
 ### 🔑 Authentication Process

@@ -6,7 +6,7 @@ UpStock is a mobile application designed to provide real-time updates on U.S. st
 
 ## System configuration diagram
 
-<img width="100%" alt="wbs" src="https://github.com/user-attachments/assets/1fe24cfe-0da4-4d8e-bc22-7ada93908529" />
+<img width="100%" alt="system diagram" src="https://github.com/user-attachments/assets/1fe24cfe-0da4-4d8e-bc22-7ada93908529" />
 
 ## 🔍 WBS
 
@@ -38,7 +38,7 @@ UpStock aims to help users analyze real-time stock data and make informed invest
 
 The following diagram illustrates the user flow within the UpStock application :
 
-<img width="80%" alt="wbs" src="https://github.com/user-attachments/assets/259887bc-e2e7-485e-a95e-e47d14c24fd9" />
+<img width="100%" alt="UserFlow" src="https://github.com/user-attachments/assets/4379bea8-8f86-4f87-b6f6-7e2da1a93823" />
 
 ### 🔑 Authentication Process
 

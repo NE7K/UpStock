@@ -10,7 +10,7 @@ UpStock is a mobile application designed to provide real-time updates on U.S. st
 
 ## 🔍 WBS
 
-<img width="80%" alt="wbs" src="https://github.com/user-attachments/assets/f82c939e-e7f5-46f3-bfe1-6d2be299a9ff" />
+<img width="100%" alt="wbs" src="https://github.com/user-attachments/assets/f82c939e-e7f5-46f3-bfe1-6d2be299a9ff" />
 
 ## 🏗️ Future Development Plans
 

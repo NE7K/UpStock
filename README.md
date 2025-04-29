@@ -4,6 +4,10 @@
 
 UpStock is a mobile application designed to provide real-time updates on U.S. stock indices with a user-friendly interface. It supports user authentication via Firebase, stock data visualization, and user feedback submission. Additionally, the app enhances user experience with smooth loading animations using Shimmer effects.
 
+## System configuration diagram
+
+<img width="100%" alt="wbs" src="https://github.com/user-attachments/assets/1fe24cfe-0da4-4d8e-bc22-7ada93908529" />
+
 ## 🔍 WBS
 
 <img width="80%" alt="wbs" src="https://github.com/user-attachments/assets/f82c939e-e7f5-46f3-bfe1-6d2be299a9ff" />

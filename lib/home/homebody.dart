@@ -187,7 +187,7 @@ class ListUserContext extends StatelessWidget {
         ),
         SizedBox(height: 10),
 
-        // todo 이ㅓㄱ shimmer 따로 처리해줘야함 텍스ㅡ트보다 로딩 느림
+        // todo 이거 shimmer 따로 처리해줘야함 텍스트보다 로딩 느림
         buildImageNotEmpty(imageUrl),
 
         SizedBox(height: 15),
@@ -219,6 +219,8 @@ class ListUserContext extends StatelessWidget {
                   ],
                 ),
               ),
+
+              // todo 서버 연동 해야함
               Row(
                 children: [
                   IconButton(
